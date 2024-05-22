@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "i+PTwOQQ7qS9svD9QRHOwIAIzw7BkyZKMLXtGSr/lIc=",
+  "Source": "PharmacyManagementApi",
+  "BasePath": "_content/PharmacyManagementApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
