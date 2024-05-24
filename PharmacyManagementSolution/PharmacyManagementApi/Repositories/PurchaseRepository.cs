@@ -37,10 +37,10 @@ namespace PharmacyManagementApi.Repository
         {
             try
             {
-                var Purchase = await Get(key);
-                _context.Remove(Purchase);
+                var purchase = await Get(key);
+                _context.Remove(purchase);
                 await _context.SaveChangesAsync();
-                return Purchase;
+                return purchase;
             }
             catch (NoPurchaseFoundException)
             {
@@ -86,10 +86,10 @@ namespace PharmacyManagementApi.Repository
 
             try
             {
-                var Purchase = await Get(item.PurchaseId);
-                _context.Entry(Purchase).CurrentValues.SetValues(item);
+                var purchase = await Get(item.PurchaseId);
+                _context.Entry(purchase).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
-                return Purchase;
+                return purchase;
             }
             catch (NoPurchaseFoundException)
             {

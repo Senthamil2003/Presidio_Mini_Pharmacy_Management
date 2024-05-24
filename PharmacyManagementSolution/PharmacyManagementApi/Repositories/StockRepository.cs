@@ -37,10 +37,10 @@ namespace PharmacyManagementApi.Repository
         {
             try
             {
-                var Stock = await Get(key);
-                _context.Remove(Stock);
+                var stock = await Get(key);
+                _context.Remove(stock);
                 await _context.SaveChangesAsync();
-                return Stock;
+                return stock;
             }
             catch (NoStockFoundException)
             {
@@ -59,6 +59,10 @@ namespace PharmacyManagementApi.Repository
             {
                 return await _context.Stocks.SingleOrDefaultAsync(u => u.StockId == key)
                     ?? throw new NoStockFoundException($"No Stock found with given id {key}");
+            }
+            catch (NoStockFoundException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
@@ -86,10 +90,10 @@ namespace PharmacyManagementApi.Repository
 
             try
             {
-                var Stock = await Get(item.StockId);
-                _context.Entry(Stock).CurrentValues.SetValues(item);
+                var stock = await Get(item.StockId);
+                _context.Entry(stock).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
-                return Stock;
+                return stock;
             }
             catch (NoStockFoundException)
             {

@@ -38,7 +38,6 @@ namespace PharmacyManagementApi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.CustomerId);
-                    table.UniqueConstraint("AK_Customers_Email", x => x.Email);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,6 +124,7 @@ namespace PharmacyManagementApi.Migrations
                 columns: table => new
                 {
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     HasedPassword = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     BankBalance = table.Column<int>(type: "int", nullable: false),
@@ -134,11 +134,11 @@ namespace PharmacyManagementApi.Migrations
                 {
                     table.PrimaryKey("PK_UserCredentials", x => x.Email);
                     table.ForeignKey(
-                        name: "FK_UserCredentials_Customers_Email",
-                        column: x => x.Email,
+                        name: "FK_UserCredentials_Customers_UserId",
+                        column: x => x.UserId,
                         principalTable: "Customers",
-                        principalColumn: "Email",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CustomerId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,10 +163,10 @@ namespace PharmacyManagementApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PurchasesDetails",
+                name: "PurchaseDetails",
                 columns: table => new
                 {
-                    PurchaseDetailsId = table.Column<int>(type: "int", nullable: false)
+                    PurchaseDetailId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PurchaseId = table.Column<int>(type: "int", nullable: false),
                     MedicineId = table.Column<int>(type: "int", nullable: false),
@@ -177,15 +177,15 @@ namespace PharmacyManagementApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PurchasesDetails", x => x.PurchaseDetailsId);
+                    table.PrimaryKey("PK_PurchaseDetails", x => x.PurchaseDetailId);
                     table.ForeignKey(
-                        name: "FK_PurchasesDetails_Medicines_MedicineId",
+                        name: "FK_PurchaseDetails_Medicines_MedicineId",
                         column: x => x.MedicineId,
                         principalTable: "Medicines",
                         principalColumn: "MedicineId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PurchasesDetails_Purchases_PurchaseId",
+                        name: "FK_PurchaseDetails_Purchases_PurchaseId",
                         column: x => x.PurchaseId,
                         principalTable: "Purchases",
                         principalColumn: "PurchaseId",
@@ -219,10 +219,10 @@ namespace PharmacyManagementApi.Migrations
                         principalColumn: "OrderId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_OrderDetails_PurchasesDetails_PurchaseDetailId",
+                        name: "FK_OrderDetails_PurchaseDetails_PurchaseDetailId",
                         column: x => x.PurchaseDetailId,
-                        principalTable: "PurchasesDetails",
-                        principalColumn: "PurchaseDetailsId",
+                        principalTable: "PurchaseDetails",
+                        principalColumn: "PurchaseDetailId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -248,10 +248,10 @@ namespace PharmacyManagementApi.Migrations
                         principalColumn: "MedicineId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Stocks_PurchasesDetails_PurchaseDetailId",
+                        name: "FK_Stocks_PurchaseDetails_PurchaseDetailId",
                         column: x => x.PurchaseDetailId,
-                        principalTable: "PurchasesDetails",
-                        principalColumn: "PurchaseDetailsId",
+                        principalTable: "PurchaseDetails",
+                        principalColumn: "PurchaseDetailId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -287,19 +287,19 @@ namespace PharmacyManagementApi.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Purchases_VendorId",
-                table: "Purchases",
-                column: "VendorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PurchasesDetails_MedicineId",
-                table: "PurchasesDetails",
+                name: "IX_PurchaseDetails_MedicineId",
+                table: "PurchaseDetails",
                 column: "MedicineId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PurchasesDetails_PurchaseId",
-                table: "PurchasesDetails",
+                name: "IX_PurchaseDetails_PurchaseId",
+                table: "PurchaseDetails",
                 column: "PurchaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Purchases_VendorId",
+                table: "Purchases",
+                column: "VendorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Stocks_MedicineId",
@@ -310,6 +310,12 @@ namespace PharmacyManagementApi.Migrations
                 name: "IX_Stocks_PurchaseDetailId",
                 table: "Stocks",
                 column: "PurchaseDetailId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserCredentials_UserId",
+                table: "UserCredentials",
+                column: "UserId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -330,7 +336,7 @@ namespace PharmacyManagementApi.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "PurchasesDetails");
+                name: "PurchaseDetails");
 
             migrationBuilder.DropTable(
                 name: "Customers");

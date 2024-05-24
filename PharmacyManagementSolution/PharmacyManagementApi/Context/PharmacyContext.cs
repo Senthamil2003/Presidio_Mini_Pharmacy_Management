@@ -103,8 +103,9 @@ namespace PharmacyManagementApi.Context
             modelBuilder.Entity<UserCredential>()
                 .HasOne(uc => uc.Customer)
                 .WithOne()
-                .HasForeignKey<UserCredential>(uc => uc.Email)
-                .HasPrincipalKey<Customer>(c => c.Email);
+                .HasForeignKey<UserCredential>(uc => uc.UserId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
 
 
 

@@ -6,7 +6,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repository
 {
-    public class UserCredentialRepository : IReposiroty<int, UserCredential>
+    public class UserCredentialRepository : IReposiroty<string, UserCredential>
     {
         private readonly PharmacyContext _context;
 
@@ -33,14 +33,14 @@ namespace PharmacyManagementApi.Repository
             }
         }
 
-        public async Task<UserCredential> Delete(int key)
+        public async Task<UserCredential> Delete(string key)
         {
             try
             {
-                var UserCredential = await Get(key);
-                _context.Remove(UserCredential);
+                var userCredential = await Get(key);
+                _context.Remove(userCredential);
                 await _context.SaveChangesAsync();
-                return UserCredential;
+                return userCredential;
             }
             catch (NoUserCredentialFoundException)
             {
@@ -53,13 +53,19 @@ namespace PharmacyManagementApi.Repository
             }
         }
 
-        public async Task<UserCredential> Get(int key)
+        public async Task<UserCredential> Get(string key)
         {
             try
             {
-                return await _context.UserCredentials.SingleOrDefaultAsync(u => u.UserCredentialId == key)
-                    ?? throw new NoUserCredentialFoundException($"No UserCredential found with given id {key}");
+                return await _context.UserCredentials.SingleOrDefaultAsync(u => u.Email == key)
+                    ?? throw new NoUserCredentialFoundException($"No user found with given id {key}");
             }
+            catch (NoUserCredentialFoundException)
+            {
+             
+                throw;
+            }
+
             catch (Exception ex)
             {
                 throw new RepositoryException("Error Occur while fetching data from UserCredential. " + ex);
@@ -86,10 +92,10 @@ namespace PharmacyManagementApi.Repository
 
             try
             {
-                var UserCredential = await Get(item.UserCredentialId);
-                _context.Entry(UserCredential).CurrentValues.SetValues(item);
+                var userCredential = await Get(item.Email);
+                _context.Entry(userCredential).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
-                return UserCredential;
+                return userCredential;
             }
             catch (NoUserCredentialFoundException)
             {

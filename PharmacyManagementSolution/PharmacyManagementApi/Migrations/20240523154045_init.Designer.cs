@@ -12,7 +12,7 @@ using PharmacyManagementApi.Context;
 namespace PharmacyManagementApi.Migrations
 {
     [DbContext(typeof(PharmacyContext))]
-    [Migration("20240522151826_init")]
+    [Migration("20240523154045_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -211,11 +211,11 @@ namespace PharmacyManagementApi.Migrations
 
             modelBuilder.Entity("PharmacyManagementApi.Models.PurchaseDetail", b =>
                 {
-                    b.Property<int>("PurchaseDetailsId")
+                    b.Property<int>("PurchaseDetailId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseDetailsId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseDetailId"), 1L, 1);
 
                     b.Property<string>("DosageForm")
                         .IsRequired()
@@ -237,13 +237,13 @@ namespace PharmacyManagementApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PurchaseDetailsId");
+                    b.HasKey("PurchaseDetailId");
 
                     b.HasIndex("MedicineId");
 
                     b.HasIndex("PurchaseId");
 
-                    b.ToTable("PurchasesDetails");
+                    b.ToTable("PurchaseDetails");
                 });
 
             modelBuilder.Entity("PharmacyManagementApi.Models.Stock", b =>
@@ -278,7 +278,7 @@ namespace PharmacyManagementApi.Migrations
                     b.ToTable("Stocks");
                 });
 
-            modelBuilder.Entity("PharmacyManagementApi.Models.UserCredentials", b =>
+            modelBuilder.Entity("PharmacyManagementApi.Models.UserCredential", b =>
                 {
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
@@ -298,7 +298,13 @@ namespace PharmacyManagementApi.Migrations
                         .IsRequired()
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Email");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
 
                     b.ToTable("UserCredentials");
                 });
@@ -437,13 +443,12 @@ namespace PharmacyManagementApi.Migrations
                     b.Navigation("PurchaseDetail");
                 });
 
-            modelBuilder.Entity("PharmacyManagementApi.Models.UserCredentials", b =>
+            modelBuilder.Entity("PharmacyManagementApi.Models.UserCredential", b =>
                 {
                     b.HasOne("PharmacyManagementApi.Models.Customer", "Customer")
                         .WithOne()
-                        .HasForeignKey("PharmacyManagementApi.Models.UserCredentials", "Email")
-                        .HasPrincipalKey("PharmacyManagementApi.Models.Customer", "Email")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("PharmacyManagementApi.Models.UserCredential", "UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Customer");

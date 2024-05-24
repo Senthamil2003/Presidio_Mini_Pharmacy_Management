@@ -67,3 +67,5 @@ C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManage
 C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\bin\Debug\net6.0\Humanizer.dll
 C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll

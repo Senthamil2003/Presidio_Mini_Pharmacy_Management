@@ -37,10 +37,10 @@ namespace PharmacyManagementApi.Repository
         {
             try
             {
-                var Order = await Get(key);
-                _context.Remove(Order);
+                var order = await Get(key);
+                _context.Remove(order);
                 await _context.SaveChangesAsync();
-                return Order;
+                return order;
             }
             catch (NoOrderFoundException)
             {
@@ -86,10 +86,10 @@ namespace PharmacyManagementApi.Repository
 
             try
             {
-                var Order = await Get(item.OrderId);
-                _context.Entry(Order).CurrentValues.SetValues(item);
+                var order = await Get(item.OrderId);
+                _context.Entry(order).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
-                return Order;
+                return order;
             }
             catch (NoOrderFoundException)
             {
