@@ -9,7 +9,10 @@ namespace PharmacyManagementApi.Models
         public int PurchaseDetailId { get; set; }
         public int PurchaseId { get; set; }
         public int MedicineId { get; set; }
+        public int Amount { get; set; }
         public int Quantity { get; set; }
+        public int TotalSum { get; set; }
+        public int VendorId { get; set; }   
         public DateTime ExpiryDate { get; set; }
         public string StorageRequirement { get; set; }
         public string DosageForm { get; set; }
@@ -19,5 +22,8 @@ namespace PharmacyManagementApi.Models
 
         [ForeignKey("MedicineId")]
         public Medicine Medicine { get; set; }
+
+        [ForeignKey("VendorId")]
+        public Vendor Vendor { get; set; }
     }
 }

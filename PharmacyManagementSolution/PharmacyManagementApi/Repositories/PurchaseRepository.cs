@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using PharmacyManagementApi.Context;
 using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
@@ -14,11 +15,14 @@ namespace PharmacyManagementApi.Repository
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+        
 
         public async Task<Purchase> Add(Purchase item)
         {
             if (item == null)
+            {
                 throw new ArgumentNullException(nameof(item), "Purchase cannot be null");
+            }
 
             try
             {
@@ -28,11 +32,9 @@ namespace PharmacyManagementApi.Repository
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while adding the Purchase. " + ex);
             }
         }
-
         public async Task<Purchase> Delete(int key)
         {
             try

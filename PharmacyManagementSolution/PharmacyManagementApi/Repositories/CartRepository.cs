@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using PharmacyManagementApi.Context;
 using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
@@ -13,6 +14,21 @@ namespace PharmacyManagementApi.Repository
         public CartRepository(PharmacyContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _context.Database.BeginTransactionAsync();
+        }
+
+        public async Task CommitTransactionAsync()
+        {
+            await _context.Database.CommitTransactionAsync();
+        }
+
+        public async Task RollbackTransactionAsync()
+        {
+            await _context.Database.RollbackTransactionAsync();
         }
 
         public async Task<Cart> Add(Cart item)

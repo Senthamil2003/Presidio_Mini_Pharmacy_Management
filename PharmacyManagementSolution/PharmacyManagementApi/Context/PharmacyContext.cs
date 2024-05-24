@@ -70,13 +70,7 @@ namespace PharmacyManagementApi.Context
              .OnDelete(DeleteBehavior.Restrict)
              .IsRequired();
 
-            //Foriegn key for purchase
-              modelBuilder.Entity<Purchase>()
-             .HasOne(p=>p.Vendor)
-             .WithMany()
-             .HasForeignKey(p=>p.VendorId)
-             .OnDelete(DeleteBehavior.Restrict)
-             .IsRequired();
+        
 
             //Foriegn key for Stock
             modelBuilder.Entity<Stock>()

@@ -1,4 +1,6 @@
-﻿namespace PharmacyManagementApi.Interface
+﻿using Microsoft.EntityFrameworkCore.Storage;
+
+namespace PharmacyManagementApi.Interface
 {
     public interface IReposiroty<K, T> where T : class
     {
@@ -7,5 +9,8 @@
         public Task<T> Update(T item);
         public Task<T> Get(K key);
         public Task<IEnumerable<T>> Get();
+        // Transaction methods
+
+
     }
 }
