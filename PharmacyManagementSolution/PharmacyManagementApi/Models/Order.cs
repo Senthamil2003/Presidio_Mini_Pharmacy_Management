@@ -15,7 +15,7 @@ namespace PharmacyManagementApi.Models
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }
-        public ICollection<OrderDetail> Details { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
 
     }
 }

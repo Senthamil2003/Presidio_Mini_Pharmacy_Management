@@ -68,6 +68,7 @@ public class PurchaseService : IPurchaseService
                         };
                         await _medicineRepo.Add(medicine);
                     }
+                    Category? Checkcategory = (await _categoryRepo.Get()).SingleOrDefault(c => c.CategoryName == item.MedicineCategory)?? throw new CategoryMedicineMisMatchException("Given Category is not matched with the Medicine");
                     Vendor vendor = (await _vendorRepo.Get()).SingleOrDefault(v => v.VendorName == item.VendorName)
     ?? throw new NoVendorFoundException("No vendor found, add the vendor");
                     int vendorId = vendor.VendorId;
@@ -116,8 +117,6 @@ public class PurchaseService : IPurchaseService
             {
                 await _transactionService.RollbackTransactionAsync();
               
-        
-
                 throw;
             }
         }

@@ -5,7 +5,7 @@ using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
 
-namespace PharmacyManagementApi.Repository
+namespace PharmacyManagementApi.Repositories.General_Repositories
 {
     public class PurchaseDetailRepository : IReposiroty<int, PurchaseDetail>
     {
@@ -15,7 +15,7 @@ namespace PharmacyManagementApi.Repository
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        
+
 
         public async Task<PurchaseDetail> Add(PurchaseDetail item)
         {

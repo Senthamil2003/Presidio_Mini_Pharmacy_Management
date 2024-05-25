@@ -5,7 +5,7 @@ using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
 
-namespace PharmacyManagementApi.Repository
+namespace PharmacyManagementApi.Repositories.General_Repositories
 {
     public class CartRepository : IReposiroty<int, Cart>
     {
@@ -15,22 +15,6 @@ namespace PharmacyManagementApi.Repository
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-
-        public async Task<IDbContextTransaction> BeginTransactionAsync()
-        {
-            return await _context.Database.BeginTransactionAsync();
-        }
-
-        public async Task CommitTransactionAsync()
-        {
-            await _context.Database.CommitTransactionAsync();
-        }
-
-        public async Task RollbackTransactionAsync()
-        {
-            await _context.Database.RollbackTransactionAsync();
-        }
-
         public async Task<Cart> Add(Cart item)
         {
             if (item == null)

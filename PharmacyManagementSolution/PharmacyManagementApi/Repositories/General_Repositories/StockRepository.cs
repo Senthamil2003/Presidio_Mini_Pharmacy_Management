@@ -5,7 +5,7 @@ using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
 
-namespace PharmacyManagementApi.Repository
+namespace PharmacyManagementApi.Repositories.General_Repositories
 {
     public class StockRepository : IReposiroty<int, Stock>
     {
@@ -15,7 +15,7 @@ namespace PharmacyManagementApi.Repository
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-   
+
 
         public async Task<Stock> Add(Stock item)
         {
@@ -55,7 +55,7 @@ namespace PharmacyManagementApi.Repository
             }
         }
 
-        public async Task<Stock> Get(int key)
+        public virtual async Task<Stock> Get(int key)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace PharmacyManagementApi.Repository
             }
         }
 
-        public async Task<IEnumerable<Stock>> Get()
+        public virtual async Task<IEnumerable<Stock>> Get()
         {
             try
             {

@@ -20,14 +20,21 @@ namespace PharmacyManagementApi.Context
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<DeliveryDetail> DeliveryDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             //Foriegn Key for Cart
             modelBuilder.Entity<Cart>()
              .HasOne(uc => uc.Customer)
-             .WithMany()
+             .WithMany(c=>c.Carts)
              .HasForeignKey(c => c.CustomerId)
+             .OnDelete(DeleteBehavior.Restrict)
+             .IsRequired();
+              modelBuilder.Entity<Cart>()
+             .HasOne(uc => uc.Medicine)
+             .WithMany()
+             .HasForeignKey(c => c.MedicineId)
              .OnDelete(DeleteBehavior.Restrict)
              .IsRequired();
 
@@ -39,20 +46,31 @@ namespace PharmacyManagementApi.Context
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 
+            //Foriegn Key for DeliveryDetail
+            modelBuilder.Entity<DeliveryDetail>()
+            .HasOne(dd => dd.OrderDetail)
+            .WithMany(od=>od.DeliveryDetails)
+            .HasForeignKey(dd=>dd.OrderDetailId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
+
+             modelBuilder.Entity<DeliveryDetail>()
+            .HasOne(dd => dd.Customer)
+            .WithMany()
+            .HasForeignKey(dd=>dd.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
+
+
             //Foriegn Key for Order Details
-             modelBuilder.Entity<OrderDetail>()
+            modelBuilder.Entity<OrderDetail>()
             .HasOne(od=>od.Order)
-            .WithMany(o=>o.Details)
+            .WithMany(o=>o.OrderDetails)
             .HasForeignKey(od => od.OrderDetailId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 
-             modelBuilder.Entity<OrderDetail>()
-            .HasOne(od=>od.PurchaseDetail)
-            .WithMany()
-            .HasForeignKey(od => od.PurchaseDetailId)
-            .OnDelete(DeleteBehavior.Restrict)
-            .IsRequired();
+      
 
              //Foriegn Key for Medicine
             modelBuilder.Entity<Medicine>()

@@ -5,7 +5,7 @@ using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
 
-namespace PharmacyManagementApi.Repository
+namespace PharmacyManagementApi.Repositories.General_Repositories
 {
     public class MedicineRepository : IReposiroty<int, Medicine>
     {
@@ -15,7 +15,7 @@ namespace PharmacyManagementApi.Repository
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        
+
         public async Task<Medicine> Add(Medicine item)
         {
             if (item == null)
@@ -54,7 +54,7 @@ namespace PharmacyManagementApi.Repository
             }
         }
 
-        public async Task<Medicine> Get(int key)
+        public virtual async Task<Medicine> Get(int key)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace PharmacyManagementApi.Repository
             }
         }
 
-        public async Task<IEnumerable<Medicine>> Get()
+        public virtual async Task<IEnumerable<Medicine>> Get()
         {
             try
             {

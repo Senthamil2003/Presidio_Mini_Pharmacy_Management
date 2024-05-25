@@ -15,7 +15,7 @@ namespace PharmacyManagementApi.Models
         public double SellingPrice
         {
             get { return _sellingPrice; }
-            set { _sellingPrice = value + 200; }
+            set { _sellingPrice = value + 20; }
         }
         [ForeignKey("MedicineId")]
         public Medicine Medicine { get; set; }

@@ -5,7 +5,7 @@ using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
 
-namespace PharmacyManagementApi.Repository
+namespace PharmacyManagementApi.Repositories.General_Repositories
 {
     public class UserCredentialRepository : IReposiroty<string, UserCredential>
     {
@@ -15,7 +15,7 @@ namespace PharmacyManagementApi.Repository
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-        
+
 
         public async Task<UserCredential> Add(UserCredential item)
         {
@@ -64,7 +64,7 @@ namespace PharmacyManagementApi.Repository
             }
             catch (NoUserCredentialFoundException)
             {
-             
+
                 throw;
             }
 

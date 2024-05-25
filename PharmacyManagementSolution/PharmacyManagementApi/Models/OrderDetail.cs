@@ -9,9 +9,8 @@ namespace PharmacyManagementApi.Models
         public int OrderDetailId { get; set; }
         public int OrderId { get; set; }
         public int MedicineId { get; set; }
-        public int PurchaseDetailId { get; set; }
-        public int Cost { get; set; }
-        public DateTime ExpiryDate { get; set; }
+        public Double Cost { get; set; }
+    
 
         [ForeignKey("OrderId")]
         public Order Order { get; set; }
@@ -19,8 +18,8 @@ namespace PharmacyManagementApi.Models
         [ForeignKey("MedicineId")]
         public Medicine Medicine { get; set; }
 
-        [ForeignKey("PurchaseDetailId")]
-        public PurchaseDetail PurchaseDetail { get; set; }
+      
+        public ICollection<DeliveryDetail> DeliveryDetails { get; set;}
        
     }
 }

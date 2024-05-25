@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PharmacyManagementApi.Repository
+namespace PharmacyManagementApi.Repositories.General_Repositories
 {
     public class CustomerRepository : IReposiroty<int, Customer>
     {
@@ -18,7 +18,7 @@ namespace PharmacyManagementApi.Repository
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
-   
+
         public async Task<Customer> Add(Customer item)
         {
             if (item == null)
@@ -48,28 +48,33 @@ namespace PharmacyManagementApi.Repository
             }
             catch (NoCustomerFoundException)
             {
-                throw; 
+                throw;
             }
             catch (Exception ex)
             {
-                
-                throw new RepositoryException("Error occurred while deleting the customer. "+  ex);
+
+                throw new RepositoryException("Error occurred while deleting the customer. " + ex);
             }
         }
 
-        public async Task<Customer> Get(int key)
+        public virtual async Task<Customer> Get(int key)
         {
             try
             {
                 return await _context.Customers.SingleOrDefaultAsync(u => u.CustomerId == key)
                     ?? throw new NoCustomerFoundException($"No Customer found with given id {key}");
             }
+            catch(NoCustomerFoundException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
-                throw new RepositoryException("Error Occur while fetching data from Customer. "+ ex);            }
+                throw new RepositoryException("Error Occur while fetching data from Customer. " + ex);
+            }
         }
 
-        public async Task<IEnumerable<Customer>> Get()
+        public virtual async Task<IEnumerable<Customer>> Get()
         {
             try
             {
@@ -77,8 +82,8 @@ namespace PharmacyManagementApi.Repository
             }
             catch (Exception ex)
             {
-       
-                throw new RepositoryException("Error occurred while fetching the customers. "+ ex);
+
+                throw new RepositoryException("Error occurred while fetching the customers. " + ex);
             }
         }
 
@@ -96,12 +101,12 @@ namespace PharmacyManagementApi.Repository
             }
             catch (NoCustomerFoundException)
             {
-                throw; 
+                throw;
             }
             catch (Exception ex)
             {
-              
-                throw new RepositoryException("Error occurred while updating the customer. "+ ex);
+
+                throw new RepositoryException("Error occurred while updating the customer. " + ex);
             }
         }
     }

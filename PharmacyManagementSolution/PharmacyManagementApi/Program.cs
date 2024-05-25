@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using PharmacyManagementApi.Context;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
-using PharmacyManagementApi.Repositories;
-using PharmacyManagementApi.Repository;
+using PharmacyManagementApi.Repositories.General_Repositories;
+using PharmacyManagementApi.Repositories.Joined_Repositories;
 using PharmacyManagementApi.Services;
 
 namespace PharmacyManagementApi
@@ -27,15 +27,23 @@ namespace PharmacyManagementApi
             builder.Services.AddScoped<IReposiroty<int, Vendor>, VendorRepository>();
             builder.Services.AddScoped<IReposiroty<int, Medicine>, MedicineRepository>();
             builder.Services.AddScoped<IReposiroty<int, Category>, CategoryRepository>();
+            builder.Services.AddScoped<IReposiroty<int, Order>, OrderRepository>();
+            builder.Services.AddScoped<IReposiroty<int, OrderDetail>, OrderDetailRepository>();
+            builder.Services.AddScoped<IReposiroty<int, DeliveryDetail>, DeliveryDetailRepository>();
+            builder.Services.AddScoped<IReposiroty<int, Cart>, CartRepository>();
             builder.Services.AddScoped<ITransactionService, TransactionRepository>();
+            builder .Services.AddScoped<StockJoinedRepository, StockJoinedRepository>();
+            builder.Services.AddScoped<CustomerJoinedRepository, CustomerJoinedRepository>();
+
 
             #endregion
 
-            #region EmployeeBL
+            #region PharmacyBL
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IPurchaseService, PurchaseService>();
-           
+            builder.Services.AddScoped<IUserService,UserService>();
+            
 
 
 

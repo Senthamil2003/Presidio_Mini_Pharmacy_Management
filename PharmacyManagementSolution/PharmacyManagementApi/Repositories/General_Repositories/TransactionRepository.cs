@@ -3,14 +3,15 @@ using Microsoft.EntityFrameworkCore;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Context;
 
-namespace PharmacyManagementApi.Repositories
+namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class TransactionRepository:ITransactionService
+    public class TransactionRepository : ITransactionService
     {
         private readonly PharmacyContext _context;
-        public TransactionRepository(PharmacyContext context) {
-            _context=context;
-        }  
+        public TransactionRepository(PharmacyContext context)
+        {
+            _context = context;
+        }
         public async Task<IDbContextTransaction> BeginTransactionAsync()
         {
             return await _context.Database.BeginTransactionAsync();

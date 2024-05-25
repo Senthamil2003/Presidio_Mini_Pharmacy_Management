@@ -14,6 +14,7 @@ namespace PharmacyManagementApi.Models
         public string Role { get; set; }
         public bool IsSubcribed { get; set; }=false;
         public ICollection<Order> Orders { get; set; }
+        public ICollection<Cart> Carts { get; set; }
 
 
     }
