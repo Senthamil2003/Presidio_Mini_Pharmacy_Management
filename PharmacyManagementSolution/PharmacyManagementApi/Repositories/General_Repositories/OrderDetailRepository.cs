@@ -58,7 +58,9 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
         {
             try
             {
-                return await _context.OrderDetails.SingleOrDefaultAsync(u => u.OrderDetailId == key)
+                return await _context.OrderDetails
+                    .Include(od=>od.Medicine)
+                    .SingleOrDefaultAsync(u => u.OrderDetailId == key)
                     ?? throw new NoOrderDetailFoundException($"No OrderDetail found with given id {key}");
             }
             catch (Exception ex)
@@ -71,7 +73,9 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
         {
             try
             {
-                return await _context.OrderDetails.ToListAsync();
+                return await _context.OrderDetails
+                    .Include(od => od.Medicine)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {

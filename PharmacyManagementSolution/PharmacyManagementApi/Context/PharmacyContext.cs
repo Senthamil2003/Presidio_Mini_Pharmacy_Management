@@ -66,7 +66,7 @@ namespace PharmacyManagementApi.Context
             modelBuilder.Entity<OrderDetail>()
             .HasOne(od=>od.Order)
             .WithMany(o=>o.OrderDetails)
-            .HasForeignKey(od => od.OrderDetailId)
+            .HasForeignKey(od => od.OrderId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 

@@ -41,7 +41,7 @@ namespace PharmacyManagementApi
             #region PharmacyBL
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
-            builder.Services.AddScoped<IPurchaseService, PurchaseService>();
+            builder.Services.AddScoped<IAdminService, AdminService>();
             builder.Services.AddScoped<IUserService,UserService>();
             
 

@@ -16,7 +16,7 @@ namespace PharmacyManagementApi.Controllers
         public UserController(IUserService userService) {
             _userService=userService;
         }
-        [HttpGet("Purchase")]
+        [HttpGet("ViewAllItems")]
         [ProducesResponseType(typeof(StockResponseDTO[]), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<StockResponseDTO[]>> GetAllProduct()
@@ -24,6 +24,51 @@ namespace PharmacyManagementApi.Controllers
             try
             {
                 var result = await _userService.ShowAllProduct();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpPost("AddToCart")]
+        [ProducesResponseType(typeof(SuccessCartDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SuccessCartDTO>> AddToCart(AddToCartDTO addToCart)
+        {
+            try
+            {
+                var result = await _userService.AddToCart(addToCart);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpPost("RemoveFromCart")]
+        [ProducesResponseType(typeof(SuccessCartDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SuccessCartDTO>> RemoveFromCart(int CartId)
+        {
+            try
+            {
+                var result = await _userService.RemoveFromCart(CartId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpPost("Checkout")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<string>> Checkout(int UserId)
+        {
+            try
+            {
+                var result = await _userService.Checkout(UserId);
                 return Ok(result);
             }
             catch (Exception ex)

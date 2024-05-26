@@ -158,9 +158,15 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CurrentQuantity")
+                        .HasColumnType("int");
+
                     b.Property<string>("MedicineName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("SellingPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("MedicineId");
 
@@ -202,10 +208,16 @@ namespace PharmacyManagementApi.Migrations
             modelBuilder.Entity("PharmacyManagementApi.Models.OrderDetail", b =>
                 {
                     b.Property<int>("OrderDetailId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailId"), 1L, 1);
 
                     b.Property<double>("Cost")
                         .HasColumnType("float");
+
+                    b.Property<bool>("DeliveryStatus")
+                        .HasColumnType("bit");
 
                     b.Property<int>("MedicineId")
                         .HasColumnType("int");
@@ -213,9 +225,14 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderDetailId");
 
                     b.HasIndex("MedicineId");
+
+                    b.HasIndex("OrderId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -453,7 +470,7 @@ namespace PharmacyManagementApi.Migrations
 
                     b.HasOne("PharmacyManagementApi.Models.Order", "Order")
                         .WithMany("OrderDetails")
-                        .HasForeignKey("OrderDetailId")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

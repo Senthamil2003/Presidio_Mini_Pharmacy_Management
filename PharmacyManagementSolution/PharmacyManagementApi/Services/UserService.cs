@@ -114,9 +114,9 @@ namespace PharmacyManagementApi.Services
 
         public async Task<SuccessCartDTO> AddToCart(AddToCartDTO addToCart)
         {
-            try
+            using (var transaction = await _transactionService.BeginTransactionAsync())
             {
-                using (var transaction = await _transactionService.BeginTransactionAsync())
+               try
                 {
                     Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
                     var result= await FindMedicineById(medicine.MedicineId);
@@ -143,24 +143,27 @@ namespace PharmacyManagementApi.Services
                         CartId = cart.CartId
 
                     };
+
                     return success;
 
                 }
-            }
-            catch
-            {
-                await _transactionService.RollbackTransactionAsync(); 
-                throw;   
+                catch
+                {
+                    await _transactionService.RollbackTransactionAsync();
+                    throw;
 
+                }
             }
+           
         }
 
         public async Task<SuccessCartDTO> RemoveFromCart(int cartId)
         {
-            try
+            using (var transaction = await _transactionService.BeginTransactionAsync())
             {
-                using (var transaction = await _transactionService.BeginTransactionAsync())
+                try
                 {
+            
                     Cart cart = await _cartRepo.Get(cartId);
                     if (cart != null)
                     {
@@ -176,16 +179,18 @@ namespace PharmacyManagementApi.Services
                     return success;
 
                 }
+                catch
+                {
+                    await _transactionService.RollbackTransactionAsync();
+                    throw;
+                }
 
             }
-            catch
-            {
-               await _transactionService.RollbackTransactionAsync();
-                throw;
-            }
+
 
         }
-        public async Task Checkout(int userId)
+
+        public async Task<string> Checkout(int userId)
         {
             try
             {
@@ -205,10 +210,12 @@ namespace PharmacyManagementApi.Services
                         PaidAmount = 0,
                     };
                     await _orderRepo.Add(order);
+                    double totalSum = 0;
                     foreach (Cart item in cart)
                     {
-                        var stock = await FindMedicineById(item.MedicineId);
-                        if (stock.AvailableQuantity < item.Quantity)
+                        totalSum += item.Cost;
+                        var stock = await _medicineRepo.Get(item.MedicineId);
+                        if (stock.CurrentQuantity < item.Quantity)
                         {
                             throw new OutOfStockException("Expected Quantity is not avalable in the stock");
 
@@ -216,45 +223,23 @@ namespace PharmacyManagementApi.Services
                         OrderDetail orderDetail = new OrderDetail()
                         {
                             MedicineId = item.MedicineId,
-                            Cost = stock.Amount,
+                            Cost = stock.SellingPrice,
                             OrderId = order.OrderId,
+                            Quantity=item.Quantity
 
                         };
                         await _orderDetailRepo.Add(orderDetail);
-
-                        var result = (await _stockRepo.Get()).OrderByDescending(s => s.ExpiryDate).ToList();
-                        int orderQuantity = item.Quantity;
-                        int ct = 0;
-                        while (orderQuantity > 0)
-                        {
-                            Stock updateStock = await _stockRepo.Get(result[ct].StockId);
-                            if (result[ct].Quantity > orderQuantity)
-                            {
-                                updateStock.Quantity -= orderQuantity;
-                                orderQuantity = 0;
-                                await _stockRepo.Update(updateStock);
-                            }
-                            else
-                            {
-                                orderQuantity -= result[ct].Quantity;
-                                await _stockRepo.Delete(updateStock.StockId);
-
-                            }
-                            DeliveryDetail delivery = new DeliveryDetail()
-                            {
-                                CustomerId = userId,
-                                ExpiryDate = updateStock.ExpiryDate,
-                                MedicineId = item.MedicineId,
-                                OrderDetailId = orderDetail.OrderId,
-                            };
-                            await _deliveryDetailRepo.Add(delivery);
-                            ct++;
-                        }
-                        await _transactionService.CommitTransactionAsync();
-
+                        stock.CurrentQuantity -= item.Quantity;
+                        await _medicineRepo.Update(stock);
+                       await _cartRepo.Delete(item.CartId);
 
 
                     }
+                    order.TotalAmount=totalSum;
+                    order.PaidAmount = totalSum;
+                   await _orderRepo.Update(order);
+                    await _transactionService.CommitTransactionAsync();
+                    return "Success";
 
 
                 }
@@ -263,6 +248,7 @@ namespace PharmacyManagementApi.Services
             catch
             {
                 await _transactionService.RollbackTransactionAsync();
+
                 throw;
 
             }
