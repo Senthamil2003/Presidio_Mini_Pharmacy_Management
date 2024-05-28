@@ -41,7 +41,7 @@ namespace PharmacyManagementApi.Services
                 var password = hash.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
                 if (await CheckPassword(userCredential.Password,password))
                 {
-                    if (userCredential.AccountStatus == "Enable")
+                    if (userCredential.AccountStatus == "Disable")
                     {
                         Customer customer =await _customerRepo.Get(userCredential.UserId);
 
@@ -97,6 +97,7 @@ namespace PharmacyManagementApi.Services
                     Email = customerDTO.Email,          
                     
                 };
+
                 await _customerRepo.Add(customer);
                 UserCredential credential= await CreateCredential(customerDTO.Password,customerDTO.Email);
                 credential.UserId=customer.CustomerId;

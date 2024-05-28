@@ -4,6 +4,7 @@ using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using PharmacyManagementApi.Repositories.Joined_Repositories;
+using System.Diagnostics.CodeAnalysis;
 
 public class AdminService : IAdminService
 {
@@ -155,7 +156,7 @@ public class AdminService : IAdminService
         try
         {
            List<OrderDetail> orderDetails= (await _orderDetailRepo.Get()).Where(od=>!od.DeliveryStatus).ToList();
-            OrderDetailDTO[] orderDetaills=new OrderDetailDTO[orderDetails.Count];
+           OrderDetailDTO[] orderDetaills=new OrderDetailDTO[orderDetails.Count];
             int ct = 0;
            foreach (var orderDetail in orderDetails)
             {
@@ -179,41 +180,39 @@ public class AdminService : IAdminService
         }
 
     }
-    public async Task<string> DeliverOrder(DeliverOrderDTO order)
+    [ExcludeFromCodeCoverage]
+    public async Task<string> DeliverOrder(int orderDetailId)
     {
         using (var transaction = await _transactionService.BeginTransactionAsync())
         {
             try
             {
-                 OrderDetail orderDetail= await _orderDetailRepo.Get(order.OrderDetailId);
+                 OrderDetail orderDetail= await _orderDetailRepo.Get(orderDetailId);
+               
                 int userId = (await _orderRepository.Get(orderDetail.OrderId)).CustomerId;
                 var result = (await _stockRepository.Get()).Where(s => s.MedicineId == orderDetail.MedicineId).OrderBy(s => s.ExpiryDate).ToList();
                 int orderQuantity = orderDetail.Quantity;
                 int ct = 0;
+                int Quantity;
                 while (orderQuantity > 0)
                 {
-
-                    int Quantity = orderQuantity;
-
                     Stock updateStock = await _stockRepository.Get(result[ct].StockId);
                     if (result[ct].Quantity > orderQuantity)
                     {
+                        Quantity = orderQuantity;
                         updateStock.Quantity -= orderQuantity;
                         orderQuantity = 0;
                         await _stockRepository.Update(updateStock);
                     }
                     else
                     {
-
-                        orderQuantity -= result[ct].Quantity;
-                        if (orderQuantity != 0)
-                        {
-                            Quantity -= result[ct].Quantity;
-
-                        }
+                        Quantity = result[ct].Quantity;
+                        orderQuantity -= result[ct].Quantity; 
                         await _stockRepository.Delete(updateStock.StockId);
 
                     }
+                    orderDetail.DeliveryStatus = true;
+                    await _orderDetailRepo.Update(orderDetail);
                     DeliveryDetail delivery = new DeliveryDetail()
                     {
                         CustomerId = userId,
@@ -235,5 +234,27 @@ public class AdminService : IAdminService
                 throw;
             }
         }
+
+    }
+    public async Task<string> AddVendor(VendorDTO vendordto)
+    {
+        try
+        {
+            Vendor vendor = new Vendor()
+            {
+                Phone = vendordto.Phone,
+                Address = vendordto.Address,
+                VendorName = vendordto.VendorName
+            };
+
+            await _vendorRepo.Add(vendor);
+            return "success";
+
+        }
+        catch
+        {
+            throw;
+        }
+      
     }
 }

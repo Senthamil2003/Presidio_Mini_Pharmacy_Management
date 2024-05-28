@@ -54,7 +54,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
         }
 
-        public async Task<OrderDetail> Get(int key)
+        public virtual async Task<OrderDetail> Get(int key)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
         }
 
-        public async Task<IEnumerable<OrderDetail>> Get()
+        public virtual async Task<IEnumerable<OrderDetail>> Get()
         {
             try
             {

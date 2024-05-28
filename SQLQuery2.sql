@@ -2,6 +2,7 @@ insert into Vendors(VendorName,Address,Phone) values('AlphaD','NPK 789','1233243
 select * from Vendors
 select * from Medicines
 select * from Customers
+select * from UserCredentials
 select * from Carts
 select * from Orders
 select * from OrderDetails
@@ -9,6 +10,25 @@ select * from DeliveryDetails
 select * from Stocks
 select * from Purchases
 select * from PurchaseDetails
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------delete the data -------------------------------------------------------------------
 
 delete from  Stocks;
 delete from  PurchaseDetails;

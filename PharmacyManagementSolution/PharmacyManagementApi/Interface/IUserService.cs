@@ -8,6 +8,8 @@ namespace PharmacyManagementApi.Interface
         public Task<StockResponseDTO[]> ShowAllProduct();
         public Task<SuccessCartDTO> AddToCart(AddToCartDTO addToCart);
         public  Task<SuccessCartDTO> RemoveFromCart(int cartId);
-        public  Task<string> Checkout(int userId);
+        public  Task<SuccessCheckoutDTO> Checkout(int userId);
+        public Task<List<MyOrderDTO>> GetAllOrders(int userId);
+        public Task<SuccessCartDTO> UpdateCart(AddToCartDTO addToCart);
     }
 }

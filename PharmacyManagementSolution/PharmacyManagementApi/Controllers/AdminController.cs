@@ -49,11 +49,11 @@ namespace PharmacyManagementApi.Controllers
         [HttpPost("DeliverOrder")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<string>> DeliverOrder(DeliverOrderDTO orderDTO)
+        public async Task<ActionResult<string>> DeliverOrder(int orderDetailId)
         {
             try
             {
-                var result = await _purchaseService.DeliverOrder(orderDTO);
+                var result = await _purchaseService.DeliverOrder(orderDetailId);
                 return Ok(result);
             }
             catch (Exception ex)

@@ -15,9 +15,13 @@ namespace PharmacyManagementApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            #region Context
             builder.Services.AddDbContext<PharmacyContext>(
             options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
         );
+            #endregion
+
             #region Repository
             builder.Services.AddScoped<IReposiroty<int, Customer>, CustomerRepository>();
             builder.Services.AddScoped<IReposiroty<string ,UserCredential>, UserCredentialRepository>();
@@ -33,12 +37,14 @@ namespace PharmacyManagementApi
             builder.Services.AddScoped<IReposiroty<int, Cart>, CartRepository>();
             builder.Services.AddScoped<ITransactionService, TransactionRepository>();
             builder .Services.AddScoped<StockJoinedRepository, StockJoinedRepository>();
+            builder.Services.AddScoped<OrderDetailsJoinedRepository, OrderDetailsJoinedRepository>();
             builder.Services.AddScoped<CustomerJoinedRepository, CustomerJoinedRepository>();
+
 
 
             #endregion
 
-            #region PharmacyBL
+            #region BusinessLogic
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IAdminService, AdminService>();

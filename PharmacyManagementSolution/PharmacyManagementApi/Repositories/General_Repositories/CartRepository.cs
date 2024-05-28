@@ -60,6 +60,10 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 return await _context.Carts.SingleOrDefaultAsync(u => u.CartId == key)
                     ?? throw new NoCartFoundException($"No Cart found with given id {key}");
             }
+            catch (NoCartFoundException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new RepositoryException("Error Occur while fetching data from Cart. " + ex);

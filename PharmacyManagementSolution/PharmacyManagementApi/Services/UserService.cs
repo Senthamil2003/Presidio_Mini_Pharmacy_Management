@@ -16,13 +16,12 @@ namespace PharmacyManagementApi.Services
         private readonly CustomerJoinedRepository _customer;
         private readonly IReposiroty<int, Order> _orderRepo;
         private readonly IReposiroty<int, OrderDetail> _orderDetailRepo;
-        private readonly IReposiroty<int, DeliveryDetail> _deliveryDetailRepo;
-
+      
         public UserService(StockJoinedRepository stockJoinedRepo,
             CustomerJoinedRepository customerJoinRepo,
             IReposiroty<int ,Order> orderRepo,
             IReposiroty<int, OrderDetail> orderDetailRepo,
-            IReposiroty<int,DeliveryDetail> deliveryDetailRepo,
+            
             ITransactionService transactionService,
             IReposiroty<int,Medicine> medicineRepo,
             IReposiroty<int, Cart> cartRepo
@@ -36,7 +35,8 @@ namespace PharmacyManagementApi.Services
             _customer=customerJoinRepo;
             _orderRepo=orderRepo;
             _orderDetailRepo=orderDetailRepo;
-            _deliveryDetailRepo=deliveryDetailRepo;
+ 
+        
         }
         public async Task<StockResponseDTO[]> ShowAllProduct()
         {
@@ -124,6 +124,11 @@ namespace PharmacyManagementApi.Services
                     {
                         throw new OutOfStockException("Expected Quantity is not avalable in the stock");
                     }
+                    Cart? ExistingCart= (await _cartRepo.Get()).FirstOrDefault(c=>c.MedicineId== addToCart.MedicineId);
+                    if(ExistingCart!= null)
+                    {
+                        throw new DuplicateValueException("There is already a cart with medicine Id try updateCart" + addToCart.MedicineId);
+                    }
                     Cart cart =new Cart()
                     {
                         CustomerId = addToCart.UserId,
@@ -155,6 +160,48 @@ namespace PharmacyManagementApi.Services
                 }
             }
            
+        }
+        public async Task<SuccessCartDTO> UpdateCart(AddToCartDTO addToCart)
+        {
+            using (var transaction = await _transactionService.BeginTransactionAsync())
+            {
+                try
+                {
+                    Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
+                    var result = await FindMedicineById(medicine.MedicineId);
+                   Customer customer= await _customer.Get(addToCart.UserId);
+                   Cart? ExistingCart= customer.Carts.FirstOrDefault(c=>c.MedicineId==addToCart.MedicineId);
+                    if(ExistingCart== null) {
+                        throw new NoCartFoundException("No cart Contains the Medicine Id , Add the cart first");
+                    }
+                    
+                    if (result.AvailableQuantity < addToCart.Quantity+ExistingCart?.Quantity)
+                    {
+                        throw new OutOfStockException("Expected Quantity is not avalable in the stock");
+                    }
+                    ExistingCart.Quantity += addToCart.Quantity;
+                    await _cartRepo.Update(ExistingCart);
+
+                    await _transactionService.CommitTransactionAsync();
+                    SuccessCartDTO success = new SuccessCartDTO()
+                    {
+                        Code = 200,
+                        Message = "Item Added Successfully",
+                        CartId = ExistingCart.CartId
+
+                    };
+
+                    return success;
+
+                }
+                catch
+                {
+                    await _transactionService.RollbackTransactionAsync();
+                    throw;
+
+                }
+            }
+
         }
 
         public async Task<SuccessCartDTO> RemoveFromCart(int cartId)
@@ -190,11 +237,11 @@ namespace PharmacyManagementApi.Services
 
         }
 
-        public async Task<string> Checkout(int userId)
+        public async Task<SuccessCheckoutDTO> Checkout(int userId)
         {
-            try
+            using (var transaction = await _transactionService.BeginTransactionAsync())
             {
-                using (var transaction = await _transactionService.BeginTransactionAsync())
+                try
                 {
                     List<Cart> cart = (await _customer.Get(userId)).Carts.ToList();
                     if (cart.Count() == 0)
@@ -217,7 +264,7 @@ namespace PharmacyManagementApi.Services
                         var stock = await _medicineRepo.Get(item.MedicineId);
                         if (stock.CurrentQuantity < item.Quantity)
                         {
-                            throw new OutOfStockException("Expected Quantity is not avalable in the stock");
+                            throw new OutOfStockException("Expected Quantity is not avalable at the moment for "+stock.MedicineId);
 
                         }
                         OrderDetail orderDetail = new OrderDetail()
@@ -239,20 +286,66 @@ namespace PharmacyManagementApi.Services
                     order.PaidAmount = totalSum;
                    await _orderRepo.Update(order);
                     await _transactionService.CommitTransactionAsync();
-                    return "Success";
+                    SuccessCheckoutDTO checkoutDTO = new SuccessCheckoutDTO()
+                    {
+                        Code = 200,
+                        Message = "Checkout Completed successfully",
+                        OrderId = order.OrderId,
+                    };
+                    return checkoutDTO;
 
+
+                }
+                catch
+                {
+                    await _transactionService.RollbackTransactionAsync();
+
+                    throw;
 
                 }
 
             }
-            catch
-            {
-                await _transactionService.RollbackTransactionAsync();
+          
 
-                throw;
+        }
+        public async Task<List<MyOrderDTO>> GetAllOrders(int userId)
+        {
+            try
+            {
+                Customer customer = await _customer.Get(userId);
+                List<MyOrderDTO> myOrders = new List<MyOrderDTO>(); 
+                List<Order> orders=customer.Orders.ToList();
+                if(orders.Count == 0) {
+                    throw new NoOrderFoundException("There is no order for the customer");
+                }
+                foreach (var item in orders)
+                {
+                    List<OrderDetail> orderDetails = item.OrderDetails.ToList();
+                    foreach (var orderDetail in orderDetails) {
+                        List<DeliveryDetail> deliveryDetails = orderDetail.DeliveryDetails.ToList();
+                        foreach(var deliveryDetail in deliveryDetails) {
+                            MyOrderDTO myOrder = new MyOrderDTO()
+                            {
+                                OrderDetailId = orderDetail.OrderDetailId,
+                                ExpiryDate = deliveryDetail.ExpiryDate,
+                                Quantity = deliveryDetail.Quantity,
+                                MedicineName = deliveryDetail.Medicine.MedicineName
+                            };
+                            myOrders.Add(myOrder);  
+
+                        }
+
+
+                    }
+                    
+                }
+                return myOrders;
 
             }
-
+            catch
+            {
+                throw;
+            }
         }
 
     }

@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "RGdVhEpHFv/SzbocACurztc4x7X+wXn3kfBi6W/PqthLgxvuo48sKkWuYBC/KGNs5S1pf4b7JfB66lMJtqN2rw==",
+  "dgSpecHash": "1l8A6nhBe0enCGLxfHhUc7Wf8TcOt9U32ZlXwI/mqJhhIIJmme1AqvWP2m73rd80D5QpPsmcICMQcLNTW1S0pA==",
   "success": true,
   "projectFilePath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.30\\microsoft.aspnetcore.authentication.jwtbearer.6.0.30.nupkg.sha512",
+    "C:\\Users\\VC\\.nuget\\packages\\microsoft.codecoverage\\16.11.0\\microsoft.codecoverage.16.11.0.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.7\\microsoft.data.sqlclient.2.1.7.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",
