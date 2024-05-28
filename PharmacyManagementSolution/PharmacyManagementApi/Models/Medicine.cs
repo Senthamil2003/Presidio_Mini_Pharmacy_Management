@@ -11,6 +11,8 @@ namespace PharmacyManagementApi.Models
         public int CategoryId {  get; set; }
         public int CurrentQuantity { get; set; }
         private double _sellingPrice;
+        public double FeedbackSum { get; set; }
+        public double FeedbackCount { get; set; }
         public double SellingPrice
         {
             get { return _sellingPrice; }
@@ -18,7 +20,8 @@ namespace PharmacyManagementApi.Models
         }
 
         [ForeignKey("CategoryId")]
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
+        public ICollection<Feedback>? Feedbacks { get; set; }
        
 
 

@@ -1,5 +1,8 @@
-﻿namespace PharmacyManagementApi.CustomException
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace PharmacyManagementApi.CustomException
 {
+  
     public class DuplicateValueException:Exception
     {
         string message;

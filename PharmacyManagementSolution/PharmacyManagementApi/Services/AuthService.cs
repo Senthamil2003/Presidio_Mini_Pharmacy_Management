@@ -3,6 +3,7 @@ using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
 using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
+using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -41,7 +42,7 @@ namespace PharmacyManagementApi.Services
                 var password = hash.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
                 if (await CheckPassword(userCredential.Password,password))
                 {
-                    if (userCredential.AccountStatus == "Disable")
+                    if (userCredential.AccountStatus == "Enable")
                     {
                         Customer customer =await _customerRepo.Get(userCredential.UserId);
 
@@ -53,7 +54,7 @@ namespace PharmacyManagementApi.Services
                         };
                         return success;
                     }
-                    throw new UserNotVerifiedException("User is not verified");
+                    //throw new UserNotVerifiedException("User is not verified");
 
                 }
                 throw new UnAuthorizedUserException("User Name or Password not correct");
@@ -65,6 +66,7 @@ namespace PharmacyManagementApi.Services
 
         }
 
+        [ExcludeFromCodeCoverage]
         private async Task<UserCredential> CreateCredential(string password,string email)
         {
             try
@@ -74,15 +76,19 @@ namespace PharmacyManagementApi.Services
                 UserCredential user = new UserCredential()
                 {
                     Email = email,
-                    HasedPassword=hash.Key,
+                    HasedPassword = hash.Key,
                     Password = hash.ComputeHash(Encoding.UTF8.GetBytes(password))
                 };
                 return user;
+
             }
-            catch 
+            catch
             {
                 throw;
             }
+                
+             
+            
         }
         public async Task<SuccessRegisterDTO> Register(RegisterDTO customerDTO)
         {

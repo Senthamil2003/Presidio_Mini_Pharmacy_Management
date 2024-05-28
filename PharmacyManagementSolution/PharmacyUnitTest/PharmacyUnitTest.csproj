@@ -10,7 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="3.2.0" />
+    <PackageReference Include="coverlet.collector" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.CodeCoverage" Version="17.10.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.30" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.30" />

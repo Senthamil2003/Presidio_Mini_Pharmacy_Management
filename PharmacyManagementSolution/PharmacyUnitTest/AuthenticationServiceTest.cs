@@ -73,7 +73,7 @@ namespace PharmacyUnitTest
                 Role = "User"
             };
            var result=await _authService.Register(registerDTO);
-            Assert.That(result.CustomerId, Is.EqualTo(1));
+            Assert.That(result.CustomerId, Is.EqualTo(2));
             Assert.IsNotNull(result);
             Assert.Pass();
 
@@ -145,9 +145,19 @@ namespace PharmacyUnitTest
         [Test]
         public async Task LoginTest()
         {
+            RegisterDTO registerDTO = new RegisterDTO()
+            {
+                Email = "Bbc@133",
+                Name = "Tonny",
+                Address = "ABC 123 kpc",
+                Password = "1234567",
+                Phone = "123456 7890",
+                Role = "User"
+            };
+            await _authService.Register(registerDTO);
             LoginDTO loginDTO = new LoginDTO()
             {
-                Email = "Bbc@123",
+                Email = "Bbc@133",
                 Password = "1234567"
             };
           var result= await _authService.Login(loginDTO);
@@ -166,9 +176,8 @@ namespace PharmacyUnitTest
             var exception = Assert.ThrowsAsync<UnAuthorizedUserException>(async () => await _authService.Login(loginDTO));
             Assert.That(exception.Message, Is.EqualTo("User Name or Password not correct"));
             Assert.Pass();
-          
-
         }
+
         [Test]
         public async Task LoginEmailFail()
         {

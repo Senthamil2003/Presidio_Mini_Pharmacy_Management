@@ -131,8 +131,6 @@ public class AdminService : IAdminService
 
                 await _transactionService.CommitTransactionAsync();
  
-           
-
                 SuccessPurchaseDTO purchaseDTO = new SuccessPurchaseDTO()
                 {
                     Code = 200,
@@ -144,12 +142,9 @@ public class AdminService : IAdminService
             catch
             {
                 await _transactionService.RollbackTransactionAsync();
-              
                 throw;
             }
-        }
-       
-       
+        }       
     }
     public  async Task<OrderDetailDTO[]> GetAllOrder()
     {
@@ -157,6 +152,10 @@ public class AdminService : IAdminService
         {
            List<OrderDetail> orderDetails= (await _orderDetailRepo.Get()).Where(od=>!od.DeliveryStatus).ToList();
            OrderDetailDTO[] orderDetaills=new OrderDetailDTO[orderDetails.Count];
+            if (orderDetails.Count == 0)
+            {
+                throw new NoOrderFoundException("No order Found for Admin");
+            }
             int ct = 0;
            foreach (var orderDetail in orderDetails)
             {
@@ -180,8 +179,8 @@ public class AdminService : IAdminService
         }
 
     }
-    [ExcludeFromCodeCoverage]
-    public async Task<string> DeliverOrder(int orderDetailId)
+  
+    public async Task<SuccessDeliveryDTO> DeliverOrder(int orderDetailId)
     {
         using (var transaction = await _transactionService.BeginTransactionAsync())
         {
@@ -226,7 +225,13 @@ public class AdminService : IAdminService
                 }
 
                await _transactionService.CommitTransactionAsync();
-               return "Delivery Success";
+                SuccessDeliveryDTO deliveryDTO = new SuccessDeliveryDTO()
+                {
+                    Code = 200,
+                    Message = "Delivery successful",
+                    OrderDetailId = orderDetail.OrderDetailId,
+                };
+               return deliveryDTO;
             }
             catch
             {
@@ -240,6 +245,7 @@ public class AdminService : IAdminService
     {
         try
         {
+
             Vendor vendor = new Vendor()
             {
                 Phone = vendordto.Phone,

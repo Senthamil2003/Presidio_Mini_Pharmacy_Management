@@ -44,10 +44,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return purchase;
             }
-            catch (NoPurchaseFoundException)
-            {
-                throw;
-            }
+      
             catch (Exception ex)
             {
 
@@ -92,10 +89,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 _context.Entry(purchase).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
                 return purchase;
-            }
-            catch (NoPurchaseFoundException)
-            {
-                throw;
             }
             catch (Exception ex)
             {

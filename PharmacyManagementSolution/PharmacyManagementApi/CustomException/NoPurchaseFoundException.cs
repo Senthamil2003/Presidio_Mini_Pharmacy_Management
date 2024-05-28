@@ -1,4 +1,6 @@
-﻿namespace PharmacyManagementApi.CustomException
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace PharmacyManagementApi.CustomException
 {
     public class NoPurchaseFoundException:Exception
     {

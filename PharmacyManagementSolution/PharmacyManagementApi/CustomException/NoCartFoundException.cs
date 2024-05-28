@@ -1,5 +1,8 @@
-﻿namespace PharmacyManagementApi.CustomException
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace PharmacyManagementApi.CustomException
 {
+    
     public class NoCartFoundException:Exception
     {
         string message;

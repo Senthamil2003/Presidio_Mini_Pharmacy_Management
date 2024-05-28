@@ -11,7 +11,7 @@ namespace PharmacyManagementApi.Models
         public byte[] Password { get; set; }
         public byte[] HasedPassword { get; set; }
         public int BankBalance { get; set; } = 0;
-        public string AccountStatus { get; set; } = "Disable";
+        public string AccountStatus { get; set; } = "Enable";
         [ForeignKey("UserId")]
         public Customer Customer { get; set; }
 

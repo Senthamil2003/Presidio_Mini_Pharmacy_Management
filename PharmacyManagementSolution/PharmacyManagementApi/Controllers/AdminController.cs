@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models.DTO.ErrorDTO;
@@ -8,8 +9,11 @@ using PharmacyManagementApi.Services;
 
 namespace PharmacyManagementApi.Controllers
 {
+   
+    //[Authorize(Roles ="Admin")]
     [Route("api/[controller]")]
     [ApiController]
+   
     public class AdminController : ControllerBase
     {
         public readonly IAdminService _purchaseService;
@@ -46,10 +50,11 @@ namespace PharmacyManagementApi.Controllers
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }
+
         [HttpPost("DeliverOrder")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(SuccessDeliveryDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<string>> DeliverOrder(int orderDetailId)
+        public async Task<ActionResult<SuccessDeliveryDTO>> DeliverOrder(int orderDetailId)
         {
             try
             {

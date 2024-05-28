@@ -3,68 +3,216 @@
   "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\userservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\userservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\feedbackservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\feedbackservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\services\\feedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\services\\feedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\controllers\\viewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\controllers\\viewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\controllers\\feedbackcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\controllers\\feedbackcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\interface\\iadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\interface\\iadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\interface\\ifeedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\interface\\ifeedbackservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\responsedto\\successcheckoutdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\responsedto\\successcheckoutdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\medicinerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\medicinerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\authenticationservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\authenticationservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\responsedto\\medicinefeedbackdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\responsedto\\medicinefeedbackdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nofeedbackfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nofeedbackfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\admincontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\admincontrollertest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\responsedto\\successfeedbackdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\responsedto\\successfeedbackdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\feedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\feedbackrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\stockrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\stockrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\requestdto\\feedbackrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\requestdto\\feedbackrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\context\\pharmacycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\context\\pharmacycontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\usercredential.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\usercredential.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\stock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\interface\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nostockfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nostockfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nopurchasefoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nopurchasefoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\purchasedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\purchasedetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\adminservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\adminservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nopurchasedetailfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nopurchasedetailfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\requestdto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\requestdto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\noorderfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\noorderfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\noorderdetailfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\noorderdetailfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nomedicinefoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nomedicinefoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nodeliverydetailfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nodeliverydetailfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nocustomerfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nocustomerfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nocategoryfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nocategoryfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\nocartfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\nocartfoundexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\duplicatevalueexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\duplicatevalueexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\categorymedicinemismatchexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\categorymedicinemismatchexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\cartemptyexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\cartemptyexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\controllers\\medicinedescriptorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\controllers\\medicinedescriptorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\services\\medicinedescriptoraiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\services\\medicinedescriptoraiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\cartservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\cartservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\purchaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\purchaserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\customexception\\unauthorizeduserexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\customexception\\unauthorizeduserexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\viewservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\viewservicetest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\orderdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\orderdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\services\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\interface\\iviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\interface\\iviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\requestdto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\requestdto\\logindto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\vendorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\vendorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\responsedto\\successdeliverydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\responsedto\\successdeliverydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\usercredentialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\usercredentialrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\responsedto\\successcheckoutdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\responsedto\\successcheckoutdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\repositories\\general_repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\repositories\\general_repositories\\cartrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\models\\dto\\requestdto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\models\\dto\\requestdto\\registerdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,37 +222,603 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAACgAAAAAAAAAAAAgwD4AAAAJAAAA",
+              "DocumentIndex": 1,
+              "Title": "FeedBackService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\FeedBackService.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\FeedBackService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\FeedBackService.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Services\\FeedBackService.cs",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAkwGYAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T02:54:27.244Z",
+              "WhenOpened": "2024-05-28T11:09:37.421Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FeedBackServiceTest.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\FeedBackServiceTest.cs",
+              "RelativeDocumentMoniker": "PharmacyUnitTest\\FeedBackServiceTest.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\FeedBackServiceTest.cs",
+              "RelativeToolTip": "PharmacyUnitTest\\FeedBackServiceTest.cs",
+              "ViewState": "AQIAAPEAAAAAAAAAAAAswPsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T13:53:34.022Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ViewController.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\ViewController.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Controllers\\ViewController.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\ViewController.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Controllers\\ViewController.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAgwBUAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T08:28:27.074Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "IAdminService.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IAdminService.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Interface\\IAdminService.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IAdminService.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Interface\\IAdminService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAA1AAAA",
+              "Title": "IFeedbackService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IFeedbackService.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Interface\\IFeedbackService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IFeedbackService.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Interface\\IFeedbackService.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAAAoAAABKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T02:54:15.863Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T12:20:04.434Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FeedbackController.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\FeedbackController.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Controllers\\FeedbackController.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\FeedbackController.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Controllers\\FeedbackController.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAowCYAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T12:22:09.056Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "MedicineRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\MedicineRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\MedicineRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\MedicineRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\MedicineRepository.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAowFEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T12:02:51.684Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MedicineFeedbackDTO.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\MedicineFeedbackDTO.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\MedicineFeedbackDTO.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\MedicineFeedbackDTO.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\MedicineFeedbackDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T12:06:05.997Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Feedback.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Feedback.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\Feedback.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Feedback.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\Feedback.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAkwBQAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:04:25.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "NoFeedbackFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoFeedbackFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoFeedbackFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoFeedbackFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoFeedbackFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:17:02.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AdminControllerTest.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AdminControllerTest.cs",
+              "RelativeDocumentMoniker": "PharmacyUnitTest\\AdminControllerTest.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AdminControllerTest.cs",
+              "RelativeToolTip": "PharmacyUnitTest\\AdminControllerTest.cs",
+              "ViewState": "AQIAAFcAAAAAAAAAAAArwKgAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:14:14.684Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SuccessFeedbackDTO.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessFeedbackDTO.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessFeedbackDTO.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessFeedbackDTO.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessFeedbackDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:37:29.371Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "FeedBackRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\FeedBackRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\FeedBackRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\FeedBackRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\FeedBackRepository.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAAwBIAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:17:54.409Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "StockRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\StockRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\StockRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\StockRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\StockRepository.cs",
+              "ViewState": "AQIAAGMAAAAAAAAAAAAswGkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:17:59.182Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "FeedbackRequestDTO.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\RequestDTO\\FeedbackRequestDTO.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\FeedbackRequestDTO.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\RequestDTO\\FeedbackRequestDTO.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\FeedbackRequestDTO.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAxwAQAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:28:10.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PharmacyContext.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Context\\PharmacyContext.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Context\\PharmacyContext.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Context\\PharmacyContext.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Context\\PharmacyContext.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAswEAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:11:07.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\Customer.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Customer.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\Customer.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T11:12:27.958Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "UserCredential.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\UserCredential.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\UserCredential.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\UserCredential.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\UserCredential.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAzwA0AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T10:50:24.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "PurchaseDetail.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\PurchaseDetail.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\PurchaseDetail.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\PurchaseDetail.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\PurchaseDetail.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T10:50:23.487Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "NoPurchaseFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoPurchaseFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoPurchaseFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoPurchaseFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoPurchaseFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:36.844Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "NoStockFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoStockFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoStockFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoStockFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoStockFoundException.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAwAgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:39:44.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Stock.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Stock.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\Stock.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Stock.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\Stock.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAAAsAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T02:27:13.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "NoPurchaseDetailFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoPurchaseDetailFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoPurchaseDetailFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoPurchaseDetailFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoPurchaseDetailFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:31.862Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Purchase.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Purchase.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\Purchase.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Purchase.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\Purchase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T10:00:30.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "NoOrderFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoOrderFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoOrderFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoOrderFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoOrderFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:27.815Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "NoOrderDetailFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoOrderDetailFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoOrderDetailFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoOrderDetailFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoOrderDetailFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:22.68Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "NoMedicineFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoMedicineFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoMedicineFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoMedicineFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoMedicineFoundException.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:17.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "NoDeliveryDetailFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoDeliveryDetailFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoDeliveryDetailFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoDeliveryDetailFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoDeliveryDetailFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:12.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "NoCustomerFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoCustomerFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoCustomerFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoCustomerFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoCustomerFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:08.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "NoCategoryFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoCategoryFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoCategoryFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoCategoryFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoCategoryFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:04.948Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "NoCartFoundException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoCartFoundException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\NoCartFoundException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\NoCartFoundException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\NoCartFoundException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:37:00.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "DuplicateValueException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\DuplicateValueException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\DuplicateValueException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\DuplicateValueException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\DuplicateValueException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:36:57.268Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "CategoryMedicineMisMatchException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\CategoryMedicineMisMatchException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\CategoryMedicineMisMatchException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\CategoryMedicineMisMatchException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\CategoryMedicineMisMatchException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:36:53.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "CartEmptyException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\CartEmptyException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\CartEmptyException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\CartEmptyException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\CartEmptyException.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:36:40.312Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MedicineDescriptorController.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\MedicineDescriptorController.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Controllers\\MedicineDescriptorController.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\MedicineDescriptorController.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Controllers\\MedicineDescriptorController.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAAABkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T06:36:21.291Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\CartController.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Controllers\\CartController.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T10:31:52.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "MedicineDescriptorAIService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\MedicineDescriptorAIService.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\MedicineDescriptorAIService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\MedicineDescriptorAIService.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Services\\MedicineDescriptorAIService.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBAAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:34:56.306Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "CartServiceTest.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\CartServiceTest.cs",
+              "RelativeDocumentMoniker": "PharmacyUnitTest\\CartServiceTest.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\CartServiceTest.cs",
+              "RelativeToolTip": "PharmacyUnitTest\\CartServiceTest.cs",
+              "ViewState": "AQIAAEgBAAAAAAAAAAAAwFMBAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T15:33:43.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "PurchaseRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\PurchaseRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\PurchaseRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\PurchaseRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\PurchaseRepository.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAqwF8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:54:56.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "UnAuthorizedUserException.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\UnAuthorizedUserException.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\CustomException\\UnAuthorizedUserException.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\CustomException\\UnAuthorizedUserException.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\CustomException\\UnAuthorizedUserException.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAzwAgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:50:13.373Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "ViewServiceTest.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\ViewServiceTest.cs",
+              "RelativeDocumentMoniker": "PharmacyUnitTest\\ViewServiceTest.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\ViewServiceTest.cs",
+              "RelativeToolTip": "PharmacyUnitTest\\ViewServiceTest.cs",
+              "ViewState": "AQIAAK8AAAAAAAAAAAAYwK8AAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T08:42:04.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "OrderDetailRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\OrderDetailRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\OrderDetailRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\OrderDetailRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\OrderDetailRepository.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAQwAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:12:42.785Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "OrderRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\OrderRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\OrderRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\OrderRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\OrderRepository.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAA1wBoAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:12:47.91Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Order.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\Order.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Order.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\Order.cs",
+              "ViewState": "AQIAAAcAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T09:12:31.867Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "AdminService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\AdminService.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\AdminService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\AdminService.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Services\\AdminService.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwAoAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T15:05:09.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "IViewService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IViewService.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Interface\\IViewService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IViewService.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Interface\\IViewService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T08:27:00.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "LoginDTO.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T16:29:56.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "VendorRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\VendorRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\VendorRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\VendorRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\VendorRepository.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwCAAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T05:20:13.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "SuccessDeliveryDTO.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessDeliveryDTO.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessDeliveryDTO.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessDeliveryDTO.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessDeliveryDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T05:55:40.446Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "UserCredentialRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB8AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-27T15:59:24.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
               "Title": "SuccessCheckoutDTO.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessCheckoutDTO.cs",
               "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessCheckoutDTO.cs",
@@ -112,142 +826,35 @@
               "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\ResponseDTO\\SuccessCheckoutDTO.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T02:09:57.216Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T02:09:57.216Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserServiceTest.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\UserServiceTest.cs",
-              "RelativeDocumentMoniker": "PharmacyUnitTest\\UserServiceTest.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\UserServiceTest.cs",
-              "RelativeToolTip": "PharmacyUnitTest\\UserServiceTest.cs",
-              "ViewState": "AQIAAKABAAAAAAAAAAAYwKABAAA2AAAA",
+              "DocumentIndex": 49,
+              "Title": "TransactionRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\TransactionRepository.cs",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\TransactionRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\TransactionRepository.cs",
+              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\TransactionRepository.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAowB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T15:33:43.653Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T04:37:11.172Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\UserService.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\UserService.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Services\\UserService.cs",
-              "ViewState": "AQIAADgBAAAAAAAAAAAswD8BAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T15:28:19.743Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AdminService.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\AdminService.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\AdminService.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\AdminService.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Services\\AdminService.cs",
-              "ViewState": "AQIAANwAAAAAAAAAAAAQwL0AAABQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T15:05:09.766Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Stock.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Stock.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\Stock.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\Stock.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Models\\Stock.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAgwAsAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T02:27:13.664Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AuthenticationServiceTest.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AuthenticationServiceTest.cs",
-              "RelativeDocumentMoniker": "PharmacyUnitTest\\AuthenticationServiceTest.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AuthenticationServiceTest.cs",
-              "RelativeToolTip": "PharmacyUnitTest\\AuthenticationServiceTest.cs",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAqwIcAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T15:44:22.918Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IUserService.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IUserService.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Interface\\IUserService.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Interface\\IUserService.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Interface\\IUserService.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAoAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T18:03:03.197Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 51,
               "Title": "CartRepository.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\CartRepository.cs",
               "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\CartRepository.cs",
               "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\CartRepository.cs",
               "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\CartRepository.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAA3wEAAAAAWAAAA",
+              "ViewState": "AQIAADgAAAAAAAAAAAAYwEAAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T18:38:12.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T18:38:12.67Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\AuthService.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\AuthService.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\AuthService.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Services\\AuthService.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAAgwCMAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T16:02:59.725Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAQwAwAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T18:02:47.654Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "AdminServiceTest.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AdminServiceTest.cs",
-              "RelativeDocumentMoniker": "PharmacyUnitTest\\AdminServiceTest.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AdminServiceTest.cs",
-              "RelativeToolTip": "PharmacyUnitTest\\AdminServiceTest.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAYwCUAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T15:04:42.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 52,
               "Title": "RegisterDTO.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\RequestDTO\\RegisterDTO.cs",
               "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\RegisterDTO.cs",
@@ -255,34 +862,7 @@
               "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\RegisterDTO.cs",
               "ViewState": "AQIAAAUAAAAAAAAAAAAqwBsAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T16:18:14.878Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "LoginDTO.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Models\\DTO\\RequestDTO\\LoginDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T16:29:56.034Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "UserCredentialRepository.cs",
-              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
-              "RelativeDocumentMoniker": "PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
-              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
-              "RelativeToolTip": "PharmacyManagementApi\\Repositories\\General_Repositories\\UserCredentialRepository.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAYwBYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-27T15:59:24.613Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-27T16:18:14.878Z"
             }
           ]
         }

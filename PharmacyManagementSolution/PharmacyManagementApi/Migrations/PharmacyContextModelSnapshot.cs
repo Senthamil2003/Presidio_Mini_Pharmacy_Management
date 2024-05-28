@@ -147,6 +147,36 @@ namespace PharmacyManagementApi.Migrations
                     b.ToTable("DeliveryDetails");
                 });
 
+            modelBuilder.Entity("PharmacyManagementApi.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedbackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"), 1L, 1);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FeedbackMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.HasKey("FeedbackId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("MedicineId");
+
+                    b.ToTable("Feedbacks");
+                });
+
             modelBuilder.Entity("PharmacyManagementApi.Models.Medicine", b =>
                 {
                     b.Property<int>("MedicineId")
@@ -160,6 +190,12 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<int>("CurrentQuantity")
                         .HasColumnType("int");
+
+                    b.Property<double>("FeedbackCount")
+                        .HasColumnType("float");
+
+                    b.Property<double>("FeedbackSum")
+                        .HasColumnType("float");
 
                     b.Property<string>("MedicineName")
                         .IsRequired()
@@ -438,6 +474,25 @@ namespace PharmacyManagementApi.Migrations
                     b.Navigation("OrderDetail");
                 });
 
+            modelBuilder.Entity("PharmacyManagementApi.Models.Feedback", b =>
+                {
+                    b.HasOne("PharmacyManagementApi.Models.Customer", "Customer")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("PharmacyManagementApi.Models.Medicine", "Medicine")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Medicine");
+                });
+
             modelBuilder.Entity("PharmacyManagementApi.Models.Medicine", b =>
                 {
                     b.HasOne("PharmacyManagementApi.Models.Category", "Category")
@@ -540,7 +595,14 @@ namespace PharmacyManagementApi.Migrations
                 {
                     b.Navigation("Carts");
 
+                    b.Navigation("Feedbacks");
+
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("PharmacyManagementApi.Models.Medicine", b =>
+                {
+                    b.Navigation("Feedbacks");
                 });
 
             modelBuilder.Entity("PharmacyManagementApi.Models.Order", b =>

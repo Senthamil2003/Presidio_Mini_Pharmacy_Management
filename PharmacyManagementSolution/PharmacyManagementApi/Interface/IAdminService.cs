@@ -8,7 +8,7 @@ namespace PharmacyManagementApi.Interface
     {
         public Task<SuccessPurchaseDTO> PurchaseMedicine(PurchaseDTO items);
         public Task<OrderDetailDTO[]> GetAllOrder();
-        public Task<string> DeliverOrder(int  orderId);
+        public Task<SuccessDeliveryDTO> DeliverOrder(int  orderId);
         public Task<string> AddVendor(VendorDTO vendordto);
 
     }
