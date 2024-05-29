@@ -13,10 +13,11 @@ using System.Threading.Tasks;
 
 namespace PharmacyUnitTest.RepositoryTest
 {
+
     public class PurchaseRepositoryTest
     {
-        private IReposiroty<int, Purchase> _purchaseRepo;
-        private IReposiroty<int, PurchaseDetail> _purchaseDetailRepo;
+        private IRepository<int, Purchase> _purchaseRepo;
+        private IRepository<int, PurchaseDetail> _purchaseDetailRepo;
         private PharmacyContext context;
 
         [SetUp]
@@ -99,6 +100,16 @@ namespace PharmacyUnitTest.RepositoryTest
             };
             var exception = Assert.ThrowsAsync<RepositoryException>(async () => await _purchaseRepo.Update(purchase));
         }
+        [Test]
+        public async Task PurchaseGetAll()
+        {
+          var resul= await _purchaseRepo.Get();
+           Assert.IsNotNull(resul); 
+           
+        }
+        
+
+
 
     }
 }

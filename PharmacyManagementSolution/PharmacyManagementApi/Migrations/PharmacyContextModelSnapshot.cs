@@ -177,6 +177,54 @@ namespace PharmacyManagementApi.Migrations
                     b.ToTable("Feedbacks");
                 });
 
+            modelBuilder.Entity("PharmacyManagementApi.Models.Medication", b =>
+                {
+                    b.Property<int>("MedicationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicationId"), 1L, 1);
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MedicationName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MedicationId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Medications");
+                });
+
+            modelBuilder.Entity("PharmacyManagementApi.Models.MedicationItem", b =>
+                {
+                    b.Property<int>("MedicationItemId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicationItemId"), 1L, 1);
+
+                    b.Property<int>("MedicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicineId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("MedicationItemId");
+
+                    b.HasIndex("MedicationId");
+
+                    b.HasIndex("MedicineId");
+
+                    b.ToTable("MedicationItems");
+                });
+
             modelBuilder.Entity("PharmacyManagementApi.Models.Medicine", b =>
                 {
                     b.Property<int>("MedicineId")
@@ -493,6 +541,36 @@ namespace PharmacyManagementApi.Migrations
                     b.Navigation("Medicine");
                 });
 
+            modelBuilder.Entity("PharmacyManagementApi.Models.Medication", b =>
+                {
+                    b.HasOne("PharmacyManagementApi.Models.Customer", "Customer")
+                        .WithMany("Medications")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("PharmacyManagementApi.Models.MedicationItem", b =>
+                {
+                    b.HasOne("PharmacyManagementApi.Models.Medication", "Medication")
+                        .WithMany("MedicationItems")
+                        .HasForeignKey("MedicationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("PharmacyManagementApi.Models.Medicine", "Medicine")
+                        .WithMany()
+                        .HasForeignKey("MedicineId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Medication");
+
+                    b.Navigation("Medicine");
+                });
+
             modelBuilder.Entity("PharmacyManagementApi.Models.Medicine", b =>
                 {
                     b.HasOne("PharmacyManagementApi.Models.Category", "Category")
@@ -597,7 +675,14 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Navigation("Feedbacks");
 
+                    b.Navigation("Medications");
+
                     b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("PharmacyManagementApi.Models.Medication", b =>
+                {
+                    b.Navigation("MedicationItems");
                 });
 
             modelBuilder.Entity("PharmacyManagementApi.Models.Medicine", b =>

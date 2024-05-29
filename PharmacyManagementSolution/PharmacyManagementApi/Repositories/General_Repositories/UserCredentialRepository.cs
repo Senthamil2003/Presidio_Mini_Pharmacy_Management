@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class UserCredentialRepository : IReposiroty<string, UserCredential>
+    public class UserCredentialRepository : IRepository<string, UserCredential>
     {
         private readonly PharmacyContext _context;
 
@@ -44,10 +44,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return userCredential;
             }
-            catch (NoUserCredentialFoundException)
-            {
-                throw;
-            }
+       
             catch (Exception ex)
             {
 
@@ -64,9 +61,9 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (NoUserCredentialFoundException)
             {
-
                 throw;
             }
+       
 
             catch (Exception ex)
             {
@@ -99,13 +96,8 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return userCredential;
             }
-            catch (NoUserCredentialFoundException)
-            {
-                throw;
-            }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while updating the UserCredential. " + ex);
             }
         }

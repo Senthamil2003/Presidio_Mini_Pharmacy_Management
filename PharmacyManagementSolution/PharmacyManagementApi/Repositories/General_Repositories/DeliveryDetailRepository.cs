@@ -6,7 +6,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class DeliveryDetailRepository : IReposiroty<int, DeliveryDetail>
+    public class DeliveryDetailRepository : IRepository<int, DeliveryDetail>
     {
         private readonly PharmacyContext _context;
 

@@ -22,6 +22,9 @@ namespace PharmacyManagementApi.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<DeliveryDetail> DeliveryDetails { get; set; }
         public DbSet<Feedback> Feedbacks { get; set; }  
+        public DbSet<Medication> Medications { get; set; }
+        public DbSet<MedicationItem> MedicationItems { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -46,7 +49,30 @@ namespace PharmacyManagementApi.Context
             .HasForeignKey(c => c.CustomerId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
-         
+
+            //Foriegn Key for Medication
+            modelBuilder.Entity<Medication>()
+            .HasOne(m=>m.Customer)
+            .WithMany(c=>c.Medications)
+            .HasForeignKey(m=>m.CustomerId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
+
+            //Foriegn Key for MedicationItems
+            modelBuilder.Entity<MedicationItem>()
+            .HasOne(mI=>mI.Medicine)
+            .WithMany()
+            .HasForeignKey(mI => mI.MedicineId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
+
+            modelBuilder.Entity<MedicationItem>()
+            .HasOne(mI => mI.Medication)
+            .WithMany(m=>m.MedicationItems)
+            .HasForeignKey(mI => mI.MedicationId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
+
 
             //Foriegn Key for Feedback
             modelBuilder.Entity<Feedback>()

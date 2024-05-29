@@ -2,7 +2,7 @@
 
 namespace PharmacyManagementApi.Interface
 {
-    public interface IReposiroty<K, T> where T : class
+    public interface IRepository<K, T> where T : class
     {
         public Task<T> Add(T item);
         public Task<T> Delete(K key);

@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class StockRepository : IReposiroty<int, Stock>
+    public class StockRepository : IRepository<int, Stock>
     {
         private readonly PharmacyContext _context;
 
@@ -44,10 +44,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return stock;
             }
-            catch (NoStockFoundException)
-            {
-                throw;
-            }
+       
             catch (Exception ex)
             {
 
@@ -62,10 +59,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 return await _context.Stocks.SingleOrDefaultAsync(u => u.StockId == key)
                     ?? throw new NoStockFoundException($"No Stock found with given id {key}");
             }
-            catch (NoStockFoundException)
-            {
-                throw;
-            }
+
             catch (Exception ex)
             {
                 throw new RepositoryException("Error Occur while fetching data from Stock. " + ex);
@@ -97,10 +91,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return stock;
             }
-            catch (NoStockFoundException)
-            {
-                throw;
-            }
+      
             catch (Exception ex)
             {
 

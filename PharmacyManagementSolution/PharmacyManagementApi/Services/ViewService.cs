@@ -1,6 +1,7 @@
 ﻿using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
+using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using PharmacyManagementApi.Repositories.Joined_Repositories;
 
@@ -58,6 +59,50 @@ namespace PharmacyManagementApi.Services
 
             }
         }
+        public async Task<List<AddMedicationDTO>> ViewMyMedications(int customerId)
+        {
+
+            try
+            {
+                Customer customer = await _customer.Get(customerId);
+                if (customer.Medications.Count == 0)
+                {
+                    throw new NoMedicationFoundException("Customer have no medication");
+                }
+                List<Medication> medications = customer.Medications.ToList();
+                List<AddMedicationDTO> result = new List<AddMedicationDTO>();
+                foreach (var item in medications)
+                {
+                    AddMedicationDTO addMedicationDTO = new AddMedicationDTO()
+                    {
+                        CustomerId = customerId,
+                        MedicationName = item.MedicationName
+                    };
+                    MedicationItemDTO[] medicationItemsDTO = new MedicationItemDTO[item.MedicationItems.Count];
+                    int ct = 0;
+                    foreach (MedicationItem item2 in item.MedicationItems)
+                    {
+                        medicationItemsDTO[ct++] = new MedicationItemDTO()
+                        {
+                            MedicineId = item2.MedicineId,
+                            Quantity = item2.Quantity,
+                        };
+
+                    }
+                    addMedicationDTO.medicationItems = medicationItemsDTO;
+                    result.Add(addMedicationDTO);
+
+                }
+                return result;
+
+            }
+            catch
+            {
+                throw;
+
+            }
+        }
+
         public async Task<List<MyOrderDTO>> GetAllOrders(int userId)
         {
             try

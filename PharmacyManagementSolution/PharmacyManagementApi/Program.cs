@@ -85,19 +85,21 @@ namespace PharmacyManagementApi
             #endregion
 
             #region Repository
-            builder.Services.AddScoped<IReposiroty<int, Customer>, CustomerRepository>();
-            builder.Services.AddScoped<IReposiroty<string ,UserCredential>, UserCredentialRepository>();
-            builder.Services.AddScoped<IReposiroty<int ,Purchase>, PurchaseRepository>();
-            builder.Services.AddScoped<IReposiroty<int, PurchaseDetail>, PurchaseDetailRepository>();
-            builder.Services.AddScoped<IReposiroty<int, Stock>, StockRepository>();
-            builder.Services.AddScoped<IReposiroty<int, Vendor>, VendorRepository>();
-            builder.Services.AddScoped<IReposiroty<int, Medicine>, MedicineRepository>();
-            builder.Services.AddScoped<IReposiroty<int, Category>, CategoryRepository>();
-            builder.Services.AddScoped<IReposiroty<int, Order>, OrderRepository>();
-            builder.Services.AddScoped<IReposiroty<int, OrderDetail>, OrderDetailRepository>();
-            builder.Services.AddScoped<IReposiroty<int, DeliveryDetail>, DeliveryDetailRepository>();
-            builder.Services.AddScoped<IReposiroty<int, Cart>, CartRepository>();
-            builder.Services.AddScoped<IReposiroty<int, Feedback>, FeedbackRepository>();
+            builder.Services.AddScoped<IRepository<int, Customer>, CustomerRepository>();
+            builder.Services.AddScoped<IRepository<string ,UserCredential>, UserCredentialRepository>();
+            builder.Services.AddScoped<IRepository<int ,Purchase>, PurchaseRepository>();
+            builder.Services.AddScoped<IRepository<int, PurchaseDetail>, PurchaseDetailRepository>();
+            builder.Services.AddScoped<IRepository<int, Stock>, StockRepository>();
+            builder.Services.AddScoped<IRepository<int, Vendor>, VendorRepository>();
+            builder.Services.AddScoped<IRepository<int, Medicine>, MedicineRepository>();
+            builder.Services.AddScoped<IRepository<int, Category>, CategoryRepository>();
+            builder.Services.AddScoped<IRepository<int, Order>, OrderRepository>();
+            builder.Services.AddScoped<IRepository<int, OrderDetail>, OrderDetailRepository>();
+            builder.Services.AddScoped<IRepository<int, DeliveryDetail>, DeliveryDetailRepository>();
+            builder.Services.AddScoped<IRepository<int, Cart>, CartRepository>();
+            builder.Services.AddScoped<IRepository<int, Feedback>, FeedbackRepository>();
+            builder.Services.AddScoped<IRepository<int, Medication>, MedicationRepository>();
+            builder.Services.AddScoped<IRepository<int, MedicationItem>, MedicationItemRepository>();
             builder.Services.AddScoped<ITransactionService, TransactionRepository>();
             builder .Services.AddScoped<StockJoinedRepository, StockJoinedRepository>();
             builder.Services.AddScoped<OrderDetailsJoinedRepository, OrderDetailsJoinedRepository>();
@@ -114,6 +116,7 @@ namespace PharmacyManagementApi
             builder.Services.AddScoped<ICartService,CartService>();
             builder.Services.AddScoped<IFeedbackService, FeedBackService>();
             builder.Services.AddScoped<IViewService, ViewService>();
+            builder.Services.AddScoped<IMedicationService,MedicationService>(); 
 
 
 

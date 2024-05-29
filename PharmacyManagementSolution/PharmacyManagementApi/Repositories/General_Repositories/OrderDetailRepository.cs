@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class OrderDetailRepository : IReposiroty<int, OrderDetail>
+    public class OrderDetailRepository : IRepository<int, OrderDetail>
     {
         private readonly PharmacyContext _context;
 
@@ -43,10 +43,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return orderDetail;
             }
-            catch (NoOrderDetailFoundException)
-            {
-                throw;
-            }
+        
             catch (Exception ex)
             {
 
@@ -96,10 +93,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return orderDetail;
             }
-            catch (NoOrderDetailFoundException)
-            {
-                throw;
-            }
+  
             catch (Exception ex)
             {
 

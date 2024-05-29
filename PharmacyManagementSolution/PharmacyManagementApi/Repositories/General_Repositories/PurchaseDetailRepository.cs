@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class PurchaseDetailRepository : IReposiroty<int, PurchaseDetail>
+    public class PurchaseDetailRepository : IRepository<int, PurchaseDetail>
     {
         private readonly PharmacyContext _context;
 
@@ -42,10 +42,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 _context.Remove(purchaseDetail);
                 await _context.SaveChangesAsync();
                 return purchaseDetail;
-            }
-            catch (NoPurchaseDetailFoundException)
-            {
-                throw;
             }
             catch (Exception ex)
             {
@@ -91,10 +87,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 _context.Entry(purchaseDetail).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
                 return purchaseDetail;
-            }
-            catch (NoPurchaseDetailFoundException)
-            {
-                throw;
             }
             catch (Exception ex)
             {

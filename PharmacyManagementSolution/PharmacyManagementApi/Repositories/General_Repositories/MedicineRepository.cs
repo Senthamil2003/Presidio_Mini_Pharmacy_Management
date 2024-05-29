@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class MedicineRepository : IReposiroty<int, Medicine>
+    public class MedicineRepository : IRepository<int, Medicine>
     {
         private readonly PharmacyContext _context;
 
@@ -43,10 +43,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return medicine;
             }
-            catch (NoMedicineFoundException)
-            {
-                throw;
-            }
+        
             catch (Exception ex)
             {
 
@@ -96,10 +93,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return medicine;
             }
-            catch (NoMedicineFoundException)
-            {
-                throw;
-            }
+
             catch (Exception ex)
             {
 

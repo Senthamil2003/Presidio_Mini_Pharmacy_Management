@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class VendorRepository : IReposiroty<int, Vendor>
+    public class VendorRepository : IRepository<int, Vendor>
     {
         private readonly PharmacyContext _context;
 
@@ -43,10 +43,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return vendor;
             }
-            catch (NoVendorFoundException)
-            {
-                throw;
-            }
+       
             catch (Exception ex)
             {
 
@@ -92,10 +89,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return vendor;
             }
-            catch (NoVendorFoundException)
-            {
-                throw;
-            }
+        
             catch (Exception ex)
             {
 

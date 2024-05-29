@@ -6,7 +6,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class FeedbackRepository : IReposiroty<int, Feedback>
+    public class FeedbackRepository : IRepository<int, Feedback>
     {
         private readonly PharmacyContext _context;
 
@@ -43,10 +43,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return feedback;
             }
-            catch (NoFeedbackFoundException)
-            {
-                throw;
-            }
+      
             catch (Exception ex)
             {
 
@@ -96,10 +93,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return feedback;
             }
-            catch (NoFeedbackFoundException)
-            {
-                throw;
-            }
+
             catch (Exception ex)
             {
 

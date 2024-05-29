@@ -10,21 +10,21 @@ namespace PharmacyManagementApi.Services
 {
     public class CartService:ICartService
     {
-        private readonly IReposiroty<int, Stock> _stockRepo;
+        private readonly StockJoinedRepository _stockRepo;
         private readonly ITransactionService _transactionService;
-        private readonly IReposiroty<int, Medicine> _medicineRepo;
-        private readonly IReposiroty<int, Cart> _cartRepo;
+        private readonly IRepository<int, Medicine> _medicineRepo;
+        private readonly IRepository<int, Cart> _cartRepo;
         private readonly CustomerJoinedRepository _customer;
-        private readonly IReposiroty<int, Order> _orderRepo;
-        private readonly IReposiroty<int, OrderDetail> _orderDetailRepo;
+        private readonly IRepository<int, Order> _orderRepo;
+        private readonly IRepository<int, OrderDetail> _orderDetailRepo;
       
         public CartService(StockJoinedRepository stockJoinedRepo,
             CustomerJoinedRepository customerJoinRepo,
-            IReposiroty<int ,Order> orderRepo,
-            IReposiroty<int, OrderDetail> orderDetailRepo,   
+            IRepository<int ,Order> orderRepo,
+            IRepository<int, OrderDetail> orderDetailRepo,   
             ITransactionService transactionService,
-            IReposiroty<int,Medicine> medicineRepo,
-            IReposiroty<int, Cart> cartRepo
+            IRepository<int,Medicine> medicineRepo,
+            IRepository<int, Cart> cartRepo
 
             ) {
 
@@ -126,7 +126,7 @@ namespace PharmacyManagementApi.Services
             }
            
         }
-        public async Task<SuccessCartDTO> UpdateCart(AddToCartDTO addToCart)
+        public async Task<SuccessCartDTO> UpdateCart(UpdateCartDTO addToCart)
         {
             using (var transaction = await _transactionService.BeginTransactionAsync())
             {
@@ -134,13 +134,34 @@ namespace PharmacyManagementApi.Services
                 {
                     Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
                     var result = await FindMedicineById(medicine.MedicineId);
-                   Customer customer= await _customer.Get(addToCart.UserId);
-                   Cart? ExistingCart= customer.Carts.FirstOrDefault(c=>c.MedicineId==addToCart.MedicineId);
+                    Customer customer= await _customer.Get(addToCart.UserId);
+                    Cart? ExistingCart= customer.Carts.FirstOrDefault(c=>c.MedicineId==addToCart.MedicineId);
                     if(ExistingCart== null) {
                         throw new NoCartFoundException("No cart Contains the Medicine Id , Add the cart first");
                     }
+                    int finalQuantity=0;
+                    if (addToCart.Status == "Increase")
+                    {
+                        finalQuantity = addToCart.Quantity + ExistingCart.Quantity;
+                    }
+                    else
+                    {
+                        if (ExistingCart.Quantity > addToCart.Quantity)
+                        {
+                            finalQuantity= ExistingCart.Quantity- addToCart.Quantity;
+                        }
+                        else
+                        {
+                            throw new NegativeValueException("The expected quantity is not available in the cart");
+
+                        }
+
+                        
+
+
+                    }
                     
-                    if (result.AvailableQuantity < (addToCart.Quantity+ExistingCart?.Quantity))
+                    if (result.AvailableQuantity < finalQuantity)
                     {
                         throw new OutOfStockException("Expected Quantity is not avalable in the stock");
                     }

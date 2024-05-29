@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class PurchaseRepository : IReposiroty<int, Purchase>
+    public class PurchaseRepository : IRepository<int, Purchase>
     {
         private readonly PharmacyContext _context;
 

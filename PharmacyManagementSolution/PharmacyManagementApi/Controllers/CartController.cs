@@ -50,7 +50,7 @@ namespace PharmacyManagementApi.Controllers
         [HttpPut("UpdateCart")]
         [ProducesResponseType(typeof(SuccessCartDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SuccessCartDTO>> UpdateCartItem(AddToCartDTO addToCart)
+        public async Task<ActionResult<SuccessCartDTO>> UpdateCartItem(UpdateCartDTO addToCart)
         {
             try
             {

@@ -8,29 +8,29 @@ using System.Diagnostics.CodeAnalysis;
 
 public class AdminService : IAdminService
 {
-    private readonly IReposiroty<int, Purchase> _purchaseRepo;
-    private readonly IReposiroty<int, Vendor> _vendorRepo;
-    private readonly IReposiroty<int, Medicine> _medicineRepo;
-    private readonly IReposiroty<int, Category> _categoryRepo;
-    private readonly IReposiroty<int, PurchaseDetail> _purchaseDetailRepo;
-    private readonly IReposiroty<int, Stock> _stockRepository;
+    private readonly IRepository<int, Purchase> _purchaseRepo;
+    private readonly IRepository<int, Vendor> _vendorRepo;
+    private readonly IRepository<int, Medicine> _medicineRepo;
+    private readonly IRepository<int, Category> _categoryRepo;
+    private readonly IRepository<int, PurchaseDetail> _purchaseDetailRepo;
+    private readonly IRepository<int, Stock> _stockRepository;
     private readonly ITransactionService _transactionService;
-    private readonly IReposiroty<int, OrderDetail> _orderDetailRepo;
+    private readonly IRepository<int, OrderDetail> _orderDetailRepo;
     private readonly StockJoinedRepository _stockJoinedRepo;
-    private readonly IReposiroty<int, DeliveryDetail> _deliveryDetailRepo;
-    private readonly IReposiroty<int, Order> _orderRepository;
+    private readonly IRepository<int, DeliveryDetail> _deliveryDetailRepo;
+    private readonly IRepository<int, Order> _orderRepository;
 
     public AdminService(
-        IReposiroty<int, Purchase> purchaseRepo,
-        IReposiroty<int, Vendor> vendorRepo,
-        IReposiroty<int, Medicine> medicineRepo,
-        IReposiroty<int, Category> categoryRepo,
-        IReposiroty<int, PurchaseDetail> purchaseDetailRepo,
-        IReposiroty<int, Stock> stockRepository,
-        IReposiroty<int ,OrderDetail> orderDetailRepo,
+        IRepository<int, Purchase> purchaseRepo,
+        IRepository<int, Vendor> vendorRepo,
+        IRepository<int, Medicine> medicineRepo,
+        IRepository<int, Category> categoryRepo,
+        IRepository<int, PurchaseDetail> purchaseDetailRepo,
+        IRepository<int, Stock> stockRepository,
+        IRepository<int ,OrderDetail> orderDetailRepo,
         StockJoinedRepository stockJoinedRepo,
-        IReposiroty<int, DeliveryDetail> deliveryDetailRepo,
-        IReposiroty<int ,Order> orderRepository,
+        IRepository<int, DeliveryDetail> deliveryDetailRepo,
+        IRepository<int ,Order> orderRepository,
         ITransactionService transactionService
         )
     {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class CustomerRepository : IReposiroty<int, Customer>
+    public class CustomerRepository : IRepository<int, Customer>
     {
         private readonly PharmacyContext _context;
 

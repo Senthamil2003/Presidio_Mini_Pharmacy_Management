@@ -1,4 +1,5 @@
-﻿using PharmacyManagementApi.Models.DTO.ResponseDTO;
+﻿using PharmacyManagementApi.Models.DTO.RequestDTO;
+using PharmacyManagementApi.Models.DTO.ResponseDTO;
 
 namespace PharmacyManagementApi.Interface
 {
@@ -6,5 +7,6 @@ namespace PharmacyManagementApi.Interface
     {
         public Task<StockResponseDTO[]> ShowAllProduct();
         public Task<List<MyOrderDTO>> GetAllOrders(int userId);
+        public Task<List<AddMedicationDTO>> ViewMyMedications(int customerId);
     }
 }

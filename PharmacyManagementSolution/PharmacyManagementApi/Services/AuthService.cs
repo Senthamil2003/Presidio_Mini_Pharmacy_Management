@@ -11,11 +11,11 @@ namespace PharmacyManagementApi.Services
 {
     public class AuthService : IAuthService
     {
-        private readonly IReposiroty<int , Customer> _customerRepo;
+        private readonly IRepository<int , Customer> _customerRepo;
         private readonly ITokenService _tokenService;
-        private readonly IReposiroty<string,UserCredential> _credentialRepo;
+        private readonly IRepository<string,UserCredential> _credentialRepo;
 
-        public AuthService(IReposiroty<string,UserCredential> credentialRepo, IReposiroty<int ,Customer> customerRepo,ITokenService tokenService) {
+        public AuthService(IRepository<string,UserCredential> credentialRepo, IRepository<int ,Customer> customerRepo,ITokenService tokenService) {
             _credentialRepo = credentialRepo;
             _customerRepo = customerRepo;
             _tokenService= tokenService;

@@ -9,15 +9,15 @@ namespace PharmacyManagementApi.Services
 {
     public class FeedBackService:IFeedbackService
     {
-        private readonly IReposiroty<int, Medicine> _medicineRepo;
-        private readonly IReposiroty<int, Customer> _customer;
+        private readonly IRepository<int, Medicine> _medicineRepo;
+        private readonly IRepository<int, Customer> _customer;
         private readonly ITransactionService _transactionservice;
-        private readonly IReposiroty<int, Feedback> _feedbackRepo;
+        private readonly IRepository<int, Feedback> _feedbackRepo;
 
         public FeedBackService(ITransactionService transactionService,
-            IReposiroty<int ,Feedback> feedbackrepo,
-            IReposiroty<int ,Medicine> medicineRepo,
-            IReposiroty<int,Customer> customer
+            IRepository<int ,Feedback> feedbackrepo,
+            IRepository<int ,Medicine> medicineRepo,
+            IRepository<int,Customer> customer
             )
         {
             _transactionservice=transactionService;

@@ -7,7 +7,7 @@ using PharmacyManagementApi.Models;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
-    public class CategoryRepository : IReposiroty<int, Category>
+    public class CategoryRepository : IRepository<int, Category>
     {
         private readonly PharmacyContext _context;
 
@@ -42,10 +42,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 _context.Remove(category);
                 await _context.SaveChangesAsync();
                 return category;
-            }
-            catch (NoCategoryFoundException)
-            {
-                throw;
             }
             catch (Exception ex)
             {
@@ -92,10 +88,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return category;
             }
-            catch (NoCategoryFoundException)
-            {
-                throw;
-            }
+         
             catch (Exception ex)
             {
 
