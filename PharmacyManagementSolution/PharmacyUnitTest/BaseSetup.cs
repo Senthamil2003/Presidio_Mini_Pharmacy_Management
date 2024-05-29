@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Moq;
+using NUnit.Framework.Internal;
 using PharmacyManagementApi.Context;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
@@ -43,10 +45,18 @@ namespace PharmacyUnitTest
         public TokenService _tokenService;
         public AuthService _authService;
         public IMedicationService _medicationService;
+        public ILogger<AdminService> _adminLogger;
+        public ILogger<AuthService> _authLogger;
+        public ILogger<MedicationService> _medicationLogger;
+        public ILogger<FeedBackService> _feedbackLogger;
+        public ILogger<CartService> _cartLogger;
+        public ILogger<ViewService> _viewLogger;
+        public ILogger<TokenService> _tokenLogger;
 
         [SetUp]
         public async Task Setup()
         {
+
             var options = new DbContextOptionsBuilder<PharmacyContext>()
                           .UseSqlite("DataSource=:memory:")
                           .Options;
@@ -55,6 +65,19 @@ namespace PharmacyUnitTest
             context.Database.OpenConnection();
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
+
+            var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+
+            });
+            _adminLogger = loggerFactory.CreateLogger<AdminService>();
+            _authLogger = loggerFactory.CreateLogger<AuthService>();
+            _medicationLogger = loggerFactory.CreateLogger<MedicationService>();
+            _feedbackLogger = loggerFactory.CreateLogger<FeedBackService>();
+            _cartLogger = loggerFactory.CreateLogger<CartService>();
+            _viewLogger = loggerFactory.CreateLogger<ViewService>();
+            _tokenLogger= loggerFactory.CreateLogger<TokenService>();
 
             _stockJoinedRepo = new StockJoinedRepository(context);
             _transactionService = new TransactionRepository(context);
@@ -79,8 +102,11 @@ namespace PharmacyUnitTest
             congigTokenSection.Setup(x => x.GetSection("JWT")).Returns(configurationJWTSection.Object);
             Mock<IConfiguration> mockConfig = new Mock<IConfiguration>();
             mockConfig.Setup(x => x.GetSection("TokenKey")).Returns(congigTokenSection.Object);
-            _tokenService = new TokenService(mockConfig.Object);
-            _authService = new AuthService(_credentialRepo, _customerRepo, _tokenService);
+            _tokenService = new TokenService(mockConfig.Object,_tokenLogger);
+            _authService = new AuthService(_credentialRepo, _customerRepo, _tokenService,_authLogger);
+
+            
+
 
             _adminService = new AdminService(
                 _purchaseRepo,
@@ -93,7 +119,8 @@ namespace PharmacyUnitTest
                 _stockJoinedRepo,
                 _deliveryDetailRepo,
                 _orderRepo,
-                _transactionService
+                _transactionService,
+                _adminLogger
             );
 
             _cartService = new CartService(
@@ -103,7 +130,8 @@ namespace PharmacyUnitTest
                 _orderDetailRepo,
                 _transactionService,
                 _medicineRepo,
-                _cartRepo
+                _cartRepo,
+                _cartLogger
             );
 
             VendorDTO vendor = new VendorDTO()
@@ -161,9 +189,10 @@ namespace PharmacyUnitTest
                 _medicationItemRepo,
                 _medicineRepo,
                 _orderRepo,
-                _orderDetailRepo
+                _orderDetailRepo,
+                _medicationLogger
                 );
-            _feedbackService = new FeedBackService(_transactionService, _feedbackRepo, _medicineRepo, _customerRepo);
+            _feedbackService = new FeedBackService(_transactionService, _feedbackRepo, _medicineRepo, _customerRepo,_feedbackLogger);
             FeedbackRequestDTO feedback = new FeedbackRequestDTO()
             {
                 MedicineId = 1,
@@ -173,7 +202,7 @@ namespace PharmacyUnitTest
 
             };
             await _feedbackService.AddFeedback(feedback);
-            _viewService = new ViewService(_stockJoinedRepo, _customerRepo);
+            _viewService = new ViewService(_stockJoinedRepo, _customerRepo,_viewLogger);
 
         }
         [TearDown]

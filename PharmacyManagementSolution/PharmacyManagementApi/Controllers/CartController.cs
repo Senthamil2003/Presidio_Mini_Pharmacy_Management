@@ -24,12 +24,15 @@ namespace PharmacyManagementApi.Controllers
         {
             try
             {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                addToCart.UserId = userid;
                 var result = await _userService.AddToCart(addToCart);
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(new ErrorModel(501, ex.Message));
+                return NotFound(new ErrorModel(501, ex.Message));
             }
         }
         [HttpDelete("RemoveFromCart")]
@@ -54,6 +57,9 @@ namespace PharmacyManagementApi.Controllers
         {
             try
             {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                addToCart.UserId = userid;  
                 var result = await _userService.UpdateCart(addToCart);
                 return Ok(result);
             }
@@ -65,11 +71,14 @@ namespace PharmacyManagementApi.Controllers
         [HttpPost("Checkout")]
         [ProducesResponseType(typeof(SuccessCheckoutDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SuccessCheckoutDTO>> Checkout(int UserId)
+        public async Task<ActionResult<SuccessCheckoutDTO>> Checkout()
         {
             try
             {
-                var result = await _userService.Checkout(UserId);
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+               
+                var result = await _userService.Checkout(userid);
                 return Ok(result);
             }
             catch (Exception ex)

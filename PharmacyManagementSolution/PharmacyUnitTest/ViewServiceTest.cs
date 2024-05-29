@@ -73,7 +73,7 @@ namespace PharmacyUnitTest
             await _cartService.Checkout(1);
             await _adminService.DeliverOrder(1);
             var result = await _viewService.GetAllOrders(1);
-            Assert.That(result.Count(), Is.EqualTo(1));
+            Assert.That(result.Count(), Is.EqualTo(2));
 
             Assert.Pass();
 

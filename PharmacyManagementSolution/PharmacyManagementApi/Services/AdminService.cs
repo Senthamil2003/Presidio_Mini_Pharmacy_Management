@@ -5,6 +5,7 @@ using PharmacyManagementApi.Models;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using PharmacyManagementApi.Repositories.Joined_Repositories;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging;
 
 public class AdminService : IAdminService
 {
@@ -19,6 +20,7 @@ public class AdminService : IAdminService
     private readonly StockJoinedRepository _stockJoinedRepo;
     private readonly IRepository<int, DeliveryDetail> _deliveryDetailRepo;
     private readonly IRepository<int, Order> _orderRepository;
+    private readonly ILogger<AdminService> _logger;
 
     public AdminService(
         IRepository<int, Purchase> purchaseRepo,
@@ -27,11 +29,12 @@ public class AdminService : IAdminService
         IRepository<int, Category> categoryRepo,
         IRepository<int, PurchaseDetail> purchaseDetailRepo,
         IRepository<int, Stock> stockRepository,
-        IRepository<int ,OrderDetail> orderDetailRepo,
+        IRepository<int, OrderDetail> orderDetailRepo,
         StockJoinedRepository stockJoinedRepo,
         IRepository<int, DeliveryDetail> deliveryDetailRepo,
-        IRepository<int ,Order> orderRepository,
-        ITransactionService transactionService
+        IRepository<int, Order> orderRepository,
+        ITransactionService transactionService,
+        ILogger<AdminService> logger
         )
     {
         _purchaseRepo = purchaseRepo;
@@ -40,66 +43,70 @@ public class AdminService : IAdminService
         _categoryRepo = categoryRepo;
         _purchaseDetailRepo = purchaseDetailRepo;
         _stockRepository = stockRepository;
-        _transactionService= transactionService;
-        _orderDetailRepo= orderDetailRepo;
+        _transactionService = transactionService;
+        _orderDetailRepo = orderDetailRepo;
         _stockJoinedRepo = stockJoinedRepo;
-        _deliveryDetailRepo= deliveryDetailRepo;
-        _orderRepository=orderRepository;
+        _deliveryDetailRepo = deliveryDetailRepo;
+        _orderRepository = orderRepository;
+        _logger = logger;
     }
 
-
+    /// <summary>
+    /// Handles the purchase of medicines, adding new medicines and categories as needed,
+    /// and updates the stock and purchase details.
+    /// </summary>
+    /// <param name="items">Details of the purchase.</param>
+    /// <returns>Details of the successful purchase.</returns>
     public async Task<SuccessPurchaseDTO> PurchaseMedicine(PurchaseDTO items)
     {
         using (var transaction = await _transactionService.BeginTransactionAsync())
         {
             try
             {
-                Purchase purchase = new Purchase()
-                {
-                    PurchaseDate = items.DateTime,
-                };
+                _logger.LogInformation("Starting PurchaseMedicine transaction.");
 
+                Purchase purchase = new Purchase() { PurchaseDate = items.DateTime };
                 await _purchaseRepo.Add(purchase);
                 double totalSum = 0;
+
                 foreach (PurchaseItem item in items.Items)
                 {
                     totalSum += item.Amount;
-
                     Medicine? medicine = (await _medicineRepo.Get()).SingleOrDefault(m => m.MedicineName == item.MedicineName);
-                    int f = 0;
+                    int isNewMedicine = 0;
+
                     if (medicine == null)
                     {
-                        f = 1;
+                        isNewMedicine = 1;
                         Category? category = (await _categoryRepo.Get()).SingleOrDefault(c => c.CategoryName == item.MedicineCategory);
                         if (category == null)
                         {
-                            category = new Category()
-                            {
-                                CategoryName = item.MedicineCategory
-                            };
+                            category = new Category() { CategoryName = item.MedicineCategory };
                             await _categoryRepo.Add(category);
                         }
+
                         medicine = new Medicine()
                         {
                             MedicineName = item.MedicineName,
                             CategoryId = category.CategoryId,
-                            CurrentQuantity=item.Quantity,
-                            SellingPrice=item.Amount
-                            
+                            CurrentQuantity = item.Quantity,
+                            SellingPrice = item.Amount
                         };
                         await _medicineRepo.Add(medicine);
                     }
-                    Category? Checkcategory = (await _categoryRepo.Get()).SingleOrDefault(c => c.CategoryName == item.MedicineCategory)?? throw new CategoryMedicineMisMatchException("Given Category is not matched with the Medicine");
+
+                    Category? checkCategory = (await _categoryRepo.Get()).SingleOrDefault(c => c.CategoryName == item.MedicineCategory)
+                        ?? throw new CategoryMedicineMisMatchException("Given Category is not matched with the Medicine");
+
                     Vendor vendor = (await _vendorRepo.Get()).SingleOrDefault(v => v.VendorName == item.VendorName)
-    ?? throw new NoVendorFoundException("No vendor found, add the vendor");
-                    int vendorId = vendor.VendorId;
-                    if (f == 0)
+                        ?? throw new NoVendorFoundException("No vendor found, add the vendor");
+
+                    if (isNewMedicine == 0)
                     {
                         medicine.CurrentQuantity += item.Quantity;
                         await _medicineRepo.Update(medicine);
-
                     }
-                 
+
                     PurchaseDetail purchaseDetail = new PurchaseDetail()
                     {
                         Amount = item.Amount,
@@ -130,137 +137,164 @@ public class AdminService : IAdminService
                 await _purchaseRepo.Update(purchase);
 
                 await _transactionService.CommitTransactionAsync();
- 
-                SuccessPurchaseDTO purchaseDTO = new SuccessPurchaseDTO()
+
+                _logger.LogInformation("PurchaseMedicine transaction completed successfully.");
+
+                return new SuccessPurchaseDTO()
                 {
                     Code = 200,
                     Message = "OK",
                     PurchaseId = purchase.PurchaseId
                 };
-                return purchaseDTO;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred in PurchaseMedicine, rolling back transaction.");
                 await _transactionService.RollbackTransactionAsync();
                 throw;
             }
-        }       
+        }
     }
-    public  async Task<OrderDetailDTO[]> GetAllOrder()
+
+    /// <summary>
+    /// Retrieves all pending order details for the admin.
+    /// </summary>
+    /// <returns>An array of order details.</returns>
+    public async Task<OrderDetailDTO[]> GetAllOrder()
     {
         try
         {
-           List<OrderDetail> orderDetails= (await _orderDetailRepo.Get()).Where(od=>!od.DeliveryStatus).ToList();
-           OrderDetailDTO[] orderDetaills=new OrderDetailDTO[orderDetails.Count];
+            _logger.LogInformation("Fetching all pending orders.");
+            List<OrderDetail> orderDetails = (await _orderDetailRepo.Get()).Where(od => !od.DeliveryStatus).ToList();
+
             if (orderDetails.Count == 0)
             {
-                throw new NoOrderFoundException("No order Found for Admin");
+                throw new NoOrderFoundException("No order found for Admin");
             }
-            int ct = 0;
-           foreach (var orderDetail in orderDetails)
+
+            OrderDetailDTO[] orderDetailsDto = orderDetails.Select(orderDetail => new OrderDetailDTO()
             {
-                OrderDetailDTO Detail = new OrderDetailDTO()
-                {
-                    MedicineName = orderDetail.Medicine.MedicineName,
-                    OrderDetailId = orderDetail.OrderDetailId,
-                    Quantity = orderDetail.Quantity
-                };
-                orderDetaills[ct] = Detail;
-                ct++;
+                MedicineName = orderDetail.Medicine.MedicineName,
+                OrderDetailId = orderDetail.OrderDetailId,
+                Quantity = orderDetail.Quantity
+            }).ToArray();
 
-            }
-           return orderDetaills;
-            
+            _logger.LogInformation("Fetched {Count} pending orders.", orderDetails.Count);
+
+            return orderDetailsDto;
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.LogError(ex, "Error occurred while fetching orders.");
             throw;
-
         }
-
     }
-  
+
+    /// <summary>
+    /// Processes the delivery of an order.
+    /// </summary>
+    /// <param name="orderDetailId">The ID of the order detail to deliver.</param>
+    /// <returns>Details of the successful delivery.</returns>
     public async Task<SuccessDeliveryDTO> DeliverOrder(int orderDetailId)
     {
         using (var transaction = await _transactionService.BeginTransactionAsync())
         {
             try
             {
-                 OrderDetail orderDetail= await _orderDetailRepo.Get(orderDetailId);
-               
+                _logger.LogInformation("Starting delivery for OrderDetailId: {OrderDetailId}.", orderDetailId);
+
+                OrderDetail orderDetail = await _orderDetailRepo.Get(orderDetailId);
                 int userId = (await _orderRepository.Get(orderDetail.OrderId)).CustomerId;
-                var result = (await _stockRepository.Get()).Where(s => s.MedicineId == orderDetail.MedicineId).OrderBy(s => s.ExpiryDate).ToList();
-                int orderQuantity = orderDetail.Quantity;
-                int ct = 0;
-                int Quantity;
-                while (orderQuantity > 0)
+                var stockItems = (await _stockRepository.Get())
+                    .Where(s => s.MedicineId == orderDetail.MedicineId)
+                    .OrderBy(s => s.ExpiryDate)
+                    .ToList();
+
+                int remainingQuantity = orderDetail.Quantity;
+                int index = 0;
+
+                while (remainingQuantity > 0 && index < stockItems.Count)
                 {
-                    Stock updateStock = await _stockRepository.Get(result[ct].StockId);
-                    if (result[ct].Quantity > orderQuantity)
+                    Stock currentStock = await _stockRepository.Get(stockItems[index].StockId);
+                    int quantityToDeliver;
+
+                    if (currentStock.Quantity > remainingQuantity)
                     {
-                        Quantity = orderQuantity;
-                        updateStock.Quantity -= orderQuantity;
-                        orderQuantity = 0;
-                        await _stockRepository.Update(updateStock);
+                        quantityToDeliver = remainingQuantity;
+                        currentStock.Quantity -= remainingQuantity;
+                        remainingQuantity = 0;
+                        await _stockRepository.Update(currentStock);
                     }
                     else
                     {
-                        Quantity = result[ct].Quantity;
-                        orderQuantity -= result[ct].Quantity; 
-                        await _stockRepository.Delete(updateStock.StockId);
-
+                        quantityToDeliver = currentStock.Quantity;
+                        remainingQuantity -= currentStock.Quantity;
+                        await _stockRepository.Delete(currentStock.StockId);
                     }
-                    orderDetail.DeliveryStatus = true;
-                    await _orderDetailRepo.Update(orderDetail);
+
                     DeliveryDetail delivery = new DeliveryDetail()
                     {
                         CustomerId = userId,
-                        ExpiryDate = updateStock.ExpiryDate,
+                        ExpiryDate = currentStock.ExpiryDate,
                         MedicineId = orderDetail.MedicineId,
                         OrderDetailId = orderDetail.OrderDetailId,
-                        Quantity = Quantity
+                        Quantity = quantityToDeliver
                     };
                     await _deliveryDetailRepo.Add(delivery);
-                    ct++;
+
+                    index++;
                 }
 
-               await _transactionService.CommitTransactionAsync();
-                SuccessDeliveryDTO deliveryDTO = new SuccessDeliveryDTO()
+                orderDetail.DeliveryStatus = true;
+                await _orderDetailRepo.Update(orderDetail);
+
+                await _transactionService.CommitTransactionAsync();
+
+                _logger.LogInformation("Delivery for OrderDetailId: {OrderDetailId} completed successfully.", orderDetailId);
+
+                return new SuccessDeliveryDTO()
                 {
                     Code = 200,
                     Message = "Delivery successful",
-                    OrderDetailId = orderDetail.OrderDetailId,
+                    OrderDetailId = orderDetail.OrderDetailId
                 };
-               return deliveryDTO;
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error occurred in DeliverOrder, rolling back transaction.");
                 await _transactionService.RollbackTransactionAsync();
                 throw;
             }
         }
-
     }
-    public async Task<string> AddVendor(VendorDTO vendordto)
+
+    /// <summary>
+    /// Adds a new vendor to the system.
+    /// </summary>
+    /// <param name="vendorDto">Details of the vendor to add.</param>
+    /// <returns>A success message.</returns>
+    public async Task<string> AddVendor(VendorDTO vendorDto)
     {
         try
         {
+            _logger.LogInformation("Adding a new vendor: {VendorName}.", vendorDto.VendorName);
 
             Vendor vendor = new Vendor()
             {
-                Phone = vendordto.Phone,
-                Address = vendordto.Address,
-                VendorName = vendordto.VendorName
+                Phone = vendorDto.Phone,
+                Address = vendorDto.Address,
+                VendorName = vendorDto.VendorName
             };
 
             await _vendorRepo.Add(vendor);
-            return "success";
+            _logger.LogInformation("Vendor {VendorName} added successfully.", vendorDto.VendorName);
 
+            return "success";
         }
-        catch
+        catch (Exception ex)
         {
+            _logger.LogError(ex, "Error occurred while adding vendor.");
             throw;
         }
-      
     }
 }

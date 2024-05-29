@@ -10,6 +10,7 @@ namespace PharmacyManagementApi.Models
         public int CustomerId { get; set; }
         public int OrderDetailId { get; set; }
         public int MedicineId { get; set; } 
+        public DateTime DeliveryDate { get; set; } = DateTime.Now;
         public int Quantity { get; set; }
         public DateTime ExpiryDate { get; set; }
 

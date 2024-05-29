@@ -3,19 +3,26 @@ using PharmacyManagementApi.Context;
 using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
+    /// <summary>
+    /// Repository for performing CRUD operations on the Feedback entity.
+    /// </summary>
     public class FeedbackRepository : IRepository<int, Feedback>
     {
         private readonly PharmacyContext _context;
 
+      
         public FeedbackRepository(PharmacyContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-
+      
         public async Task<Feedback> Add(Feedback item)
         {
             if (item == null)
@@ -29,11 +36,11 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while adding the Feedback. " + ex);
             }
         }
 
+      
         public async Task<Feedback> Delete(int key)
         {
             try
@@ -43,10 +50,8 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 await _context.SaveChangesAsync();
                 return feedback;
             }
-      
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while deleting the Feedback. " + ex);
             }
         }
@@ -68,6 +73,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
         }
 
+    
         public virtual async Task<IEnumerable<Feedback>> Get()
         {
             try
@@ -76,7 +82,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while fetching the Feedbacks. " + ex);
             }
         }
@@ -96,7 +101,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
 
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while updating the Feedback. " + ex);
             }
         }

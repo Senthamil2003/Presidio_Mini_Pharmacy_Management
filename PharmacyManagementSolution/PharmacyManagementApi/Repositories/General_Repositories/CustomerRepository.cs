@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using PharmacyManagementApi.Context;
 using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
@@ -10,15 +9,18 @@ using System.Threading.Tasks;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
+   
     public class CustomerRepository : IRepository<int, Customer>
     {
         private readonly PharmacyContext _context;
 
+      
         public CustomerRepository(PharmacyContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+      
         public async Task<Customer> Add(Customer item)
         {
             if (item == null)
@@ -32,11 +34,11 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while adding the customer. " + ex);
             }
         }
 
+       
         public async Task<Customer> Delete(int key)
         {
             try
@@ -52,11 +54,11 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while deleting the customer. " + ex);
             }
         }
 
+    
         public virtual async Task<Customer> Get(int key)
         {
             try
@@ -64,7 +66,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                 return await _context.Customers.SingleOrDefaultAsync(u => u.CustomerId == key)
                     ?? throw new NoCustomerFoundException($"No Customer found with given id {key}");
             }
-            catch(NoCustomerFoundException)
+            catch (NoCustomerFoundException)
             {
                 throw;
             }
@@ -82,11 +84,11 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while fetching the customers. " + ex);
             }
         }
 
+   
         public async Task<Customer> Update(Customer item)
         {
             if (item == null)
@@ -105,7 +107,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while updating the customer. " + ex);
             }
         }

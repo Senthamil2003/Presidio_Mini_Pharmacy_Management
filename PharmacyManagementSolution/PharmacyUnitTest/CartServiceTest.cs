@@ -41,7 +41,7 @@ namespace PharmacyUnitTest
                 UserId = 1
             };
             var exception = Assert.ThrowsAsync<OutOfStockException>(async () => await _cartService.AddToCart(addToCart));
-            Assert.That(exception.Message, Is.EqualTo("Expected Quantity is not avalable in the stock"));
+            Assert.That(exception.Message, Is.EqualTo("Expected Quantity is not available in the stock"));
         }
         [Test]
         public async Task AddToCartDuplicateFail()
@@ -122,7 +122,7 @@ namespace PharmacyUnitTest
             };
 
             var exception = Assert.ThrowsAsync<OutOfStockException>(async () => await _cartService.UpdateCart(newAddToCart));
-            Assert.That(exception.Message, Is.EqualTo("Expected Quantity is not avalable in the stock"));
+            Assert.That(exception.Message, Is.EqualTo("Expected Quantity is not available in the stock"));
 
         }
         [Test]
@@ -191,7 +191,7 @@ namespace PharmacyUnitTest
             await _medicineRepo.Update(medicine); 
 
             var exception = Assert.ThrowsAsync<OutOfStockException>(async () => await _cartService.Checkout(1));
-            Assert.That(exception.Message, Is.EqualTo("Expected Quantity is not avalable at the moment for "+addToCart.MedicineId));
+            Assert.That(exception.Message, Is.EqualTo("Expected Quantity is not available at the moment for "+addToCart.MedicineId));
             Assert.Pass();
 
         }

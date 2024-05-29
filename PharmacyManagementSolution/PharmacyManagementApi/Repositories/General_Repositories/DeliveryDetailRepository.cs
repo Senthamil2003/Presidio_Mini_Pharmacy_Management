@@ -3,18 +3,24 @@ using PharmacyManagementApi.Context;
 using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
+  
     public class DeliveryDetailRepository : IRepository<int, DeliveryDetail>
     {
         private readonly PharmacyContext _context;
 
+      
         public DeliveryDetailRepository(PharmacyContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+      
         public async Task<DeliveryDetail> Add(DeliveryDetail item)
         {
             if (item == null)
@@ -28,19 +34,19 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while adding the DeliveryDetail. " + ex);
             }
         }
 
+      
         public async Task<DeliveryDetail> Delete(int key)
         {
             try
             {
-                var DeliveryDetail = await Get(key);
-                _context.Remove(DeliveryDetail);
+                var deliveryDetail = await Get(key);
+                _context.Remove(deliveryDetail);
                 await _context.SaveChangesAsync();
-                return DeliveryDetail;
+                return deliveryDetail;
             }
             catch (NoDeliveryDetailFoundException)
             {
@@ -48,7 +54,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while deleting the DeliveryDetail. " + ex);
             }
         }
@@ -66,6 +71,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
         }
 
+     
         public async Task<IEnumerable<DeliveryDetail>> Get()
         {
             try
@@ -74,7 +80,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while fetching the DeliveryDetails. " + ex);
             }
         }
@@ -86,10 +91,10 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
 
             try
             {
-                var DeliveryDetail = await Get(item.DeliveryId);
-                _context.Entry(DeliveryDetail).CurrentValues.SetValues(item);
+                var deliveryDetail = await Get(item.DeliveryId);
+                _context.Entry(deliveryDetail).CurrentValues.SetValues(item);
                 await _context.SaveChangesAsync();
-                return DeliveryDetail;
+                return deliveryDetail;
             }
             catch (NoDeliveryDetailFoundException)
             {
@@ -97,7 +102,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while updating the DeliveryDetail. " + ex);
             }
         }

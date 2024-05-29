@@ -1,14 +1,48 @@
-﻿namespace PharmacyManagementApi.Models.DTO.RequestDTO
+﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+
+namespace PharmacyManagementApi.Models.DTO.RequestDTO
 {
     public class PurchaseItem
     {
+        [Required(ErrorMessage = "Vendor name is required.")]
         public string VendorName { get; set; }
+
+        [Required(ErrorMessage = "Medicine name is required.")]
         public string MedicineName { get; set; }
+
+        [Required(ErrorMessage = "Medicine category is required.")]
         public string MedicineCategory { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Amount must be greater than 0.")]
         public int Amount { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be greater than 0.")]
         public int Quantity { get; set; }
+
+        [Required(ErrorMessage = "Expiry date is required.")]
+        [FutureDate(ErrorMessage = "Expiry date must be in the future.")]
         public DateTime ExpiryDate { get; set; }
+
+        [Required(ErrorMessage = "Storage requirement is required.")]
         public string StorageRequirement { get; set; }
+
+        [Required(ErrorMessage = "Dosage form is required.")]
         public string DosageForm { get; set; }
     }
+    [ExcludeFromCodeCoverage]
+    public class FutureDateAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            if (value is DateTime)
+            {
+                DateTime dateValue = (DateTime)value;
+                return dateValue > DateTime.Now;
+            }
+            return false;
+        }
+    }
+
+
 }

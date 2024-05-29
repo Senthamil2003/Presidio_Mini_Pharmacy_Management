@@ -24,6 +24,9 @@ namespace PharmacyManagementApi.Controllers
         {
             try
             {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                feedback.CustomerId= userid;
                 var result = await _feebackservice.AddFeedback(feedback);
                 return Ok(result);
             }
@@ -36,11 +39,13 @@ namespace PharmacyManagementApi.Controllers
         [HttpGet("ViewMyFeedback")]
         [ProducesResponseType(typeof(SuccessFeedbackDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<Feedback>>> ViewMyFeedback(int userId)
+        public async Task<ActionResult<List<Feedback>>> ViewMyFeedback()
         {
             try
             {
-                var result = await _feebackservice.ViewMyFeedBack(userId);
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                var result = await _feebackservice.ViewMyFeedBack(userid);
                 return Ok(result);
             }
             catch (Exception ex)

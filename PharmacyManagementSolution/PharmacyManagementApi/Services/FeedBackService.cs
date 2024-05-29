@@ -4,52 +4,64 @@ using PharmacyManagementApi.Models;
 using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using PharmacyManagementApi.Repositories.Joined_Repositories;
+using Microsoft.Extensions.Logging; // Added for logging
 
 namespace PharmacyManagementApi.Services
 {
-    public class FeedBackService:IFeedbackService
+    public class FeedBackService : IFeedbackService
     {
         private readonly IRepository<int, Medicine> _medicineRepo;
         private readonly IRepository<int, Customer> _customer;
         private readonly ITransactionService _transactionservice;
         private readonly IRepository<int, Feedback> _feedbackRepo;
+        private readonly ILogger<FeedBackService> _logger;
 
         public FeedBackService(ITransactionService transactionService,
-            IRepository<int ,Feedback> feedbackrepo,
-            IRepository<int ,Medicine> medicineRepo,
-            IRepository<int,Customer> customer
-            )
+            IRepository<int, Feedback> feedbackrepo,
+            IRepository<int, Medicine> medicineRepo,
+            IRepository<int, Customer> customer,
+            ILogger<FeedBackService> logger) 
         {
-            _transactionservice=transactionService;
-            _feedbackRepo= feedbackrepo;
+            _transactionservice = transactionService;
+            _feedbackRepo = feedbackrepo;
             _medicineRepo = medicineRepo;
-            _customer= customer;
+            _customer = customer;
+            _logger = logger; 
         }
+
+        /// <summary>
+        /// Adds a new feedback for a medicine.
+        /// </summary>
+        /// <param name="feedbackRequest">The feedback request details.</param>
+        /// <returns>A success feedback DTO with the feedback ID.</returns>
         public async Task<SuccessFeedbackDTO> AddFeedback(FeedbackRequestDTO feedbackRequest)
         {
+            _logger.LogInformation("Adding feedback for medicine {MedicineId} by customer {CustomerId}", feedbackRequest.MedicineId, feedbackRequest.CustomerId); // Log start
+
             using (var transaction = await _transactionservice.BeginTransactionAsync())
             {
-
                 try
                 {
-
                     Feedback feedback = new Feedback()
                     {
                         CustomerId = feedbackRequest.CustomerId,
                         FeedbackMessage = feedbackRequest.Feedback,
                         MedicineId = feedbackRequest.MedicineId,
                         Rating = feedbackRequest.Rating
-
                     };
+
                     Medicine medicine = await _medicineRepo.Get(feedbackRequest.MedicineId);
-                    Feedback? checkMedicineFeedback=medicine.Feedbacks.FirstOrDefault(m => m.CustomerId == feedbackRequest.CustomerId);
-                    if(checkMedicineFeedback != null)
+                    Feedback? checkMedicineFeedback = medicine.Feedbacks.FirstOrDefault(m => m.CustomerId == feedbackRequest.CustomerId);
+                    if (checkMedicineFeedback != null)
                     {
-                        throw new DuplicateValueException("The user is already ive the feedback");
+                        _logger.LogWarning("Customer {CustomerId} has already given feedback for medicine {MedicineId}", feedbackRequest.CustomerId, feedbackRequest.MedicineId); // Log warning
+                        throw new DuplicateValueException("The user has already given the feedback");
                     }
+
                     medicine.FeedbackCount += 1;
                     medicine.FeedbackSum += feedbackRequest.Rating;
                     await _medicineRepo.Update(medicine);
+
                     Feedback result = await _feedbackRepo.Add(feedback);
                     SuccessFeedbackDTO successFeedback = new SuccessFeedbackDTO()
                     {
@@ -58,70 +70,84 @@ namespace PharmacyManagementApi.Services
                         FeedBackId = result.FeedbackId
                     };
 
+                    _logger.LogInformation("Feedback {FeedbackId} added successfully for medicine {MedicineId} by customer {CustomerId}", result.FeedbackId, feedbackRequest.MedicineId, feedbackRequest.CustomerId); // Log success
+
                     await _transactionservice.CommitTransactionAsync();
                     return successFeedback;
-
-
                 }
-
-                catch
+                catch (Exception ex)
                 {
+                    _logger.LogError(ex, "Error adding feedback for medicine {MedicineId} by customer {CustomerId}", feedbackRequest.MedicineId, feedbackRequest.CustomerId); // Log error
                     await _transactionservice.RollbackTransactionAsync();
                     throw;
                 }
             }
+        }
 
-        } 
+        /// <summary>
+        /// Views all the feedbacks given by a customer.
+        /// </summary>
+        /// <param name="customerId">The customer ID.</param>
+        /// <returns>A list of feedbacks given by the customer.</returns>
         public async Task<List<Feedback>> ViewMyFeedBack(int customerId)
         {
+            _logger.LogInformation("Viewing feedbacks for customer {CustomerId}", customerId); // Log start
+
             try
             {
-                //check wether customer present or not
-                
-               await _customer.Get(customerId);
-               List<Feedback> feedbacks =(await _feedbackRepo.Get()).Where(f=>f.CustomerId==customerId).ToList();
-                if(feedbacks.Count()==0 )
+                // Check if the customer is present
+                await _customer.Get(customerId);
+
+                List<Feedback> feedbacks = (await _feedbackRepo.Get()).Where(f => f.CustomerId == customerId).ToList();
+                if (feedbacks.Count() == 0)
                 {
+                    _logger.LogWarning("No feedback found for customer {CustomerId}", customerId); // Log warning
                     throw new NoFeedbackFoundException("No feedback found for the customer");
-
                 }
+
+                _logger.LogInformation("{Count} feedbacks found for customer {CustomerId}", feedbacks.Count, customerId); // Log success
                 return feedbacks;
-
-
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error viewing feedbacks for customer {CustomerId}", customerId); // Log error
                 throw;
             }
-
         }
+
+        /// <summary>
+        /// Gets the feedback details for a medicine.
+        /// </summary>
+        /// <param name="medicineId">The medicine ID.</param>
+        /// <returns>A medicine feedback DTO containing the average rating and all feedbacks for the medicine.</returns>
         public async Task<MedicineFeedbackDTO> MedicineFeedback(int medicineId)
         {
+            _logger.LogInformation("Getting feedback details for medicine {MedicineId}", medicineId); // Log start
+
             try
             {
-
                 Medicine medicine = await _medicineRepo.Get(medicineId);
                 List<Feedback> feedbacks = medicine.Feedbacks.ToList();
                 if (feedbacks.Count() == 0)
                 {
+                    _logger.LogWarning("No feedback found for medicine {MedicineId}", medicineId); // Log warning
                     throw new NoFeedbackFoundException("No Feedback Found for the given medicine");
                 }
+
                 MedicineFeedbackDTO medicineFeedback = new MedicineFeedbackDTO()
                 {
                     FeedbackRating = medicine.FeedbackSum / medicine.FeedbackCount,
                     Feedbacks = feedbacks
                 };
+
+                _logger.LogInformation("Feedback details retrieved successfully for medicine {MedicineId}", medicineId); // Log success
                 return medicineFeedback;
-
-
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Error getting feedback details for medicine {MedicineId}", medicineId); // Log error
                 throw;
             }
         }
-
-
-
     }
 }

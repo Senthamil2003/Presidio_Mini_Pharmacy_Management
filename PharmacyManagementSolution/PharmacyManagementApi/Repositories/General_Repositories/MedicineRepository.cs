@@ -60,6 +60,10 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                     .SingleOrDefaultAsync(u => u.MedicineId == key)
                     ?? throw new NoMedicineFoundException($"No Medicine found with given id {key}");
             }
+            catch (NoMedicineFoundException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new RepositoryException("Error Occur while fetching data from Medicine. " + ex);

@@ -5,10 +5,11 @@ using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using PharmacyManagementApi.Repositories.Joined_Repositories;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.Extensions.Logging; // Added for logging
 
 namespace PharmacyManagementApi.Services
 {
-    public class CartService:ICartService
+    public class CartService : ICartService
     {
         private readonly StockJoinedRepository _stockRepo;
         private readonly ITransactionService _transactionService;
@@ -17,31 +18,32 @@ namespace PharmacyManagementApi.Services
         private readonly CustomerJoinedRepository _customer;
         private readonly IRepository<int, Order> _orderRepo;
         private readonly IRepository<int, OrderDetail> _orderDetailRepo;
-      
+        private readonly ILogger<CartService> _logger; // Added for logging
+
         public CartService(StockJoinedRepository stockJoinedRepo,
             CustomerJoinedRepository customerJoinRepo,
-            IRepository<int ,Order> orderRepo,
-            IRepository<int, OrderDetail> orderDetailRepo,   
+            IRepository<int, Order> orderRepo,
+            IRepository<int, OrderDetail> orderDetailRepo,
             ITransactionService transactionService,
-            IRepository<int,Medicine> medicineRepo,
-            IRepository<int, Cart> cartRepo
-
-            ) {
-
-            _stockRepo=stockJoinedRepo;     
-            _transactionService=transactionService;
+            IRepository<int, Medicine> medicineRepo,
+            IRepository<int, Cart> cartRepo,
+            ILogger<CartService> logger) // Added logger parameter
+        {
+            _stockRepo = stockJoinedRepo;
+            _transactionService = transactionService;
             _medicineRepo = medicineRepo;
             _cartRepo = cartRepo;
-            _customer=customerJoinRepo;
-            _orderRepo=orderRepo;
-            _orderDetailRepo=orderDetailRepo;
- 
-        
+            _customer = customerJoinRepo;
+            _orderRepo = orderRepo;
+            _orderDetailRepo = orderDetailRepo;
+            _logger = logger; // Assigned logger
         }
 
         [ExcludeFromCodeCoverage]
         public async Task<StockResponseDTO> FindMedicineById(int MedicineId)
         {
+            _logger.LogInformation("Finding medicine details for medicine ID: {MedicineId}", MedicineId); // Log start
+
             try
             {
                 var result = (await _stockRepo.Get()).Where(s => s.MedicineId == MedicineId).GroupBy(s => s.MedicineId).Select(group => new
@@ -64,82 +66,103 @@ namespace PharmacyManagementApi.Services
                         AvailableQuantity = result.TotalQuantity
                     };
 
+                    _logger.LogInformation("Medicine details found for medicine ID: {MedicineId}", MedicineId); // Log success
                     return response;
                 }
-                throw new OutOfStockException("Out of stock for the medicine Id "+MedicineId);
 
-
+                _logger.LogWarning("Medicine is out of stock for ID: {MedicineId}", MedicineId); // Log warning
+                throw new OutOfStockException("Out of stock for the medicine Id " + MedicineId);
             }
-            catch
+            catch (Exception ex)
             {
-                throw; 
+                _logger.LogError(ex, "Error finding medicine details for ID: {MedicineId}", MedicineId); // Log error
+                throw;
             }
         }
 
-
+        /// <summary>
+        /// Adds a medicine to the cart for a customer.
+        /// </summary>
+        /// <param name="addToCart">The details of the medicine and quantity to add to the cart.</param>
+        /// <returns>A success DTO containing the cart ID.</returns>
         public async Task<SuccessCartDTO> AddToCart(AddToCartDTO addToCart)
         {
-            using (var transaction = await _transactionService.BeginTransactionAsync())
-            {
-               try
-                {
-                    Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
-                    var result= await FindMedicineById(medicine.MedicineId);
-                    if (result.AvailableQuantity < addToCart.Quantity)
-                    {
-                        throw new OutOfStockException("Expected Quantity is not avalable in the stock");
-                    }
-                    Cart? ExistingCart= (await _cartRepo.Get()).FirstOrDefault(c=>c.MedicineId== addToCart.MedicineId);
-                    if(ExistingCart!= null)
-                    {
-                        throw new DuplicateValueException("There is already a cart with medicine Id try updateCart" + addToCart.MedicineId);
-                    }
-                    Cart cart =new Cart()
-                    {
-                        CustomerId = addToCart.UserId,
-                        Quantity = addToCart.Quantity,
-                        MedicineId = medicine.MedicineId,
-                        Cost=result.Amount,
-                        TotalCost= result.Amount* addToCart.Quantity
+            _logger.LogInformation("Adding medicine {MedicineId} to cart for customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log start
 
-                    };
-                   await _cartRepo.Add(cart);
-                    
-                   await _transactionService.CommitTransactionAsync();
-                    SuccessCartDTO success = new SuccessCartDTO()
-                    {
-                        Code = 200,
-                        Message = "Item Added Successfully",
-                        CartId = cart.CartId
-
-                    };
-
-                    return success;
-
-                }
-                catch
-                {
-                    await _transactionService.RollbackTransactionAsync();
-                    throw;
-
-                }
-            }
-           
-        }
-        public async Task<SuccessCartDTO> UpdateCart(UpdateCartDTO addToCart)
-        {
             using (var transaction = await _transactionService.BeginTransactionAsync())
             {
                 try
                 {
                     Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
                     var result = await FindMedicineById(medicine.MedicineId);
-                    Customer customer= await _customer.Get(addToCart.UserId);
-                    Cart? ExistingCart= customer.Carts.FirstOrDefault(c=>c.MedicineId==addToCart.MedicineId);
-                    if(ExistingCart== null) {
+                    if (result.AvailableQuantity < addToCart.Quantity)
+                    {
+                        _logger.LogWarning("Expected quantity {ExpectedQuantity} is not available for medicine {MedicineId}", addToCart.Quantity, addToCart.MedicineId); // Log warning
+                        throw new OutOfStockException("Expected Quantity is not available in the stock");
+                    }
+
+                    Cart? ExistingCart = (await _cartRepo.Get()).FirstOrDefault(c => (c.MedicineId == addToCart.MedicineId && c.CustomerId == addToCart.UserId));
+                    if (ExistingCart != null)
+                    {
+                        _logger.LogWarning("Cart already exists for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log warning
+                        throw new DuplicateValueException("There is already a cart with medicine Id try updateCart" + addToCart.MedicineId);
+                    }
+
+                    Cart cart = new Cart()
+                    {
+                        CustomerId = addToCart.UserId,
+                        Quantity = addToCart.Quantity,
+                        MedicineId = medicine.MedicineId,
+                        Cost = result.Amount,
+                        TotalCost = result.Amount * addToCart.Quantity
+                    };
+
+                    await _cartRepo.Add(cart);
+                    await _transactionService.CommitTransactionAsync();
+
+                    SuccessCartDTO success = new SuccessCartDTO()
+                    {
+                        Code = 200,
+                        Message = "Item Added Successfully",
+                        CartId = cart.CartId
+                    };
+
+                    _logger.LogInformation("Medicine {MedicineId} added to cart {CartId} for customer {UserId}", addToCart.MedicineId, cart.CartId, addToCart.UserId); // Log success
+                    return success;
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error adding medicine {MedicineId} to cart for customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log error
+                    await _transactionService.RollbackTransactionAsync();
+                    throw;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Updates the quantity of a medicine in the cart for a customer.
+        /// </summary>
+        /// <param name="addToCart">The details of the medicine ID, customer ID, and quantity to update.</param>
+        /// <returns>A success DTO containing the cart ID.</returns>
+        public async Task<SuccessCartDTO> UpdateCart(UpdateCartDTO addToCart)
+        {
+            _logger.LogInformation("Updating cart for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log start
+
+            using (var transaction = await _transactionService.BeginTransactionAsync())
+            {
+                try
+                {
+                    Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
+                    var result = await FindMedicineById(medicine.MedicineId);
+                    Customer customer = await _customer.Get(addToCart.UserId);
+                    Cart? ExistingCart = customer.Carts.FirstOrDefault(c => c.MedicineId == addToCart.MedicineId);
+                    if (ExistingCart == null)
+                    {
+                        _logger.LogWarning("No cart found for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log warning
                         throw new NoCartFoundException("No cart Contains the Medicine Id , Add the cart first");
                     }
-                    int finalQuantity=0;
+
+                    int finalQuantity = 0;
                     if (addToCart.Status == "Increase")
                     {
                         finalQuantity = addToCart.Quantity + ExistingCart.Quantity;
@@ -148,83 +171,94 @@ namespace PharmacyManagementApi.Services
                     {
                         if (ExistingCart.Quantity > addToCart.Quantity)
                         {
-                            finalQuantity= ExistingCart.Quantity- addToCart.Quantity;
+                            finalQuantity = ExistingCart.Quantity - addToCart.Quantity;
                         }
                         else
                         {
+                            _logger.LogWarning("The expected quantity {ExpectedQuantity} is not available in the cart for medicine {MedicineId}", addToCart.Quantity, addToCart.MedicineId); // Log warning
                             throw new NegativeValueException("The expected quantity is not available in the cart");
-
                         }
-
-                        
-
-
                     }
-                    
+
                     if (result.AvailableQuantity < finalQuantity)
                     {
-                        throw new OutOfStockException("Expected Quantity is not avalable in the stock");
+                        _logger.LogWarning("Expected quantity {ExpectedQuantity} is not available in stock for medicine {MedicineId}", finalQuantity, addToCart.MedicineId); // Log warning
+                        throw new OutOfStockException("Expected Quantity is not available in the stock");
                     }
-                    ExistingCart.Quantity += addToCart.Quantity;
+
+                    ExistingCart.Quantity = finalQuantity;
                     await _cartRepo.Update(ExistingCart);
 
                     await _transactionService.CommitTransactionAsync();
+
                     SuccessCartDTO success = new SuccessCartDTO()
                     {
                         Code = 200,
-                        Message = "Item Added Successfully",
+                        Message = "Item Updated Successfully",
                         CartId = ExistingCart.CartId
-
                     };
 
+                    _logger.LogInformation("Cart updated successfully for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log success
                     return success;
-
                 }
-                catch
+                catch (Exception ex)
                 {
+                    _logger.LogError(ex, "Error updating cart for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log error
                     await _transactionService.RollbackTransactionAsync();
                     throw;
-
                 }
             }
-
         }
 
+        /// <summary>
+        /// Removes a medicine from the cart for a customer.
+        /// </summary>
+        /// <param name="cartId">The cart ID of the item to remove.</param>
+        /// <returns>A success DTO containing the cart ID.</returns>
         public async Task<SuccessCartDTO> RemoveFromCart(int cartId)
         {
+            _logger.LogInformation("Removing cart item with ID: {CartId}", cartId); // Log start
+
             using (var transaction = await _transactionService.BeginTransactionAsync())
             {
                 try
                 {
-            
                     Cart cart = await _cartRepo.Get(cartId);
                     if (cart != null)
                     {
                         await _cartRepo.Delete(cartId);
                     }
-                   await _transactionService.CommitTransactionAsync();
+
+                    await _transactionService.CommitTransactionAsync();
+
                     SuccessCartDTO success = new SuccessCartDTO()
                     {
                         Code = 200,
                         Message = "Cart Deleted Successfully",
                         CartId = cartId
                     };
-                    return success;
 
+                    _logger.LogInformation("Cart item with ID: {CartId} removed successfully", cartId); // Log success
+                    return success;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    _logger.LogError(ex, "Error removing cart item with ID: {CartId}", cartId); // Log error
                     await _transactionService.RollbackTransactionAsync();
                     throw;
                 }
-
             }
-
-
         }
 
+        /// <summary>
+        /// Performs the checkout process for a customer's cart.
+        /// </summary>
+        /// <param name="userId">The customer ID.</param>
+        /// <returns>A success DTO containing the order ID.</returns>
         public async Task<SuccessCheckoutDTO> Checkout(int userId)
         {
+            _logger.LogInformation("Performing checkout for customer {UserId}", userId); // Log start
+
             using (var transaction = await _transactionService.BeginTransactionAsync())
             {
                 try
@@ -232,17 +266,24 @@ namespace PharmacyManagementApi.Services
                     List<Cart> cart = (await _customer.Get(userId)).Carts.ToList();
                     if (cart.Count() == 0)
                     {
+                        _logger.LogWarning("Cart is empty for customer {UserId}", userId); // Log warning
                         throw new CartEmptyException("Your Cart is Empty");
                     }
+
+                    bool customerSubscribe = (await _customer.Get(userId)).IsSubcribed;
+                    float discount = customerSubscribe ? 10 : 0;
+
                     Order order = new Order()
                     {
                         CustomerId = userId,
-                        Discount = 0,
+                        Discount = discount,
                         ShipmentCost = 0,
                         TotalAmount = 0,
                         PaidAmount = 0,
                     };
+
                     await _orderRepo.Add(order);
+
                     double totalSum = 0;
                     foreach (Cart item in cart)
                     {
@@ -250,52 +291,63 @@ namespace PharmacyManagementApi.Services
                         var stock = await _medicineRepo.Get(item.MedicineId);
                         if (stock.CurrentQuantity < item.Quantity)
                         {
-                            throw new OutOfStockException("Expected Quantity is not avalable at the moment for "+stock.MedicineId);
-
+                            _logger.LogWarning("Expected quantity {ExpectedQuantity} is not available in stock for medicine {MedicineId}", item.Quantity, stock.MedicineId); // Log warning
+                            throw new OutOfStockException("Expected Quantity is not available at the moment for " + stock.MedicineId);
                         }
+
                         OrderDetail orderDetail = new OrderDetail()
                         {
                             MedicineId = item.MedicineId,
                             Cost = stock.SellingPrice,
                             OrderId = order.OrderId,
-                            Quantity=item.Quantity
-
+                            Quantity = item.Quantity
                         };
+
                         await _orderDetailRepo.Add(orderDetail);
                         stock.CurrentQuantity -= item.Quantity;
                         await _medicineRepo.Update(stock);
-                       await _cartRepo.Delete(item.CartId);
-
-
+                        await _cartRepo.Delete(item.CartId);
                     }
 
-                    order.TotalAmount=totalSum;
-                    order.PaidAmount = totalSum;
-                   await _orderRepo.Update(order);
+                    int shipmentCost = 0;
+                    if (!customerSubscribe && totalSum < 500)
+                    {
+                        shipmentCost = 100;
+                    }
+
+                    totalSum += shipmentCost;
+                    order.TotalAmount = totalSum;
+                    if (discount > 0)
+                    {
+                        order.PaidAmount = totalSum - (totalSum * (order.Discount) / 100);
+                    }
+                    else
+                    {
+                        order.PaidAmount = totalSum;
+                    }
+
+                    order.ShipmentCost = shipmentCost;
+                    await _orderRepo.Update(order);
+
                     await _transactionService.CommitTransactionAsync();
+
                     SuccessCheckoutDTO checkoutDTO = new SuccessCheckoutDTO()
                     {
                         Code = 200,
                         Message = "Checkout Completed successfully",
                         OrderId = order.OrderId,
                     };
+
+                    _logger.LogInformation("Checkout completed successfully for customer {UserId}, order ID: {OrderId}", userId, order.OrderId); // Log success
                     return checkoutDTO;
-
-
                 }
-                catch
+                catch (Exception ex)
                 {
+                    _logger.LogError(ex, "Error during checkout for customer {UserId}", userId); // Log error
                     await _transactionService.RollbackTransactionAsync();
-
                     throw;
-
                 }
-
             }
-          
-
         }
-
-
     }
 }

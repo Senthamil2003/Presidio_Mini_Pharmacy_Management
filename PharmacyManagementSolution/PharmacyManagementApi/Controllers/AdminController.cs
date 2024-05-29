@@ -27,6 +27,11 @@ namespace PharmacyManagementApi.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
                 var result = await _purchaseService.PurchaseMedicine(purchaseDTO);
                 return Ok(result);
             }
@@ -42,6 +47,11 @@ namespace PharmacyManagementApi.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
                 var result = await _purchaseService.GetAllOrder();
                 return Ok(result);
             }
@@ -58,6 +68,11 @@ namespace PharmacyManagementApi.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
                 var result = await _purchaseService.DeliverOrder(orderDetailId);
                 return Ok(result);
             }

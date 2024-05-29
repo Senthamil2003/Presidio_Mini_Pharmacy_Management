@@ -29,37 +29,41 @@ namespace PharmacyManagementApi.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ErrorModel(501, ex.Message));
+                return NotFound(new ErrorModel(501, ex.Message));
             }
         }
         [HttpGet("ViewMyOrders")]
         [ProducesResponseType(typeof(List<MyOrderDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<MyOrderDTO>>> AllOrder(int UserId)
+        public async Task<ActionResult<List<MyOrderDTO>>> AllOrder()
         {
             try
             {
-                var result = await _viewService.GetAllOrders(UserId);
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                var result = await _viewService.GetAllOrders(userid);
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(new ErrorModel(501, ex.Message));
+                return NotFound(new ErrorModel(501, ex.Message));
             }
         }
         [HttpGet("ViewMyMedications")]
         [ProducesResponseType(typeof(List<AddMedicationDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<AddMedicationDTO>>> AllMedication(int userId)
+        public async Task<ActionResult<List<AddMedicationDTO>>> AllMedication()
         {
             try
             {
-                var result = await _viewService.ViewMyMedications(userId);
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                var result = await _viewService.ViewMyMedications(userid);
                 return Ok(result);
             }
             catch (Exception ex)
             {
-                return BadRequest(new ErrorModel(501, ex.Message));
+                return NotFound(new ErrorModel(501, ex.Message));
             }
         }
 

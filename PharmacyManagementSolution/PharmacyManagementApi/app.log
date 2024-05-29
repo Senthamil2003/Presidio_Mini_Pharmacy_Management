@@ -1,0 +1,26 @@
+INFO  09:21:17 Now listening on: http://localhost:5033
+INFO  09:21:17 Application started. Press Ctrl+C to shut down.
+INFO  09:21:17 Hosting environment: Development
+INFO  09:21:17 Content root path: C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\
+WARN  09:21:33 Failed to determine the https port for redirect.
+INFO  09:21:33 Fetching all pending orders.
+INFO  09:21:34 Entity Framework Core 6.0.30 initialized 'PharmacyContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.30' with options: None
+INFO  09:21:35 Executed DbCommand (64ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [o].[OrderDetailId], [o].[Cost], [o].[DeliveryStatus], [o].[MedicineId], [o].[OrderId], [o].[Quantity], [m].[MedicineId], [m].[CategoryId], [m].[CurrentQuantity], [m].[FeedbackCount], [m].[FeedbackSum], [m].[MedicineName], [m].[SellingPrice]
+FROM [OrderDetails] AS [o]
+INNER JOIN [Medicines] AS [m] ON [o].[MedicineId] = [m].[MedicineId]
+INFO  09:21:35 Fetched 2 pending orders.
+INFO  10:00:29 Now listening on: http://localhost:5033
+INFO  10:00:29 Application started. Press Ctrl+C to shut down.
+INFO  10:00:29 Hosting environment: Development
+INFO  10:00:29 Content root path: C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\
+WARN  10:00:37 Failed to determine the https port for redirect.
+INFO  10:00:39 Entity Framework Core 6.0.30 initialized 'PharmacyContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.30' with options: None
+INFO  10:00:40 Executed DbCommand (116ms) [Parameters=[@__key_0='?' (Size = 450)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [u].[Email], [u].[AccountStatus], [u].[BankBalance], [u].[HasedPassword], [u].[Password], [u].[UserId]
+FROM [UserCredentials] AS [u]
+WHERE [u].[Email] = @__key_0
+ERROR 10:00:41 An error occurred while logging in.
+PharmacyManagementApi.CustomException.NoUserCredentialFoundException: No user found with given id Sentha@1123
+   at PharmacyManagementApi.Repositories.General_Repositories.UserCredentialRepository.Get(String key) in C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\Repositories\General_Repositories\UserCredentialRepository.cs:line 59
+   at PharmacyManagementApi.Services.AuthService.Login(LoginDTO loginDTO) in C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\Services\AuthService.cs:line 48

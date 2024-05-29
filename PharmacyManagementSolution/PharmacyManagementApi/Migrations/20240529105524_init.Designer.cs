@@ -12,8 +12,8 @@ using PharmacyManagementApi.Context;
 namespace PharmacyManagementApi.Migrations
 {
     [DbContext(typeof(PharmacyContext))]
-    [Migration("20240529054404_medication-update")]
-    partial class medicationupdate
+    [Migration("20240529105524_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

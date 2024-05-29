@@ -60,6 +60,10 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
                     .SingleOrDefaultAsync(u => u.OrderDetailId == key)
                     ?? throw new NoOrderDetailFoundException($"No OrderDetail found with given id {key}");
             }
+            catch (NoOrderDetailFoundException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new RepositoryException("Error Occur while fetching data from OrderDetail. " + ex);

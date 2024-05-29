@@ -1,20 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 using PharmacyManagementApi.Context;
 using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PharmacyManagementApi.Repositories.General_Repositories
 {
+   
     public class CartRepository : IRepository<int, Cart>
     {
         private readonly PharmacyContext _context;
 
+       
         public CartRepository(PharmacyContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
+
+    
         public async Task<Cart> Add(Cart item)
         {
             if (item == null)
@@ -28,7 +34,6 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while adding the cart. " + ex);
             }
         }
@@ -48,11 +53,11 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while deleting the cart. " + ex);
             }
         }
 
+        
         public async Task<Cart> Get(int key)
         {
             try
@@ -70,6 +75,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
         }
 
+      
         public async Task<IEnumerable<Cart>> Get()
         {
             try
@@ -78,11 +84,11 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while fetching the cart. " + ex);
             }
         }
 
+      
         public async Task<Cart> Update(Cart item)
         {
             if (item == null)
@@ -101,10 +107,8 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             }
             catch (Exception ex)
             {
-
                 throw new RepositoryException("Error occurred while updating the cart. " + ex);
             }
         }
     }
-
 }

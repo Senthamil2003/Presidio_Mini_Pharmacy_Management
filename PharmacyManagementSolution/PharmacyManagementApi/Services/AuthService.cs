@@ -6,33 +6,41 @@ using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Extensions.Logging; 
+using System;
 
 namespace PharmacyManagementApi.Services
 {
+    /// <summary>
+    /// Service responsible for authentication and user management.
+    /// </summary>
     public class AuthService : IAuthService
     {
-        private readonly IRepository<int , Customer> _customerRepo;
+        private readonly IRepository<int, Customer> _customerRepo;
         private readonly ITokenService _tokenService;
-        private readonly IRepository<string,UserCredential> _credentialRepo;
+        private readonly IRepository<string, UserCredential> _credentialRepo;
+        private readonly ILogger<AuthService> _logger; // Logger instance
 
-        public AuthService(IRepository<string,UserCredential> credentialRepo, IRepository<int ,Customer> customerRepo,ITokenService tokenService) {
+        /// <summary>
+        /// Constructor for AuthService.
+        /// </summary>
+        /// <param name="credentialRepo">Repository for user credentials.</param>
+        /// <param name="customerRepo">Repository for customers.</param>
+        /// <param name="tokenService">Service for generating tokens.</param>
+        /// <param name="logger">Logger instance.</param>
+        public AuthService(IRepository<string, UserCredential> credentialRepo, IRepository<int, Customer> customerRepo, ITokenService tokenService, ILogger<AuthService> logger)
+        {
             _credentialRepo = credentialRepo;
             _customerRepo = customerRepo;
-            _tokenService= tokenService;
-
+            _tokenService = tokenService;
+            _logger = logger;
         }
-        private async Task<bool> CheckPassword(byte[] userPassword, byte[] GivenPassword)
-        {
-            for (int i = 0; i < userPassword.Length; i++)
-            {
-                if (userPassword[i] != GivenPassword[i])
-                {
-                    return false;
 
-                }
-            }
-            return true;
-        }
+        /// <summary>
+        /// Logs in a user based on login credentials.
+        /// </summary>
+        /// <param name="loginDTO">Login credentials.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation that returns a <see cref="SuccessLoginDTO"/>.</returns>
         public async Task<SuccessLoginDTO> Login(LoginDTO loginDTO)
         {
             try
@@ -40,16 +48,16 @@ namespace PharmacyManagementApi.Services
                 UserCredential userCredential = await _credentialRepo.Get(loginDTO.Email);
                 HMACSHA512 hash = new HMACSHA512(userCredential.HasedPassword);
                 var password = hash.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
-                if (await CheckPassword(userCredential.Password,password))
+                if (await CheckPassword(userCredential.Password, password))
                 {
                     if (userCredential.AccountStatus == "Enable")
                     {
-                        Customer customer =await _customerRepo.Get(userCredential.UserId);
+                        Customer customer = await _customerRepo.Get(userCredential.UserId);
 
                         SuccessLoginDTO success = new SuccessLoginDTO()
                         {
                             Code = 200,
-                            Message ="Welcome back "+ customer.Name,
+                            Message = "Welcome back " + customer.Name,
                             AccessToken = await _tokenService.GenerateToken(customer)
                         };
                         return success;
@@ -59,15 +67,15 @@ namespace PharmacyManagementApi.Services
                 }
                 throw new UnAuthorizedUserException("User Name or Password not correct");
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "An error occurred while logging in."); // Log the error
                 throw;
             }
-
         }
 
-        [ExcludeFromCodeCoverage]
-        private async Task<UserCredential> CreateCredential(string password,string email)
+        [ExcludeFromCodeCoverage] // Excluded from code coverage as it's a utility method
+        private async Task<UserCredential> CreateCredential(string password, string email)
         {
             try
             {
@@ -82,14 +90,28 @@ namespace PharmacyManagementApi.Services
                 return user;
 
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "An error occurred while creating user credential."); // Log the error
                 throw;
             }
-                
-             
-            
         }
+
+        // Other methods...
+
+        private async Task<bool> CheckPassword(byte[] userPassword, byte[] GivenPassword)
+        {
+            for (int i = 0; i < userPassword.Length; i++)
+            {
+                if (userPassword[i] != GivenPassword[i])
+                {
+                    return false;
+
+                }
+            }
+            return true;
+        }
+
         public async Task<SuccessRegisterDTO> Register(RegisterDTO customerDTO)
         {
             try
@@ -100,13 +122,13 @@ namespace PharmacyManagementApi.Services
                     Phone = customerDTO.Phone,
                     Role = customerDTO.Role,
                     Address = customerDTO.Address,
-                    Email = customerDTO.Email,          
-                    
+                    Email = customerDTO.Email,
+
                 };
 
                 await _customerRepo.Add(customer);
-                UserCredential credential= await CreateCredential(customerDTO.Password,customerDTO.Email);
-                credential.UserId=customer.CustomerId;
+                UserCredential credential = await CreateCredential(customerDTO.Password, customerDTO.Email);
+                credential.UserId = customer.CustomerId;
                 await _credentialRepo.Add(credential);
 
                 SuccessRegisterDTO success = new SuccessRegisterDTO()
@@ -114,14 +136,15 @@ namespace PharmacyManagementApi.Services
                     Code = 200,
                     Message = "User Registered Successsfully",
                     CustomerId = customer.CustomerId
-                    
+
                 };
 
                 return success;
 
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "An error occurred while registering user."); // Log the error
                 throw;
             }
 

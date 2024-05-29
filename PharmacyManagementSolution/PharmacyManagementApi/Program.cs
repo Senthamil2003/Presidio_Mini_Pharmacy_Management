@@ -23,6 +23,8 @@ namespace PharmacyManagementApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddLogging(l => l.AddLog4Net());
+
             #region JWT-Authorization Swagger set-up
             builder.Services.AddSwaggerGen(option =>
             {
