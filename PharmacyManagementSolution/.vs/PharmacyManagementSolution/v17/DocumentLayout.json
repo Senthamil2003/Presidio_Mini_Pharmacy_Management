@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacymanagementapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{43F6F082-FBF5-48EE-8C66-A62EBC90D252}|PharmacyManagementApi\\PharmacyManagementApi.csproj|solutionrelative:pharmacymanagementapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|c:\\users\\vc\\documents\\pharmacy manager\\pharmacymanagementsolution\\pharmacyunittest\\repositorytest\\categoryrepositorytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{598D5940-63C7-40C5-8434-C1EDF0A60517}|PharmacyUnitTest\\PharmacyUnitTest.csproj|solutionrelative:pharmacyunittest\\repositorytest\\categoryrepositorytest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -62,11 +66,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\appsettings.json",
+              "RelativeDocumentMoniker": "PharmacyManagementApi\\appsettings.json",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\appsettings.json",
+              "RelativeToolTip": "PharmacyManagementApi\\appsettings.json",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-29T09:28:14.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "PurchaseRepositoryTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\RepositoryTest\\PurchaseRepositoryTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\RepositoryTest\\PurchaseRepositoryTest.cs",
@@ -74,12 +91,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\RepositoryTest\\PurchaseRepositoryTest.cs",
               "ViewState": "AQIAAA8AAAAAAAAAAAAQwCQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T09:21:40.017Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T09:21:40.017Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PurchaseDetailRepositoryTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\RepositoryTest\\PurchaseDetailRepositoryTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\RepositoryTest\\PurchaseDetailRepositoryTest.cs",
@@ -87,12 +103,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\RepositoryTest\\PurchaseDetailRepositoryTest.cs",
               "ViewState": "AQIAAD0AAAAAAAAAAAAgwEkAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T09:21:18.451Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T09:21:18.451Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MedicineRepositoryTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\RepositoryTest\\MedicineRepositoryTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\RepositoryTest\\MedicineRepositoryTest.cs",
@@ -100,12 +115,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\RepositoryTest\\MedicineRepositoryTest.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAgwCkAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T09:20:59.886Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T09:20:59.886Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "CategoryRepositoryTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\RepositoryTest\\CategoryRepositoryTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\RepositoryTest\\CategoryRepositoryTest.cs",
@@ -118,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "AuthenticationServiceTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AuthenticationServiceTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\AuthenticationServiceTest.cs",
@@ -126,12 +140,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\AuthenticationServiceTest.cs",
               "ViewState": "AQIAADcAAAAAAAAAAAAQwDsAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T09:08:14.397Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T09:08:14.397Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "FeedBackServiceTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\FeedBackServiceTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\FeedBackServiceTest.cs",
@@ -139,12 +152,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\FeedBackServiceTest.cs",
               "ViewState": "AQIAADQAAAAAAAAAAAAqwEAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T08:50:32.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T08:50:32.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "AdminServiceTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\AdminServiceTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\AdminServiceTest.cs",
@@ -152,12 +164,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\AdminServiceTest.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAuwBYAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T08:37:46.927Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T08:37:46.927Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "BaseSetup.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\BaseSetup.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\BaseSetup.cs",
@@ -165,12 +176,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\BaseSetup.cs",
               "ViewState": "AQIAADYAAAAAAAAAAAAuwHkAAAAdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T08:36:57.495Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T08:36:57.495Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ViewService.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\ViewService.cs",
               "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\ViewService.cs",
@@ -178,12 +188,11 @@
               "RelativeToolTip": "PharmacyManagementApi\\Services\\ViewService.cs",
               "ViewState": "AQIAAD4AAAAAAAAAAAAgwEUAAABVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T08:31:00.033Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T08:31:00.033Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ViewServiceTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\ViewServiceTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\ViewServiceTest.cs",
@@ -191,12 +200,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\ViewServiceTest.cs",
               "ViewState": "AQIAAA8AAAAAAAAAAAAAABMAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T08:30:34.132Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T08:30:34.132Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "MedicationServiceTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\MedicationServiceTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\MedicationServiceTest.cs",
@@ -204,12 +212,11 @@
               "RelativeToolTip": "PharmacyUnitTest\\MedicationServiceTest.cs",
               "ViewState": "AQIAABwAAAAAAAAAAAAgwCcAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T06:44:07.641Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T06:44:07.641Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "MedicationService.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\Services\\MedicationService.cs",
               "RelativeDocumentMoniker": "PharmacyManagementApi\\Services\\MedicationService.cs",
@@ -217,12 +224,11 @@
               "RelativeToolTip": "PharmacyManagementApi\\Services\\MedicationService.cs",
               "ViewState": "AQIAADIAAAAAAAAAAADwv80AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T06:53:07.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T06:53:07.038Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "CartServiceTest.cs",
               "DocumentMoniker": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\CartServiceTest.cs",
               "RelativeDocumentMoniker": "PharmacyUnitTest\\CartServiceTest.cs",
@@ -230,8 +236,7 @@
               "RelativeToolTip": "PharmacyUnitTest\\CartServiceTest.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAuwBIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T06:47:24.444Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-29T06:47:24.444Z"
             }
           ]
         }
