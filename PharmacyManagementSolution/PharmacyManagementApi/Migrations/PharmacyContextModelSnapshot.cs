@@ -255,6 +255,9 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<double>("SellingPrice")
                         .HasColumnType("float");
 
+                    b.Property<int>("TotalNumberOfPurchase")
+                        .HasColumnType("int");
+
                     b.HasKey("MedicineId");
 
                     b.HasIndex("CategoryId");
@@ -275,6 +278,9 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<float>("Discount")
                         .HasColumnType("real");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("PaidAmount")
                         .HasColumnType("float");

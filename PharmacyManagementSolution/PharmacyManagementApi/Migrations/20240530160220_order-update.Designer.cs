@@ -12,8 +12,8 @@ using PharmacyManagementApi.Context;
 namespace PharmacyManagementApi.Migrations
 {
     [DbContext(typeof(PharmacyContext))]
-    [Migration("20240529105524_init")]
-    partial class init
+    [Migration("20240530160220_order-update")]
+    partial class orderupdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,6 +125,9 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DeliveryDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
@@ -254,6 +257,9 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<double>("SellingPrice")
                         .HasColumnType("float");
 
+                    b.Property<int>("TotalNumberOfPurchase")
+                        .HasColumnType("int");
+
                     b.HasKey("MedicineId");
 
                     b.HasIndex("CategoryId");
@@ -274,6 +280,9 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<float>("Discount")
                         .HasColumnType("real");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("PaidAmount")
                         .HasColumnType("float");

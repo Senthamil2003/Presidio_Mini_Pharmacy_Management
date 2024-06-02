@@ -44,6 +44,7 @@ namespace PharmacyUnitTest
         public IFeedbackService _feedbackService;
         public TokenService _tokenService;
         public AuthService _authService;
+        public IReportService _reportService;
         public IMedicationService _medicationService;
         public ILogger<AdminService> _adminLogger;
         public ILogger<AuthService> _authLogger;
@@ -52,6 +53,7 @@ namespace PharmacyUnitTest
         public ILogger<CartService> _cartLogger;
         public ILogger<ViewService> _viewLogger;
         public ILogger<TokenService> _tokenLogger;
+        public ILogger<ReportService> _reportLogger;
 
         [SetUp]
         public async Task Setup()
@@ -78,6 +80,7 @@ namespace PharmacyUnitTest
             _cartLogger = loggerFactory.CreateLogger<CartService>();
             _viewLogger = loggerFactory.CreateLogger<ViewService>();
             _tokenLogger= loggerFactory.CreateLogger<TokenService>();
+            _reportLogger = loggerFactory.CreateLogger<ReportService>();
 
             _stockJoinedRepo = new StockJoinedRepository(context);
             _transactionService = new TransactionRepository(context);
@@ -122,6 +125,9 @@ namespace PharmacyUnitTest
                 _transactionService,
                 _adminLogger
             );
+            _reportService=new ReportService(_purchaseDetailRepo,
+                _orderDetailRepo,
+                _reportLogger);
 
             _cartService = new CartService(
                 _stockJoinedRepo,
@@ -202,9 +208,10 @@ namespace PharmacyUnitTest
 
             };
             await _feedbackService.AddFeedback(feedback);
-            _viewService = new ViewService(_stockJoinedRepo, _customerRepo,_viewLogger);
+            _viewService = new ViewService(_stockJoinedRepo, _customerRepo,_viewLogger,_medicineRepo);
 
         }
+
         [TearDown]
         public void TearDown()
         {

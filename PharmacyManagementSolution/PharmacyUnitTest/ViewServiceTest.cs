@@ -125,6 +125,36 @@ namespace PharmacyUnitTest
             Assert.Pass();
 
         }
+        [Test]
+        public async Task ViewMyCart()
+        {
+            AddToCartDTO cartDTO = new AddToCartDTO()
+            {
+                MedicineId = 1,
+                Quantity = 1,
+                UserId = 1,
+            };
+            await _cartService.AddToCart(cartDTO);
+
+
+            var result = await _viewService.ViewMyCart(1);
+
+
+            Assert.That(result.Count, Is.EqualTo(1));
+
+            Assert.Pass();
+
+        }
+        [Test]
+        public async Task ViewMyCartFail()
+        {
+         
+            var exception = Assert.ThrowsAsync<NoCartFoundException>(async () => await _viewService.ViewMyCart(1));
+            Assert.That(exception.Message, Is.EqualTo("No cart items found for customer 1"));
+
+            Assert.Pass();
+
+        }
 
 
 

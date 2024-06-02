@@ -134,10 +134,27 @@ namespace PharmacyManagementApi.Services
                     throw new NoFeedbackFoundException("No Feedback Found for the given medicine");
                 }
 
+                // Calculate the average rating
+                double feedbackRating = feedbacks.Average(f => f.Rating);
+
+                // Count the number of feedbacks for each rating
+                var ratingCounts = feedbacks.GroupBy(f => f.Rating)
+                                            .ToDictionary(g => g.Key, g => g.Count());
+
+                // Calculate the percentage of each rating
+                int totalFeedbacks = feedbacks.Count;
+                var ratingPercentages = new Dictionary<int, double>();
+                for (int i = 1; i <= 5; i++)
+                {
+                    ratingPercentages[i] = ratingCounts.ContainsKey(i) ? (ratingCounts[i] / (double)totalFeedbacks) * 100 : 0;
+                }
+
+                // Prepare the DTO
                 MedicineFeedbackDTO medicineFeedback = new MedicineFeedbackDTO()
                 {
-                    FeedbackRating = medicine.FeedbackSum / medicine.FeedbackCount,
-                    Feedbacks = feedbacks
+                    FeedbackRating = feedbackRating,
+                    Feedbacks = feedbacks,
+                    RatingPercentages = ratingPercentages
                 };
 
                 _logger.LogInformation("Feedback details retrieved successfully for medicine {MedicineId}", medicineId); // Log success
@@ -149,5 +166,6 @@ namespace PharmacyManagementApi.Services
                 throw;
             }
         }
+
     }
 }

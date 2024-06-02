@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj": {}
+    "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj": {
+    "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj",
+        "projectUniqueName": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj",
         "projectName": "PharmacyManagementApi",
-        "projectPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj",
+        "projectPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj",
         "packagesPath": "C:\\Users\\VC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\obj\\",
+        "outputPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyManagementApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -115,14 +115,14 @@
         }
       }
     },
-    "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj": {
+    "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj",
         "projectName": "PharmacyUnitTest",
-        "projectPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj",
+        "projectPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj",
         "packagesPath": "C:\\Users\\VC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\obj\\",
+        "outputPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyUnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -143,8 +143,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj": {
-                "projectPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj"
+              "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj": {
+                "projectPath": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj"
               }
             }
           }

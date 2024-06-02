@@ -54,7 +54,10 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
         {
             try
             {
-                return await _context.PurchaseDetails.SingleOrDefaultAsync(u => u.PurchaseDetailId == key)
+                return await _context.PurchaseDetails
+                    .Include(p => p.Purchase)
+                     .Include(p => p.Medicine)
+                    .SingleOrDefaultAsync(u => u.PurchaseDetailId == key)
                     ?? throw new NoPurchaseDetailFoundException($"No PurchaseDetail found with given id {key}");
             }
             catch (Exception ex)
@@ -67,7 +70,10 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
         {
             try
             {
-                return await _context.PurchaseDetails.ToListAsync();
+                return await _context.PurchaseDetails
+                    .Include(p=>p.Purchase)
+                    .Include(p=>p.Medicine)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {

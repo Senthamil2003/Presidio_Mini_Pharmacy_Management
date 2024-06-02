@@ -1,11 +1,10 @@
-﻿using PharmacyManagementApi.CustomException;
+﻿using Microsoft.EntityFrameworkCore;
+using PharmacyManagementApi.CustomException;
 using PharmacyManagementApi.Interface;
-using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models;
+using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using PharmacyManagementApi.Repositories.Joined_Repositories;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.Extensions.Logging;
 
 public class AdminService : IAdminService
 {
@@ -71,7 +70,7 @@ public class AdminService : IAdminService
 
                 foreach (PurchaseItem item in items.Items)
                 {
-                    totalSum += item.Amount;
+                    totalSum += item.Amount*item.Quantity;
                     Medicine? medicine = (await _medicineRepo.Get()).SingleOrDefault(m => m.MedicineName == item.MedicineName);
                     int isNewMedicine = 0;
 
@@ -176,7 +175,8 @@ public class AdminService : IAdminService
             {
                 MedicineName = orderDetail.Medicine.MedicineName,
                 OrderDetailId = orderDetail.OrderDetailId,
-                Quantity = orderDetail.Quantity
+                Quantity = orderDetail.Quantity,
+                Customerid=orderDetail.Order.CustomerId
             }).ToArray();
 
             _logger.LogInformation("Fetched {Count} pending orders.", orderDetails.Count);
@@ -268,12 +268,13 @@ public class AdminService : IAdminService
         }
     }
 
+
     /// <summary>
     /// Adds a new vendor to the system.
     /// </summary>
     /// <param name="vendorDto">Details of the vendor to add.</param>
     /// <returns>A success message.</returns>
-    public async Task<string> AddVendor(VendorDTO vendorDto)
+    public async Task<SuccessVendorDTO> AddVendor(VendorDTO vendorDto)
     {
         try
         {
@@ -288,8 +289,15 @@ public class AdminService : IAdminService
 
             await _vendorRepo.Add(vendor);
             _logger.LogInformation("Vendor {VendorName} added successfully.", vendorDto.VendorName);
+            SuccessVendorDTO successVendor = new SuccessVendorDTO()
+            {
+                Code = 200,
+                Message = "Vendor Added Successfully",
+                VendorId = vendor.VendorId,
+            };
+            return successVendor;
 
-            return "success";
+          
         }
         catch (Exception ex)
         {
@@ -297,4 +305,6 @@ public class AdminService : IAdminService
             throw;
         }
     }
+
+
 }

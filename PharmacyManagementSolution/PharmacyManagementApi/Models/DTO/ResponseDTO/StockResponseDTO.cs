@@ -7,5 +7,6 @@
         public string Category { get; set;}
         public double Amount { get; set;}
         public int AvailableQuantity { get; set;}
+        public double Rating { get; set; }
     }
 }

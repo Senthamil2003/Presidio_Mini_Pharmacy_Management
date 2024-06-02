@@ -7,7 +7,7 @@ namespace PharmacyManagementApi.Interface
     {
      
         public Task<SuccessCartDTO> AddToCart(AddToCartDTO addToCart);
-        public  Task<SuccessCartDTO> RemoveFromCart(int cartId);
+        public  Task<SuccessCartDTO> RemoveFromCart(int cartId,int userId);
         public  Task<SuccessCheckoutDTO> Checkout(int userId);
       
         public Task<SuccessCartDTO> UpdateCart(UpdateCartDTO addToCart);

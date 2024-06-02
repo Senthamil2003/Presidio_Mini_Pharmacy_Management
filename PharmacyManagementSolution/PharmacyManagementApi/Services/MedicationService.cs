@@ -52,16 +52,23 @@ namespace PharmacyManagementApi.Services
             {
                 try
                 {
+
+
                     Medication medication = new Medication()
                     {
                         CustomerId = addMedication.CustomerId,
                         MedicationName = addMedication.MedicationName,
                     };
-                    await _medicationRepo.Add(medication);
 
+                    await _medicationRepo.Add(medication);
+                    HashSet<int> checkDuplicate = new HashSet<int>();
                     var result = addMedication.medicationItems.ToList();
                     foreach (var item in result)
                     {
+                        if (checkDuplicate.Contains(item.MedicineId))
+                        {
+                            throw new DuplicateValueException("Duplicate medicine present in the Medication");
+                        }
                         Medicine medicine = await _medicineRepo.Get(item.MedicineId);
 
                         MedicationItem medicationItem = new MedicationItem()
@@ -71,6 +78,7 @@ namespace PharmacyManagementApi.Services
                             Quantity = item.Quantity
                         };
                         await _medicationItemRepo.Add(medicationItem);
+                        checkDuplicate.Add(item.MedicineId);
                     }
 
                     await _transactionService.CommitTransactionAsync();
@@ -109,9 +117,12 @@ namespace PharmacyManagementApi.Services
                 {
                     Customer customer = await _customerJoinedRepo.Get(updateMedication.CustomerId);
                     Medicine medicine = await _medicineRepo.Get(updateMedication.MedicineId);
-                    Medication medication = await _medicationRepo.Get(updateMedication.MedicationId);
-
-                    MedicationItem? ExistingMedicationItem = medication.MedicationItems.FirstOrDefault(m => m.MedicineId == updateMedication.MedicineId);
+                    Medication? medication = customer.Medications.FirstOrDefault(m=>m.MedicationId==updateMedication.MedicationId);
+                    if(medication==null)
+                    {
+                        throw new NoMedicationFoundException("The customer have no such medication found for medication Id " +updateMedication.MedicationId);
+                    }
+                    MedicationItem? ExistingMedicationItem = medication?.MedicationItems.FirstOrDefault(m => m.MedicineId == updateMedication.MedicineId);
                     if (ExistingMedicationItem == null)
                     {
                         MedicationItem item = new MedicationItem()
@@ -181,7 +192,13 @@ namespace PharmacyManagementApi.Services
             {
                 try
                 {
-                    List<MedicationItem> cart = (await _medicationRepo.Get(medicationId)).MedicationItems.ToList();
+                    Medication medication = await _medicationRepo.Get(medicationId);
+                    if(medication.CustomerId!= userId) {
+                        throw new NoMedicationFoundException("The customer has no such medication");
+                    }
+                    List<MedicationItem> cart = (medication).MedicationItems.ToList();
+         
+                    
                     bool customerSubscribe = (await _customerJoinedRepo.Get(userId)).IsSubcribed;
                     float discount = customerSubscribe ? 10 : 0;
 
@@ -215,6 +232,7 @@ namespace PharmacyManagementApi.Services
                         };
                         await _orderDetailRepo.Add(orderDetail);
                         stock.CurrentQuantity -= item.Quantity;
+                        stock.TotalNumberOfPurchase += 1;
                         await _medicineRepo.Update(stock);
                     }
 
@@ -224,7 +242,7 @@ namespace PharmacyManagementApi.Services
                         shipmentCost = 100;
                     }
 
-                    totalSum += shipmentCost;
+                    
                     order.TotalAmount = totalSum;
                     if (discount > 0)
                     {
@@ -232,7 +250,7 @@ namespace PharmacyManagementApi.Services
                     }
                     else
                     {
-                        order.PaidAmount = totalSum;
+                        order.PaidAmount = totalSum+shipmentCost;
                     }
 
                     order.ShipmentCost = shipmentCost;

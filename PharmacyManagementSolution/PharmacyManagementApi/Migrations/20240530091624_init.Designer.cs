@@ -12,8 +12,8 @@ using PharmacyManagementApi.Context;
 namespace PharmacyManagementApi.Migrations
 {
     [DbContext(typeof(PharmacyContext))]
-    [Migration("20240529134429_deliveryDetail-update")]
-    partial class deliveryDetailupdate
+    [Migration("20240530091624_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -256,6 +256,9 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<double>("SellingPrice")
                         .HasColumnType("float");
+
+                    b.Property<int>("TotalNumberOfPurchase")
+                        .HasColumnType("int");
 
                     b.HasKey("MedicineId");
 

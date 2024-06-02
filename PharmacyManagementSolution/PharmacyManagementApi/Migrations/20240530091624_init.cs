@@ -80,7 +80,8 @@ namespace PharmacyManagementApi.Migrations
                     CurrentQuantity = table.Column<int>(type: "int", nullable: false),
                     FeedbackSum = table.Column<double>(type: "float", nullable: false),
                     FeedbackCount = table.Column<double>(type: "float", nullable: false),
-                    SellingPrice = table.Column<double>(type: "float", nullable: false)
+                    SellingPrice = table.Column<double>(type: "float", nullable: false),
+                    TotalNumberOfPurchase = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -349,6 +350,7 @@ namespace PharmacyManagementApi.Migrations
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     OrderDetailId = table.Column<int>(type: "int", nullable: false),
                     MedicineId = table.Column<int>(type: "int", nullable: false),
+                    DeliveryDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     ExpiryDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

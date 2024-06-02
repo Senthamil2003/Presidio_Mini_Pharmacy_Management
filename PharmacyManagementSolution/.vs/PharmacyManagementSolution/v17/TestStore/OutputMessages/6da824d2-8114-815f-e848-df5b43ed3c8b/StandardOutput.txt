@@ -33,6 +33,6 @@ fail: AdminService[0]
          at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
          at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
          at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
-         at PharmacyManagementApi.Repositories.General_Repositories.VendorRepository.Add(Vendor item) in C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\Repositories\General_Repositories\VendorRepository.cs:line 27
-         at PharmacyManagementApi.Repositories.General_Repositories.VendorRepository.Add(Vendor item) in C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\Repositories\General_Repositories\VendorRepository.cs:line 33
-         at AdminService.AddVendor(VendorDTO vendorDto) in C:\Users\VC\Documents\Pharmacy Manager\PharmacyManagementSolution\PharmacyManagementApi\Services\AdminService.cs:line 289
+         at PharmacyManagementApi.Repositories.General_Repositories.VendorRepository.Add(Vendor item) in C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Repositories\General_Repositories\VendorRepository.cs:line 27
+         at PharmacyManagementApi.Repositories.General_Repositories.VendorRepository.Add(Vendor item) in C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Repositories\General_Repositories\VendorRepository.cs:line 33
+         at AdminService.AddVendor(VendorDTO vendorDto) in C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\AdminService.cs:line 290

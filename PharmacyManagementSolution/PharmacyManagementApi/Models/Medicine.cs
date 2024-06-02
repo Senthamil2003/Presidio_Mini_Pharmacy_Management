@@ -18,6 +18,7 @@ namespace PharmacyManagementApi.Models
             get { return _sellingPrice; }
             set { _sellingPrice = value + 20; }
         }
+        public int TotalNumberOfPurchase { get; set; }
 
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }

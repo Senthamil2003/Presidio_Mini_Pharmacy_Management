@@ -137,7 +137,7 @@ namespace PharmacyUnitTest
                 UserId = 1
             };
             await _cartService.AddToCart(addToCart);
-            var result = await _cartService.RemoveFromCart(1);
+            var result = await _cartService.RemoveFromCart(1,1);
             Assert.That(result.CartId, Is.EqualTo(1));
             Assert.Pass();
 
@@ -147,9 +147,44 @@ namespace PharmacyUnitTest
         [Test]
         public async Task RemoveFromCartFail()
         {
+            
 
-            var exception = Assert.ThrowsAsync<NoCartFoundException>(async () => await _cartService.RemoveFromCart(1));
+            var exception = Assert.ThrowsAsync<NoCartFoundException>(async () => await _cartService.RemoveFromCart(1,1));
             Assert.That(exception.Message, Is.EqualTo("No Cart found with given id 1"));
+        
+
+            Assert.Pass();
+
+        }
+        [Test]
+        public async Task RemoveFromCartFailCustomer()
+        {
+
+
+            RegisterDTO register = new RegisterDTO()
+            {
+                Address = "121",
+                Email = "abc",
+                Phone = "2113",
+                Role = "user",
+                Name = "sam",
+                Password = "1234"
+
+            };
+            await _authService.Register(register);
+            AddToCartDTO addToCart = new AddToCartDTO()
+            {
+                MedicineId = 1,
+                Quantity = 2,
+                UserId = 1
+            };
+            await _cartService.AddToCart(addToCart);
+
+            var exception1 = Assert.ThrowsAsync<NoCartFoundException>(async () => await _cartService.RemoveFromCart(1, 2));
+            Assert.That(exception1.Message, Is.EqualTo("The user have no such cart"));
+
+
+
             Assert.Pass();
 
         }
@@ -205,7 +240,7 @@ namespace PharmacyUnitTest
                 UserId = 1
             };
             await _cartService.AddToCart(addToCart);
-           await _cartService.RemoveFromCart(1);
+           await _cartService.RemoveFromCart(1, 1);
 
             var exception = Assert.ThrowsAsync<CartEmptyException>(async () => await _cartService.Checkout(1));
             Assert.That(exception.Message, Is.EqualTo("Your Cart is Empty"));

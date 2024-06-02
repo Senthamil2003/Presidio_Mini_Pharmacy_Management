@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PharmacyManagementApi.Migrations
 {
-    public partial class deliveryDetailupdate : Migration
+    public partial class orderupdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                name: "DeliveryDate",
-                table: "DeliveryDetails",
+                name: "OrderDate",
+                table: "Orders",
                 type: "datetime2",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
@@ -20,8 +20,8 @@ namespace PharmacyManagementApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "DeliveryDate",
-                table: "DeliveryDetails");
+                name: "OrderDate",
+                table: "Orders");
         }
     }
 }

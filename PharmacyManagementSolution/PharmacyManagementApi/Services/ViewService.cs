@@ -5,6 +5,7 @@ using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
 using PharmacyManagementApi.Repositories.Joined_Repositories;
 using Microsoft.Extensions.Logging;
+using PharmacyManagementApi.Repositories.General_Repositories;
 
 namespace PharmacyManagementApi.Services
 {
@@ -12,16 +13,21 @@ namespace PharmacyManagementApi.Services
     {
         private readonly StockJoinedRepository _stockRepo;
         private readonly CustomerJoinedRepository _customer;
+        private readonly IRepository<int, Medicine> _medicineRepo;
         private readonly ILogger<ViewService> _logger;
 
         public ViewService(
             StockJoinedRepository stockJoinedRepo,
             CustomerJoinedRepository customerJoinRepo,
-            ILogger<ViewService> logger)
+            ILogger<ViewService> logger,
+            IRepository<int,Medicine> medicinerepo
+            )
+            
         {
             _stockRepo = stockJoinedRepo;
             _customer = customerJoinRepo;
             _logger = logger;
+            _medicineRepo=medicinerepo;
         }
 
         /// <summary>
@@ -34,27 +40,26 @@ namespace PharmacyManagementApi.Services
 
             try
             {
-                var result = (await _stockRepo.Get()).GroupBy(s => s.MedicineId).Select(item => new
-                {
-                    MedicineId = item.Key,
-                    TotalQuantity = item.Sum(i => i.Quantity),
-                    SellingPrice = item.Max(i => i.SellingPrice),
-                    MedicineName = item.First().Medicine.MedicineName,
-                    CategoryName = item.First().Medicine.Category.CategoryName,
-                    Rating = item.First().Medicine.FeedbackSum / item.First().Medicine.FeedbackCount
-                }).OrderByDescending(e => e.Rating);
+            
 
-                StockResponseDTO[] responseDTO = new StockResponseDTO[result.Count()];
+                List<Medicine> medicines = (await _medicineRepo.Get())
+                .OrderByDescending(m => m.FeedbackSum /m.FeedbackCount)
+                .ThenByDescending(m => m.TotalNumberOfPurchase)
+                .ToList();
+
+
+                StockResponseDTO[] responseDTO = new StockResponseDTO[medicines.Count()];
                 int ct = 0;
-                foreach (var item in result)
+                foreach (var item in medicines)
                 {
                     StockResponseDTO response = new StockResponseDTO()
                     {
                         MedicineId = item.MedicineId,
                         MedicineName = item.MedicineName,
-                        Category = item.CategoryName,
+                        Category = item.Category.CategoryName,
                         Amount = item.SellingPrice,
-                        AvailableQuantity = item.TotalQuantity
+                        AvailableQuantity = item.CurrentQuantity,
+                        Rating=item.FeedbackSum/item.FeedbackCount
                     };
                     responseDTO[ct] = response;
                     ct++;
@@ -179,6 +184,42 @@ namespace PharmacyManagementApi.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error fetching orders for customer {UserId}", userId);
+                throw;
+            }
+        }
+        /// <summary>
+        /// Gets all cart items for a given customer.
+        /// </summary>
+        /// <param name="userId">The customer ID.</param>
+        /// <returns>A list of Cart items for the customer</returns>
+        public async Task<List<MyCartDTO>> ViewMyCart(int userId)
+        {
+            try
+            {
+                Customer customer =await _customer.Get(userId);
+                List<Cart> carts = customer.Carts.ToList();
+                List<MyCartDTO> result = new List<MyCartDTO>();
+                if(carts.Count == 0) {
+                    throw new NoCartFoundException("No cart items found for customer "+ userId);
+                }
+                foreach(var cart in carts)
+                {
+                    MyCartDTO cartDTO = new MyCartDTO()
+                    {
+                        CartId = cart.CartId,
+                        Cost = cart.Cost,
+                        MedicineName = cart.Medicine.MedicineName,
+                        Quantity = cart.Quantity
+                    };
+                    result.Add(cartDTO);
+                   
+
+                }
+                return result;
+
+            }
+            catch
+            {
                 throw;
             }
         }

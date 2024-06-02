@@ -55,6 +55,7 @@ namespace PharmacyManagementApi.Context
             .HasOne(m=>m.Customer)
             .WithMany(c=>c.Medications)
             .HasForeignKey(m=>m.CustomerId)
+            
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
 

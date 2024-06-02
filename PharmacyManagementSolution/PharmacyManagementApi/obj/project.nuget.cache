@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Kz7sPXPHDrf5GsuA0I23YGEM0ccQFqD7FtraPh0Nuvi8FzqSPFExE2OCR/QJGa/KyDNcrXuiNIi9lNGec5UgzA==",
+  "dgSpecHash": "08eDAz9CTcyg52Gy48+BU60a104mnNdrkL/JCsxZHULIveRK+FLbYLIc87Bb7MkUwBcJeaufLxFLHOgqDB8ggQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj",
+  "projectFilePath": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyManagementApi\\PharmacyManagementApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\log4net\\2.0.17\\log4net.2.0.17.nupkg.sha512",

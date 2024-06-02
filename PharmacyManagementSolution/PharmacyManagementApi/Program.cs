@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -14,16 +13,16 @@ using System.Text;
 
 namespace PharmacyManagementApi
 {
-
     [ExcludeFromCodeCoverage]
     public class Program
     {
-
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            #region Log4net
             builder.Services.AddLogging(l => l.AddLog4Net());
+            #endregion
 
             #region JWT-Authorization Swagger set-up
             builder.Services.AddSwaggerGen(option =>
@@ -38,19 +37,19 @@ namespace PharmacyManagementApi
                     Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: \"Bearer 1safsfsdfdfd\"",
                 });
                 option.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
                 {
-                    new OpenApiSecurityScheme
                     {
-                        Reference = new OpenApiReference
+                        new OpenApiSecurityScheme
                         {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    new string[] { }
-                }
-            });
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
             });
             #endregion
 
@@ -58,38 +57,48 @@ namespace PharmacyManagementApi
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
+                    options.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["TokenKey:JWT"])),
-
                     };
-
                 });
             #endregion
 
             #region Context
             builder.Services.AddDbContext<PharmacyContext>(
-            options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
-        );
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
+            );
             #endregion
 
             #region GPT-SERVICE
+
             builder.Services.AddHttpClient<MedicineDescriptorAIService>();
             builder.Services.AddSingleton<MedicineDescriptorAIService>(provider =>
             {
-                var httpClient = provider.GetRequiredService<HttpClient>();
-                var apiKey = builder.Configuration["OpenAI:ApiKey"];
-                return new MedicineDescriptorAIService(httpClient, apiKey);
+                var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
+                var httpClient = httpClientFactory.CreateClient();
+
+                var configuration = provider.GetRequiredService<IConfiguration>();
+                var apiKey = configuration["OpenAI:ApiKey"];
+                if (string.IsNullOrEmpty(apiKey))
+                {
+                    throw new InvalidOperationException("OpenAI API key is missing from configuration.");
+                }
+
+                var logger = provider.GetRequiredService<ILogger<MedicineDescriptorAIService>>();
+
+                return new MedicineDescriptorAIService(httpClient, apiKey, logger, configuration);
             });
+
             #endregion
 
             #region Repository
             builder.Services.AddScoped<IRepository<int, Customer>, CustomerRepository>();
-            builder.Services.AddScoped<IRepository<string ,UserCredential>, UserCredentialRepository>();
-            builder.Services.AddScoped<IRepository<int ,Purchase>, PurchaseRepository>();
+            builder.Services.AddScoped<IRepository<string, UserCredential>, UserCredentialRepository>();
+            builder.Services.AddScoped<IRepository<int, Purchase>, PurchaseRepository>();
             builder.Services.AddScoped<IRepository<int, PurchaseDetail>, PurchaseDetailRepository>();
             builder.Services.AddScoped<IRepository<int, Stock>, StockRepository>();
             builder.Services.AddScoped<IRepository<int, Vendor>, VendorRepository>();
@@ -103,30 +112,21 @@ namespace PharmacyManagementApi
             builder.Services.AddScoped<IRepository<int, Medication>, MedicationRepository>();
             builder.Services.AddScoped<IRepository<int, MedicationItem>, MedicationItemRepository>();
             builder.Services.AddScoped<ITransactionService, TransactionRepository>();
-            builder .Services.AddScoped<StockJoinedRepository, StockJoinedRepository>();
+            builder.Services.AddScoped<StockJoinedRepository, StockJoinedRepository>();
             builder.Services.AddScoped<OrderDetailsJoinedRepository, OrderDetailsJoinedRepository>();
             builder.Services.AddScoped<CustomerJoinedRepository, CustomerJoinedRepository>();
-
-
-
             #endregion
 
             #region BusinessLogic
             builder.Services.AddScoped<IAuthService, AuthService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IAdminService, AdminService>();
-            builder.Services.AddScoped<ICartService,CartService>();
+            builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IFeedbackService, FeedBackService>();
             builder.Services.AddScoped<IViewService, ViewService>();
-            builder.Services.AddScoped<IMedicationService,MedicationService>(); 
-
-
-
-
-
-
+            builder.Services.AddScoped<IMedicationService, MedicationService>();
+            builder.Services.AddScoped<IReportService, ReportService>();
             #endregion
-
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -138,14 +138,28 @@ namespace PharmacyManagementApi
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
+                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseHttpsRedirection();
 
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.Run();
         }

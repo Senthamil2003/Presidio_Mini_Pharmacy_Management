@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "MlD9Vl4cEaMCpWw2ElctOlbUVrK0tqrBHJm4gf7sy9VJls+D1fpLp58hfqDppeBa7TygKaqlJRn9SV+sUyRF+w==",
+  "dgSpecHash": "kFyvXDAFqqpDB3qPuU7XUYXki7oUIlALgYKXmJ8egz6/lo6yI3oIQXKqtKg+pj6tLjBeegoL4OlunXfo7HFdMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\VC\\Documents\\Pharmacy Manager\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj",
+  "projectFilePath": "C:\\Users\\VC\\Documents\\Pharmacy Manager Mini\\PharmacyManagementSolution\\PharmacyUnitTest\\PharmacyUnitTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\VC\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\VC\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",

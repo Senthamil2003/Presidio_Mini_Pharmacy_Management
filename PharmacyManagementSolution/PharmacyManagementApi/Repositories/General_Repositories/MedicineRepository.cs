@@ -57,6 +57,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             {
                 return await _context.Medicines
                     .Include(m=>m.Feedbacks)
+                    .Include(m=>m.Category)
                     .SingleOrDefaultAsync(u => u.MedicineId == key)
                     ?? throw new NoMedicineFoundException($"No Medicine found with given id {key}");
             }
@@ -76,6 +77,7 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
             {
                 return await _context.Medicines
                     .Include(m => m.Feedbacks)
+                     .Include(m => m.Category)
                     .ToListAsync();
             }
             catch (Exception ex)

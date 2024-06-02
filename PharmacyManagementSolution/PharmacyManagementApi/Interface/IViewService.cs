@@ -8,5 +8,6 @@ namespace PharmacyManagementApi.Interface
         public Task<StockResponseDTO[]> ShowAllProduct();
         public Task<List<MyOrderDTO>> GetAllOrders(int userId);
         public Task<List<AddMedicationDTO>> ViewMyMedications(int customerId);
+        public Task<List<MyCartDTO>> ViewMyCart(int userId);
     }
 }

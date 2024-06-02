@@ -12,6 +12,7 @@ namespace PharmacyManagementApi.Models
         public double TotalAmount { get; set; }
         public float Discount {  get; set; }
         public double ShipmentCost { get; set; }
+        public DateTime OrderDate { get; set; }= DateTime.Now;
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }

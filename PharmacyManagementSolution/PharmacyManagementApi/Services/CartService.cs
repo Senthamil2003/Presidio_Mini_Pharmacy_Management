@@ -36,7 +36,7 @@ namespace PharmacyManagementApi.Services
             _customer = customerJoinRepo;
             _orderRepo = orderRepo;
             _orderDetailRepo = orderDetailRepo;
-            _logger = logger; // Assigned logger
+            _logger = logger; 
         }
 
         [ExcludeFromCodeCoverage]
@@ -46,14 +46,7 @@ namespace PharmacyManagementApi.Services
 
             try
             {
-                var result = (await _stockRepo.Get()).Where(s => s.MedicineId == MedicineId).GroupBy(s => s.MedicineId).Select(group => new
-                {
-                    MedicineId = group.Key,
-                    TotalQuantity = group.Sum(i => i.Quantity),
-                    SellingPrice = group.Max(i => i.SellingPrice),
-                    MedicineName = group.First().Medicine.MedicineName,
-                    CategoryName = group.First().Medicine.Category.CategoryName
-                }).FirstOrDefault();
+                Medicine result = await _medicineRepo.Get(MedicineId);
 
                 if (result != null)
                 {
@@ -61,9 +54,9 @@ namespace PharmacyManagementApi.Services
                     {
                         MedicineId = result.MedicineId,
                         MedicineName = result.MedicineName,
-                        Category = result.CategoryName,
+                        Category = result.Category.CategoryName,
                         Amount = result.SellingPrice,
-                        AvailableQuantity = result.TotalQuantity
+                        AvailableQuantity = result.CurrentQuantity
                     };
 
                     _logger.LogInformation("Medicine details found for medicine ID: {MedicineId}", MedicineId); // Log success
@@ -93,8 +86,8 @@ namespace PharmacyManagementApi.Services
             {
                 try
                 {
-                    Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
-                    var result = await FindMedicineById(medicine.MedicineId);
+                 
+                    var result = await FindMedicineById(addToCart.MedicineId);
                     if (result.AvailableQuantity < addToCart.Quantity)
                     {
                         _logger.LogWarning("Expected quantity {ExpectedQuantity} is not available for medicine {MedicineId}", addToCart.Quantity, addToCart.MedicineId); // Log warning
@@ -112,7 +105,7 @@ namespace PharmacyManagementApi.Services
                     {
                         CustomerId = addToCart.UserId,
                         Quantity = addToCart.Quantity,
-                        MedicineId = medicine.MedicineId,
+                        MedicineId = result.MedicineId,
                         Cost = result.Amount,
                         TotalCost = result.Amount * addToCart.Quantity
                     };
@@ -215,7 +208,7 @@ namespace PharmacyManagementApi.Services
         /// </summary>
         /// <param name="cartId">The cart ID of the item to remove.</param>
         /// <returns>A success DTO containing the cart ID.</returns>
-        public async Task<SuccessCartDTO> RemoveFromCart(int cartId)
+        public async Task<SuccessCartDTO> RemoveFromCart(int cartId,int userId)
         {
             _logger.LogInformation("Removing cart item with ID: {CartId}", cartId); // Log start
 
@@ -224,6 +217,10 @@ namespace PharmacyManagementApi.Services
                 try
                 {
                     Cart cart = await _cartRepo.Get(cartId);
+                    if (cart.CustomerId != userId)
+                    {
+                        throw new NoCartFoundException("The user have no such cart");
+                    }
                     if (cart != null)
                     {
                         await _cartRepo.Delete(cartId);
@@ -287,7 +284,7 @@ namespace PharmacyManagementApi.Services
                     double totalSum = 0;
                     foreach (Cart item in cart)
                     {
-                        totalSum += item.Cost;
+                        totalSum += item.Cost*item.Quantity;
                         var stock = await _medicineRepo.Get(item.MedicineId);
                         if (stock.CurrentQuantity < item.Quantity)
                         {
@@ -305,6 +302,7 @@ namespace PharmacyManagementApi.Services
 
                         await _orderDetailRepo.Add(orderDetail);
                         stock.CurrentQuantity -= item.Quantity;
+                        stock.TotalNumberOfPurchase += 1;
                         await _medicineRepo.Update(stock);
                         await _cartRepo.Delete(item.CartId);
                     }
@@ -315,7 +313,7 @@ namespace PharmacyManagementApi.Services
                         shipmentCost = 100;
                     }
 
-                    totalSum += shipmentCost;
+
                     order.TotalAmount = totalSum;
                     if (discount > 0)
                     {
@@ -323,7 +321,7 @@ namespace PharmacyManagementApi.Services
                     }
                     else
                     {
-                        order.PaidAmount = totalSum;
+                        order.PaidAmount = totalSum+shipmentCost;
                     }
 
                     order.ShipmentCost = shipmentCost;
