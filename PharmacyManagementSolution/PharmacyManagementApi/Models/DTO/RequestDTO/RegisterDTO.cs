@@ -17,7 +17,7 @@ namespace PharmacyManagementApi.Models.DTO.RequestDTO
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Phone is required.")]
-        [Phone(ErrorMessage = "Invalid phone number.")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone must be 10 digit")]
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Address is required.")]

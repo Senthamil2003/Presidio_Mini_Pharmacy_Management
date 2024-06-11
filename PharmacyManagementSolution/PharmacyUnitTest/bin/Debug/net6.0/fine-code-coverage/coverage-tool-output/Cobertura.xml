@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.796481217308607" branch-rate="0.51931330472103" lines-covered="3350" lines-valid="4206" branches-covered="242" branches-valid="466" complexity="987" version="0" timestamp="1717359103">
+<coverage line-rate="0.796384395813511" branch-rate="0.51931330472103" lines-covered="3348" lines-valid="4204" branches-covered="242" branches-valid="466" complexity="987" version="0" timestamp="1717431934">
   <sources>
     <source>C:\Users\VC\</source>
   </sources>
   <packages>
-    <package name="PharmacyManagementApi" line-rate="0.703783783783784" branch-rate="0.51931330472103" complexity="830">
+    <package name="PharmacyManagementApi" line-rate="0.703570140641904" branch-rate="0.51931330472103" complexity="830">
       <classes>
         <class name="AdminService" filename="C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\AdminService.cs" line-rate="0.966346153846154" branch-rate="1" complexity="30">
           <methods>
@@ -6373,7 +6373,7 @@
             <line number="151" hits="79" branch="false" />
           </lines>
         </class>
-        <class name="PharmacyManagementApi.Services.CartService" filename="C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\CartService.cs" line-rate="0.924170616113744" branch-rate="0.875" complexity="47">
+        <class name="PharmacyManagementApi.Services.CartService" filename="C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\CartService.cs" line-rate="0.923809523809524" branch-rate="0.875" complexity="47">
           <methods>
             <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
@@ -6441,7 +6441,7 @@
                 <line number="133" hits="17" branch="false" />
               </lines>
             </method>
-            <method name="Checkout" signature="()" line-rate="0.946666666666667" branch-rate="0.833333333333333" complexity="18">
+            <method name="Checkout" signature="()" line-rate="0.945945945945946" branch-rate="0.833333333333333" complexity="18">
               <lines>
                 <line number="256" hits="7" branch="true" condition-coverage="100% (2/2)" />
                 <line number="257" hits="7" branch="false" />
@@ -6491,7 +6491,6 @@
                 <line number="312" hits="1" branch="false" />
                 <line number="313" hits="1" branch="false" />
                 <line number="314" hits="1" branch="false" />
-                <line number="316" hits="5" branch="false" />
                 <line number="317" hits="5" branch="false" />
                 <line number="318" hits="5" branch="true" condition-coverage="50% (1/2)" />
                 <line number="319" hits="0" branch="false" />
@@ -6792,7 +6791,6 @@
             <line number="312" hits="1" branch="false" />
             <line number="313" hits="1" branch="false" />
             <line number="314" hits="1" branch="false" />
-            <line number="316" hits="5" branch="false" />
             <line number="317" hits="5" branch="false" />
             <line number="318" hits="5" branch="true" condition-coverage="50% (1/2)" />
             <line number="319" hits="0" branch="false" />
@@ -7037,7 +7035,7 @@
             <line number="168" hits="1" branch="false" />
           </lines>
         </class>
-        <class name="PharmacyManagementApi.Services.MedicationService" filename="C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\MedicationService.cs" line-rate="0.968586387434555" branch-rate="0.921052631578947" complexity="41">
+        <class name="PharmacyManagementApi.Services.MedicationService" filename="C:\Users\VC\Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\MedicationService.cs" line-rate="0.968421052631579" branch-rate="0.921052631578947" complexity="41">
           <methods>
             <method name=".ctor" signature="(...)" line-rate="1" branch-rate="1" complexity="1">
               <lines>
@@ -7109,7 +7107,7 @@
                 <line number="103" hits="8" branch="false" />
               </lines>
             </method>
-            <method name="BuyMedication" signature="()" line-rate="0.945205479452055" branch-rate="0.833333333333333" complexity="18">
+            <method name="BuyMedication" signature="()" line-rate="0.944444444444444" branch-rate="0.833333333333333" complexity="18">
               <lines>
                 <line number="188" hits="3" branch="true" condition-coverage="100% (2/2)" />
                 <line number="189" hits="3" branch="false" />
@@ -7157,7 +7155,6 @@
                 <line number="241" hits="1" branch="false" />
                 <line number="242" hits="1" branch="false" />
                 <line number="243" hits="1" branch="false" />
-                <line number="245" hits="1" branch="false" />
                 <line number="246" hits="1" branch="false" />
                 <line number="247" hits="1" branch="true" condition-coverage="50% (1/2)" />
                 <line number="248" hits="0" branch="false" />
@@ -7412,7 +7409,6 @@
             <line number="241" hits="1" branch="false" />
             <line number="242" hits="1" branch="false" />
             <line number="243" hits="1" branch="false" />
-            <line number="245" hits="1" branch="false" />
             <line number="246" hits="1" branch="false" />
             <line number="247" hits="1" branch="true" condition-coverage="50% (1/2)" />
             <line number="248" hits="0" branch="false" />

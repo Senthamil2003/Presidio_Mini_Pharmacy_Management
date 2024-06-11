@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<coverage line-rate="0.7964" branch-rate="0.473" version="1.9" timestamp="1717339302" lines-covered="3350" lines-valid="4206" branches-covered="246" branches-valid="520">
+<coverage line-rate="0.7963" branch-rate="0.473" version="1.9" timestamp="1717412133" lines-covered="3348" lines-valid="4204" branches-covered="246" branches-valid="520">
   <sources>
     <source>C:\Users\VC\</source>
   </sources>
   <packages>
-    <package name="PharmacyManagementApi" line-rate="0.7037" branch-rate="0.473" complexity="872">
+    <package name="PharmacyManagementApi" line-rate="0.7034999999999999" branch-rate="0.473" complexity="872">
       <classes>
         <class name="AdminService" filename="Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\AdminService.cs" line-rate="1" branch-rate="1" complexity="1">
           <methods>
@@ -1018,9 +1018,9 @@
             <line number="133" hits="17" branch="False" />
           </lines>
         </class>
-        <class name="PharmacyManagementApi.Services.CartService/&lt;Checkout&gt;d__13" filename="Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\CartService.cs" line-rate="0.9466" branch-rate="0.8332999999999999" complexity="18">
+        <class name="PharmacyManagementApi.Services.CartService/&lt;Checkout&gt;d__13" filename="Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\CartService.cs" line-rate="0.9459000000000001" branch-rate="0.8332999999999999" complexity="18">
           <methods>
-            <method name="MoveNext" signature="()" line-rate="0.9466" branch-rate="0.8332999999999999" complexity="18">
+            <method name="MoveNext" signature="()" line-rate="0.9459000000000001" branch-rate="0.8332999999999999" complexity="18">
               <lines>
                 <line number="256" hits="7" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
@@ -1099,11 +1099,10 @@
                 <line number="312" hits="1" branch="False" />
                 <line number="313" hits="1" branch="False" />
                 <line number="314" hits="1" branch="False" />
-                <line number="316" hits="5" branch="False" />
                 <line number="317" hits="5" branch="False" />
                 <line number="318" hits="5" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
-                    <condition number="1975" type="jump" coverage="50%" />
+                    <condition number="1955" type="jump" coverage="50%" />
                   </conditions>
                 </line>
                 <line number="319" hits="0" branch="False" />
@@ -1211,11 +1210,10 @@
             <line number="312" hits="1" branch="False" />
             <line number="313" hits="1" branch="False" />
             <line number="314" hits="1" branch="False" />
-            <line number="316" hits="5" branch="False" />
             <line number="317" hits="5" branch="False" />
             <line number="318" hits="5" branch="True" condition-coverage="50% (1/2)">
               <conditions>
-                <condition number="1975" type="jump" coverage="50%" />
+                <condition number="1955" type="jump" coverage="50%" />
               </conditions>
             </line>
             <line number="319" hits="0" branch="False" />
@@ -2020,9 +2018,9 @@
             <line number="103" hits="8" branch="False" />
           </lines>
         </class>
-        <class name="PharmacyManagementApi.Services.MedicationService/&lt;BuyMedication&gt;d__11" filename="Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\MedicationService.cs" line-rate="0.9451999999999999" branch-rate="0.8332999999999999" complexity="18">
+        <class name="PharmacyManagementApi.Services.MedicationService/&lt;BuyMedication&gt;d__11" filename="Documents\Pharmacy Manager Mini\PharmacyManagementSolution\PharmacyManagementApi\Services\MedicationService.cs" line-rate="0.9444" branch-rate="0.8332999999999999" complexity="18">
           <methods>
-            <method name="MoveNext" signature="()" line-rate="0.9451999999999999" branch-rate="0.8332999999999999" complexity="18">
+            <method name="MoveNext" signature="()" line-rate="0.9444" branch-rate="0.8332999999999999" complexity="18">
               <lines>
                 <line number="188" hits="3" branch="True" condition-coverage="100% (2/2)">
                   <conditions>
@@ -2099,11 +2097,10 @@
                 <line number="241" hits="1" branch="False" />
                 <line number="242" hits="1" branch="False" />
                 <line number="243" hits="1" branch="False" />
-                <line number="245" hits="1" branch="False" />
                 <line number="246" hits="1" branch="False" />
                 <line number="247" hits="1" branch="True" condition-coverage="50% (1/2)">
                   <conditions>
-                    <condition number="1839" type="jump" coverage="50%" />
+                    <condition number="1819" type="jump" coverage="50%" />
                   </conditions>
                 </line>
                 <line number="248" hits="0" branch="False" />
@@ -2209,11 +2206,10 @@
             <line number="241" hits="1" branch="False" />
             <line number="242" hits="1" branch="False" />
             <line number="243" hits="1" branch="False" />
-            <line number="245" hits="1" branch="False" />
             <line number="246" hits="1" branch="False" />
             <line number="247" hits="1" branch="True" condition-coverage="50% (1/2)">
               <conditions>
-                <condition number="1839" type="jump" coverage="50%" />
+                <condition number="1819" type="jump" coverage="50%" />
               </conditions>
             </line>
             <line number="248" hits="0" branch="False" />

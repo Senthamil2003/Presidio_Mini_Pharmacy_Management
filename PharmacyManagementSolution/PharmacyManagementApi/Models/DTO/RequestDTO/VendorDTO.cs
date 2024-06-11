@@ -11,7 +11,7 @@
         public string Address { get; set; }
 
         [Required(ErrorMessage = "Phone number is required.")]
-        [Phone(ErrorMessage = "Invalid phone number.")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone must be 10 digit")]
         public string Phone { get; set; }
     }
 

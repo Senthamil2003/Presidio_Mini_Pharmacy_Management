@@ -1,0 +1,121 @@
+@import "./Colors.scss";
+@import "./Font.scss";
+body {
+  font-family: poppin-regular;
+  margin: 0;
+  padding: 0;
+  color: $primcolor;
+}
+
+.navbar {
+  background-color: #ffffff !important;
+  border-radius: 10px;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+.navbar-brand {
+  font-family: logo;
+  color: $primcolor !important;
+  font-size: 22px;
+  font-weight: 550;
+}
+.active {
+  color: $primcolor !important;
+  font-weight: 600;
+}
+.outer-cont {
+  margin: 1%;
+}
+.home {
+  background-color: $bgcolor;
+  height: 700px;
+  border-radius: 10px;
+  display: flex;
+}
+.home-right{
+  
+  img{
+    height: 100px;
+    width: 100px;
+  }
+
+}
+.home-text {
+  font-family: poppin-extra;
+  color: black;
+  font-size: 40px;
+  padding-left: 8%;
+  padding-top: 4%;
+}
+.home-text {
+  span {
+    color: $primcolor;
+  }
+}
+.stats {
+  color: white;
+  display: flex;
+  padding-left: 8%;
+}
+.stats-left {
+  margin-top: 1.2%;
+  margin-right: 2%;
+  p:nth-of-type(1) {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  p:nth-of-type(2) {
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+.stats-right {
+  margin-top: 1.2%;
+  margin-left: 2%;
+  p:nth-of-type(1) {
+    font-size: 25px;
+    font-weight: 600;
+  }
+  p:nth-of-type(2) {
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+.vl {
+  margin: 1.5%;
+  border-left: 2px solid rgb(255, 255, 255);
+  height: auto;
+}
+.search{
+    display: flex;
+    input{
+       margin-left: 8%;
+       height: 45px;
+       width: 280px;
+       border: none;
+       padding-left: 1%;
+       border-radius: 10Px 0px 0px 10px;
+    }
+    .search-icon-cont{
+        height: 45px;
+        width: 45px;
+        display: flex;
+        border-radius: 0px 10px 10px 0px;
+        align-items: center;
+        background-color: #ffffff;
+        div{
+            margin-right: 20%;
+            height: 30px;
+            width: 35px;
+            border-radius: 4px;
+            background-color: $bgcolor;
+           
+        }
+     
+    }
+}
+.bi-search{
+    margin-left: 30%;
+    margin-top: 10%;
+}
+

@@ -1,5 +1,6 @@
 insert into Vendors(VendorName,Address,Phone) values('AlphaD','NPK 789','1233243221');
 select * from Vendors
+select * from Categories
 select * from Medicines
 select * from Customers
 select * from UserCredentials

@@ -47,7 +47,7 @@ namespace PharmacyManagementApi.Services
                         TotalAmount = g.Sum(pd => pd.TotalSum),
                         TotalQuantity = g.Sum(pd => pd.Quantity)
                     })
-                    .OrderBy(r => r.TotalQuantity)
+                    .OrderByDescending(r => r.TotalQuantity)
                     .ToList();
 
                 if (report.Count == 0)
@@ -94,7 +94,7 @@ namespace PharmacyManagementApi.Services
                         TotalAmount = g.Sum(od => od.Cost),
                         TotalQuantity = g.Sum(od => od.Quantity)
                     })
-                    .OrderBy(r => r.TotalQuantity)
+                    .OrderByDescending(r => r.TotalQuantity)
                     .ToList();
 
                 if (report.Count == 0)

@@ -97,7 +97,7 @@ namespace PharmacyManagementApi.Services
             }
         }
 
-        // Other methods...
+       
 
         private async Task<bool> CheckPassword(byte[] userPassword, byte[] GivenPassword)
         {
