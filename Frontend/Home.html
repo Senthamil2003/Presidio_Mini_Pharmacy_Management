@@ -10,7 +10,14 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
     <link rel="stylesheet" href="./Home.css" />
+    <link rel="stylesheet" href="./Card.css" />
+    <script defer src="./script.js"></script>
   </head>
   <body>
     <div class="outer-cont">
@@ -34,10 +41,13 @@
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Best seller</a>
+                <a class="nav-link" href="#best-seller">Best seller</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Category</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Purchase</a>
               </li>
             </ul>
             <div class="d-flex align-items-center">
@@ -112,7 +122,216 @@
         </div>
 
         <div class="home-right">
-          <img src="./Assets/Images/Doctor.png" alt="">
+          <div class="img-cont">
+            <img src="./Assets/Images/Doctor1-removebg.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="best-seller" id="best-seller">
+        <p class="head">Best Seller</p>
+        <div class="card-cont">
+          <div id="carouselExampleControls" class="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="card">
+                  <div class="img-wrapper">
+                    <img
+                      src="./Assets/Images/medicine.webp"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Covaxin</h5>
+                    <p class="card-text">Medicine used to cure Covid 19</p>
+
+                    <div id="rating">
+                      <span>4.5</span>
+                      <span class="fa fa-star" id="1"></span>
+                      <span class="fa fa-star" id="2"></span>
+                      <span class="fa fa-star" id="3"></span>
+                      <span class="fa fa-star" id="4"></span>
+                      <span class="fa fa-star" id="5"></span>
+                      <span>(10)</span>
+                    </div>
+
+                    <p class="card-rate">$10</p>
+
+                    <a href="#" class="btn btn-primary add-cart">Add to cart</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item ">
+                <div class="card">
+                  <div class="img-wrapper">
+                    <img
+                      src="./Assets/Images/medicine.webp"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Covaxin</h5>
+                    <p class="card-text">Medicine used to cure Covid 19</p>
+
+                    <div id="rating">
+                      <span>4.5</span>
+                      <span class="fa fa-star" id="1"></span>
+                      <span class="fa fa-star" id="2"></span>
+                      <span class="fa fa-star" id="3"></span>
+                      <span class="fa fa-star" id="4"></span>
+                      <span class="fa fa-star" id="5"></span>
+                      <span>(10)</span>
+                    </div>
+
+                    <p class="card-rate">$10</p>
+
+                    <a href="#" class="btn btn-primary add-cart">Add to cart</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item ">
+                <div class="card">
+                  <div class="img-wrapper">
+                    <img
+                      src="./Assets/Images/aspirine-removebg-preview.png"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Covaxin</h5>
+                    <p class="card-text">Medicine used to cure Covid 19</p>
+
+                    <div id="rating">
+                      <span>4.5</span>
+                      <span class="fa fa-star" id="1"></span>
+                      <span class="fa fa-star" id="2"></span>
+                      <span class="fa fa-star" id="3"></span>
+                      <span class="fa fa-star" id="4"></span>
+                      <span class="fa fa-star" id="5"></span>
+                      <span>(10)</span>
+                    </div>
+
+                    <p class="card-rate">$10</p>
+
+                    <a href="#" class="btn btn-primary add-cart">+ Add to cart</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card">
+                  <div class="img-wrapper">
+                    <img
+                      src="./Assets/Images/medicine.webp"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Covaxin</h5>
+                    <p class="card-text">Medicine used to cure Covid 19</p>
+
+                    <div id="rating">
+                      <span>4.5</span>
+                      <span class="fa fa-star" id="1"></span>
+                      <span class="fa fa-star" id="2"></span>
+                      <span class="fa fa-star" id="3"></span>
+                      <span class="fa fa-star" id="4"></span>
+                      <span class="fa fa-star" id="5"></span>
+                      <span>(10)</span>
+                    </div>
+
+                    <p class="card-rate">$10</p>
+
+                    <a href="#" class="btn btn-primary add-cart">Add to cart</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card">
+                  <div class="img-wrapper">
+                    <img
+                      src="./Assets/Images/medicine.webp"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Covaxin</h5>
+                    <p class="card-text">Medicine used to cure Covid 19</p>
+
+                    <div id="rating">
+                      <span>4.5</span>
+                      <span class="fa fa-star" id="1"></span>
+                      <span class="fa fa-star" id="2"></span>
+                      <span class="fa fa-star" id="3"></span>
+                      <span class="fa fa-star" id="4"></span>
+                      <span class="fa fa-star" id="5"></span>
+                      <span>(10)</span>
+                    </div>
+
+                    <p class="card-rate">$10</p>
+
+                    <a href="#" class="btn btn-primary add-cart">Add to cart</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="card">
+                  <div class="img-wrapper">
+                    <img
+                      src="./Assets/Images/medicine.webp"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">Covaxin</h5>
+                    <p class="card-text">Medicine used to cure Covid 19</p>
+
+                    <div id="rating">
+                      <span>4.5</span>
+                      <span class="fa fa-star" id="1"></span>
+                      <span class="fa fa-star" id="2"></span>
+                      <span class="fa fa-star" id="3"></span>
+                      <span class="fa fa-star" id="4"></span>
+                      <span class="fa fa-star" id="5"></span>
+                      <span>(10)</span>
+                    </div>
+
+                    <p class="card-rate">$10</p>
+
+                    <a href="#" class="btn btn-primary add-cart">Add to cart</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
