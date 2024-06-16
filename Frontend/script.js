@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (scrollPosition < carouselWidth - cardWidth * 4) {
           scrollPosition += cardWidth;
         } else {
-          scrollPosition = 0; // Start from the beginning
+          scrollPosition = 0; 
         }
         document
           .querySelector("#carouselExampleControls .carousel-inner")
@@ -59,4 +59,4 @@ function setRating(rating) {
   }
 
   // Example usage
-  setRating(2.5); // 
+  setRating(4.5); // 

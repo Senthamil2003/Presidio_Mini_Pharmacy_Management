@@ -10,6 +10,10 @@
   font-family: logo;
   src: url("./Assets/fonts/MilestoneFreeVersion-Script.otf");
 }
+@font-face {
+  font-family: poppin-bold;
+  src: url("./Assets/fonts/Poppins-Bold.ttf");
+}
 body {
   font-family: poppin-regular;
   margin: 0;
@@ -157,13 +161,62 @@ body {
 }
 
 .best-seller {
-  padding-top: 5%;
+  margin-top: 5%;
 }
 
 .head {
   font-size: 35px;
   font-family: poppin-extra;
   text-align: center;
+}
+
+.category {
+  background-color: #C1DCDC;
+  height: auto;
+}
+
+.category-head {
+  padding-top: 5%;
+  font-size: 35px;
+  font-family: poppin-extra;
+  color: white;
+  text-align: center;
+}
+
+.box {
+  border-radius: 10px;
+  height: 250px;
+  width: 250px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  transition: 0.1s;
+}
+
+.cat-img {
+  object-fit: contain;
+  max-width: 100%;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+.cat-img:hover {
+  max-width: 105%;
+}
+
+.box:hover {
+  box-shadow: 4px 4px 4px 4px #888888;
+}
+
+.cat-cont p {
+  color: black;
+  padding-top: 20%;
+  font-family: poppin-bold;
+  font-size: 17px;
 }
 
 /*# sourceMappingURL=Home.css.map */
