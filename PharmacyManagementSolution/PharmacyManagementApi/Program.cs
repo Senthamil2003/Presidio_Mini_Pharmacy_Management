@@ -127,6 +127,15 @@ namespace PharmacyManagementApi
             builder.Services.AddScoped<IMedicationService, MedicationService>();
             builder.Services.AddScoped<IReportService, ReportService>();
             #endregion
+            #region CORS
+            builder.Services.AddCors(opts =>
+            {
+                opts.AddPolicy("MyCors", options =>
+                {
+                    options.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
+            #endregion
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -152,9 +161,11 @@ namespace PharmacyManagementApi
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors("MyCors");
 
             app.UseAuthentication();
             app.UseAuthorization();
+          
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fixed Left and Scrollable Right Div</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      height: 100%;
+
+    }
+
+    .container {
+      display: flex;
+      height: 100vh; /* Full viewport height */
+    }
+
+    .left {
+      width: 200px; /* Adjust width as needed */
+      background-color: #f0f0f0; /* Light grey background */
+      padding: 10px;
+      border-right: 1px solid #ccc; /* Optional border for visual separation */
+      overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    }
+
+    .right {
+      flex-grow: 1;
+      padding: 10px;
+      background-color: #ffffff; /* White background */
+      height: 100%; /* Full height */
+      overflow-y: hidden; /* Disable vertical scrolling initially */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+    }
+
+    .right::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+
+    .first, .second {
+      height: 700px;
+      background-color: #e0e0e0; /* Light grey background for visibility */
+    }
+
+    .third {
+      height: 700px;
+      background-color: #c0c0c0; /* Another light grey background for visibility */
+    }
+  </style>
+</head>
+<body>
+  <div class="first">First div content</div>
+  <div class="container">
+    <div class="left">Left Content</div>
+    <div class="right" id="right-content">
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+      Right Content that is longer and scrollable. <br />
+      Add more content here to test the scrolling behavior. <br />
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
+      More text here... <br />
+      Even more text here... <br />
+      Continue adding text to test scrolling.
+      <!-- Repeat content for testing -->
+    </div>
+  </div>
+ 
+  <script>
+    document.addEventListener("scroll", function () {
+      const firstDiv = document.querySelector(".first");
+      const rightDiv = document.querySelector(".right");
+      const secondDiv = document.querySelector(".second");
+
+      // Get the position of the first div relative to the viewport
+      const firstDivRect = firstDiv.getBoundingClientRect();
+
+      // Check if the first div is completely out of view
+      if (firstDivRect.bottom <= 0) {
+        rightDiv.style.overflowY = "auto"; // Enable scrolling
+      } else {
+        rightDiv.style.overflowY = "hidden"; // Disable scrolling
+      }
+
+      
+      
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+@import "./Colors.scss";
+@import "./Font.scss";
+@import "./Button.scss";
+
+.navbar {
+  background-color: #ffffff !important;
+  border-radius: 10px;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+.navbar-brand {
+  font-family: logo;
+  color: $primcolor !important;
+  font-size: 22px;
+  font-weight: 550;
+}
+.active {
+  color: $primcolor !important;
+  font-weight: 600;
+}
+
+.card.dark {
+  color: #000000;
+  margin: 1%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.order-head {
+  font-size: $primheadsize;
+  font-family: poppin-extra;
+  color: $primcolor;
+  text-align: center;
+  padding: 1%;
+}
+.card.card.bg-light-subtle .card-title {
+  color: dimgrey;
+}
+
+.card img {
+  max-width: 25%;
+  margin: auto;
+  padding: 0.5em;
+  border-radius: 0.7em;
+}
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+.text-section {
+  max-width: 60%;
+}
+.card-body {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.cta-section {
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.cta-section .btn {
+  padding: 0.3em 0.5em;
+  /* color: #696969; */
+}
+.card-title {
+  color: $primcolor;
+  font-size: 1.5vw;
+}
+.price {
+  font-size: 1.3vw;
+}
+.card {
+  .company {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 1vw;
+    color: gray;
+  }
+}
+.head-txt {
+  font-size: 1.2vw !important;
+  font-family: poppin-bold;
+  color: $primcolor;
+}
+.card-text {
+  font-size: 1.3vw !important;
+  margin-bottom: 5% !important;
+}
+
+.card-cont {
+  margin-top: 3%;
+  p {
+    
+    margin-bottom: 1.5%;
+  }
+}
+
+.card.bg-light-subtle .cta-section .btn {
+  background-color: #898989;
+  border-color: #898989;
+}
+.quantity-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.quantity-field .value-button {
+  border: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;
+  padding: 0;
+  background: $primcolor;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.quantity-field .value-button:hover {
+  background: rgb(230, 230, 230);
+}
+
+.quantity-field .value-button:active {
+  background: rgb(210, 210, 210);
+}
+
+.quantity-field .decrease-button {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+.quantity-field .increase-button {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+
+.quantity-field .number {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;
+  line-height: 40px;
+  font-size: 11pt;
+  box-sizing: border-box;
+  background: white;
+  font-family: calibri;
+}
+
+.quantity-field .number::selection {
+  background: none;
+}
+.card {
+  padding: 1%;
+  margin-left: auto;
+  margin-right: auto;
+
+  height: auto;
+
+  flex-direction: row;
+  background-color: #ffffff;
+  border: 0;
+  margin: auto;
+}
+.custom-accordian-data {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70%;
+  background-color: #ffffff;
+  border: 0;
+  border: 1px solid;
+  border-radius: 15px;
+  border-color: #898989;
+  width: auto;
+  margin-top: 1%;
+}
+.cta-section {
+  button {
+    background-color: rgb(21, 174, 21);
+    color: white !important;
+    width: auto;
+    height: 40px;
+  }
+}
+.accordian-btn {
+}
+@media screen and (max-width: 800px) {
+  .card {
+    font-size: 0.9em;
+  }
+  .custom-accordian-data {
+    max-width: 90%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .card {
+    font-size: 0.9em;
+  }
+  .custom-accordian-data {
+    max-width: 90%;
+  }
+}

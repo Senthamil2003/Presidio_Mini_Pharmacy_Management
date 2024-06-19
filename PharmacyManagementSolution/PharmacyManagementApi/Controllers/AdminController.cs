@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyManagementApi.Interface;
@@ -9,9 +10,12 @@ using PharmacyManagementApi.Services;
 
 namespace PharmacyManagementApi.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+ 
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyCors")]
+
     public class AdminController : ControllerBase
     {
         private readonly IAdminService _adminService;

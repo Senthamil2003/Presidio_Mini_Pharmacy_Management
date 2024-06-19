@@ -1,0 +1,357 @@
+@charset "UTF-8";
+@font-face {
+  font-family: poppin-regular;
+  src: url("./Assets/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: poppin-extra;
+  src: url("./Assets/fonts/Poppins-ExtraBold.ttf");
+}
+@font-face {
+  font-family: logo;
+  src: url("./Assets/fonts/MilestoneFreeVersion-Script.otf");
+}
+@font-face {
+  font-family: poppin-bold;
+  src: url("./Assets/fonts/Poppins-Bold.ttf");
+}
+.navbar {
+  background-color: #ffffff !important;
+  border-radius: 10px;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-brand {
+  font-family: logo;
+  color: #438686 !important;
+  font-size: 22px;
+  font-weight: 550;
+}
+
+.active {
+  color: #438686 !important;
+  font-weight: 600;
+}
+
+.product-left {
+  padding: 5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-show {
+  padding: 5%;
+  width: 100%;
+}
+
+.product-head {
+  font-size: 25px;
+  color: #438686;
+  font-family: poppin-bold;
+  margin-bottom: 0%;
+}
+
+.product-company {
+  font-size: 17px;
+  color: grey;
+}
+
+.checked {
+  color: orange;
+}
+
+#rating {
+  font-size: 18px;
+  margin-bottom: 2%;
+}
+
+.product-des {
+  font-family: poppin-bold;
+  color: #438686;
+}
+
+.product-button-cont {
+  width: 80%;
+  display: flex;
+}
+
+.product-btn {
+  width: 150px;
+  background-color: #438686;
+  border: none;
+  color: white;
+  margin-right: 5%;
+  margin-top: 2%;
+}
+
+.product-select {
+  width: 150px;
+  background-color: #438686;
+  color: white;
+  margin-right: 5%;
+  margin-top: 2%;
+}
+.product-select option {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+}
+
+.quantity-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  margin-left: 0;
+  margin-right: 5%;
+  margin-top: 2%;
+}
+
+.quantity-field .value-button {
+  border: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;
+  padding: 0;
+  background: #438686;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.quantity-field .value-button:hover {
+  background: rgb(230, 230, 230);
+}
+
+.quantity-field .value-button:active {
+  background: rgb(210, 210, 210);
+}
+
+.quantity-field .decrease-button {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+.quantity-field .increase-button {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+
+.quantity-field .number {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;
+  line-height: 40px;
+  font-size: 11pt;
+  box-sizing: border-box;
+  background: white;
+  font-family: calibri;
+}
+
+.quantity-field .number::selection {
+  background: none;
+}
+
+.price {
+  font-size: 25px;
+  color: #438686;
+  font-family: poppin-bold;
+  margin-bottom: 0;
+}
+
+.offer {
+  font-size: 20px;
+}
+.offer s {
+  color: gray;
+  font-family: poppin-normal;
+}
+.offer span {
+  color: rgb(16, 163, 53);
+  font-family: poppin-normal;
+}
+
+.img-cont {
+  height: auto;
+  border: 0.3px solid;
+  border-color: rgb(206, 198, 198);
+  border-radius: 5px;
+}
+.img-cont img {
+  object-fit: contain;
+  max-width: 100%;
+}
+
+.product-feedback {
+  height: 500px;
+}
+
+.feedback-rating {
+  width: 100%;
+  padding: 8%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.feedback-rating #rating {
+  text-align: start;
+  font-size: 25px;
+}
+
+.custom-progress {
+  background-color: orange;
+}
+
+.progress {
+  width: 100%;
+  height: 30px;
+  margin-top: 5%;
+}
+
+.feedback-head {
+  font-size: 30px;
+  font-family: poppin-bold;
+  color: #438686;
+  text-align: center;
+  padding-top: 5%;
+}
+
+.feedback-head-cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feedback-cont {
+  border-radius: 10px;
+  padding: 2%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  border: 0.5px solid;
+  border-color: rgb(203, 197, 197);
+  margin-top: 3%;
+}
+
+.feedback-img {
+  width: 100%;
+  display: flex;
+}
+.feedback-img svg {
+  margin: 2%;
+}
+.feedback-img p {
+  margin-top: auto;
+  margin-bottom: auto;
+  font-weight: 600;
+  margin-left: 1%;
+}
+.feedback-img #rating {
+  padding-left: 1%;
+  font-size: 15px;
+}
+
+.feedback-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.feedback-cont {
+  flex: 0 0 auto;
+  max-width: 100%;
+  border-radius: 10px;
+  padding: 2%;
+  width: 90%;
+  border: 0.5px solid;
+  border-color: rgb(224, 224, 224);
+  margin-top: 3%;
+  position: relative;
+  z-index: 1;
+}
+
+.feedback-cards-container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.feedback-cards-container {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.give-feedback {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  margin-top: 10%;
+  color: white;
+  background-color: #438686;
+}
+
+.rate {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: start;
+  height: 46px;
+}
+
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 35px;
+  color: #ccc;
+}
+
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+.form-group {
+  margin-top: 5%;
+}
+
+#review-head {
+  height: 45px;
+}
+
+#review-body {
+  width: 100%;
+  height: 100px;
+}
+
+/*# sourceMappingURL=Product.css.map */
