@@ -124,8 +124,19 @@ hr {
   color: white;
   border: none;
   height: 35px;
+}
+
+.card-foot {
   margin-top: 7%;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-foot p {
+  font-family: poppin-bold;
+  color: #438686;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .tot-ct,

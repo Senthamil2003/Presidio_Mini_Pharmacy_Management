@@ -100,8 +100,22 @@ hr {
   color: white;
   border: none;
   height: 35px;
+
+ 
+  
+}
+.card-foot{
   margin-top: 7%;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  p{
+  
+    font-family: poppin-bold;
+    color: $primcolor;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
 }
 .tot-ct,
 .pur-ct {

@@ -28,8 +28,9 @@ body {
 .navbar {
   background-color: #ffffff !important;
   border-radius: 10px;
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
+  padding: 1%;
+  height: auto !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 
 .navbar-brand {
@@ -273,6 +274,38 @@ body {
   opacity: 1;
 }
 
+.foot-nav {
+  visibility: hidden;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 50px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.svg-bg {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+}
+.svg-bg svg {
+  padding: 5%;
+}
+
+.icon-active {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+
+.svg-bg:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
 @media screen and (max-width: 475px) {
   .card {
     font-size: 0.9em;
@@ -305,6 +338,12 @@ body {
   }
   .quantity-field {
     margin: 0;
+  }
+  .foot-nav {
+    visibility: visible;
+  }
+  .cart {
+    padding-bottom: 50px;
   }
 }
 

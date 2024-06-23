@@ -1,0 +1,297 @@
+@font-face {
+  font-family: poppin-regular;
+  src: url("../Assets/Fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: poppin-extra;
+  src: url("../Assets/Fonts/Poppins-ExtraBold.ttf");
+}
+@font-face {
+  font-family: logo;
+  src: url("../Assets/Fonts/MilestoneFreeVersion-Script.otf");
+}
+@font-face {
+  font-family: poppin-bold;
+  src: url("../Assets/Fonts/Poppins-Bold.ttf");
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  font-family: "poppin-regular", sans-serif;
+  min-height: 100vh;
+  background-color: #f6f8fc;
+}
+
+.tot-cont {
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+}
+
+.nav-cont {
+  flex-shrink: 0;
+  width: 65px;
+  background-color: aqua;
+  transition: width 0.5s;
+}
+.nav-cont.active {
+  width: 250px;
+}
+
+.main {
+  height: auto;
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+
+.navigation {
+  position: fixed;
+  width: 65px;
+  height: 100%;
+  background: #ffffff;
+  overflow: hidden;
+  transition: 0.5s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.navigation.active {
+  width: 250px;
+}
+.navigation ul {
+  padding: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  transition: 1s;
+}
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #000000;
+}
+.navigation ul li a .icon {
+  padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+}
+.navigation ul li a .icon .fa {
+  font-size: 24px;
+}
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+  font-size: 17px;
+  font-weight: 600;
+  color: #438686;
+}
+
+.bi {
+  fill: #438686;
+}
+
+.active-bg {
+  background-color: #438686;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 10px;
+}
+.active-bg span {
+  color: white !important;
+}
+.active-bg .icon-active {
+  fill: white !important;
+}
+
+.top {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.bg-cont:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 10px;
+}
+
+.toggle {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  cursor: pointer;
+  transition: 0.7s;
+}
+.toggle::before {
+  content: "\f0c9";
+  font-family: fontAwesome;
+  width: 100%;
+  height: 100%;
+  line-height: 60px;
+  text-align: center;
+  font-size: 28px;
+  color: #438686;
+}
+
+.purchase-head {
+  font-size: 35px;
+  font-family: poppin-bold;
+  color: #438686;
+  text-align: center;
+  margin: 30px;
+}
+
+.table-cont {
+  background-color: white;
+  border-radius: 10px;
+  margin: 1%;
+  padding: 2%;
+  height: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.add-vendor {
+  background-color: #438686;
+  color: white;
+}
+
+.table-top {
+  padding: 2%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.table-left .report-btn {
+  cursor: pointer;
+  text-align: center;
+  margin: 1%;
+  height: auto;
+  width: 100px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding: 3%;
+}
+.table-left .report-btn.active {
+  background-color: #438686;
+  color: white;
+}
+
+table {
+  text-align: center;
+  border-radius: 10px;
+}
+table td,
+table th {
+  vertical-align: middle;
+  height: 60px;
+  color: #666;
+}
+table th {
+  border-color: rgb(227, 224, 224) !important;
+  color: #438686;
+}
+table tbody {
+  border-color: rgb(227, 224, 224) !important;
+}
+
+.table-right {
+  display: flex;
+  align-items: center;
+}
+
+.filter {
+  border: none;
+  margin: 3%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  height: 38px;
+  width: 38px;
+}
+
+.search {
+  margin: 3%;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px;
+}
+
+.pagination-info {
+  font-size: 15px;
+  color: #666;
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+}
+
+.page-btn {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.page-btn:hover {
+  background-color: #e9ecef;
+}
+.page-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+hr {
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .nav-cont {
+    position: absolute;
+  }
+  .navigation.active {
+    left: 0px;
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=Vendor.css.map */

@@ -13,8 +13,9 @@ body {
 .navbar {
   background-color: #ffffff !important;
   border-radius: 10px;
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
+  padding: 1%;
+  height: auto !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
 .navbar-brand {
   font-family: logo;
@@ -39,7 +40,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 .cart-right {
   margin: 0;
@@ -241,7 +241,66 @@ body {
 .card-body:hover .delete-btn {
   opacity: 1;
 }
+.foot-nav {
+  visibility: hidden;
+  padding-left: 5%;
+  padding-right: 5%;
+  height: 50px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.svg-bg {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.5s;
+
+  svg {
+    padding: 5%;
+  }
+}
+.icon-active {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+}
+.svg-bg:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+/* For screens larger than a certain width, show the SVG icons */
+.d-flex .svg-bg {
+  display: inline-block;
+}
+
+.d-flex .svg-bg .bi {
+  display: inline-block;
+}
+
+/* For screens smaller than a certain width, hide the SVG icons and show text */
+@media (max-width: 767px) {
+  /* Adjust the max-width value as needed */
+  .d-flex .svg-bg {
+    display: none;
+  }
+
+  .d-flex .svg-bg .bi {
+    display: none;
+  }
+
+  /* Add the text you want to display instead of the SVG icons */
+  .d-flex::after {
+    content: "Cart" " Profile";
+    font-size: 16px; /* Adjust the font size as needed */
+    color: #438686; /* Adjust the color as needed */
+  }
+}
 @media screen and (max-width: 475px) {
   .card {
     font-size: 0.9em;
@@ -274,5 +333,11 @@ body {
   }
   .quantity-field {
     margin: 0;
+  }
+  .foot-nav {
+    visibility: visible;
+  }
+  .cart {
+    padding-bottom: 50px;
   }
 }

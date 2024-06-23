@@ -92,7 +92,6 @@
 .card-cont {
   margin-top: 3%;
   p {
-    
     margin-bottom: 1.5%;
   }
 }
@@ -177,10 +176,10 @@
   max-width: 70%;
   background-color: #ffffff;
   border: 0;
-  border: 1px solid;
+
   border-radius: 15px;
-  border-color: #898989;
-  width: auto;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   margin-top: 1%;
 }
 .cta-section {
