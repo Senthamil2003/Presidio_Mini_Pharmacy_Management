@@ -38,6 +38,7 @@ body {
 }
 
 .navigation {
+  z-index: 3;
   position: fixed;
   width: 65px;
   height: 100%;
@@ -283,8 +284,133 @@ table {
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
   }
 }
-hr{
+hr {
   margin: 0;
+}
+.approved {
+  height: auto;
+  width: 70%;
+  background-color: #e1fcef;
+
+  border-radius: 5px;
+  padding: 5%;
+  color: #14804a;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+.pending {
+  height: auto;
+  width: 70%;
+  background-color: #e9edf5;
+  color: #5a6376;
+  border-radius: 5px;
+  padding: 5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.disable {
+  height: auto;
+  width: 70%;
+  background-color: #faf0f3;
+  border-radius: 5px;
+  padding: 5%;
+  color: #d12953;
+  margin-left: auto;
+  margin-right: auto;
+}
+.form-cont {
+  padding: 5%;
+  label {
+    font-weight: 530;
+  }
+  // input{
+  //   border: none;
+  // }
+  .btn {
+    
+    background-color: $primcolor;
+    color: white;
+  }
+}
+.align-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  div:first-child {
+    margin-right: 2%;
+  }
+  div {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+}
+
+.image-div-cont {
+  background-color: $bgcolor;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin: 0;
+}
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background-color: white !important; /* Light grey background */
+  color: #000000; /* Grey text */
+  border: 1px solid #ddd; /* Light grey border */
+  cursor: not-allowed; /* Not-allowed cursor */
+}
+
+.image-div-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.img-cont {
+  background-color: white;
+  height: 200px; /* Default height */
+  width: 200px; /* Default width */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; /* Make it circular */
+  overflow: hidden; /* Ensure image is clipped within the circle */
+}
+#medicineImage {
+  object-fit: cover; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure image fits container */
+  border-radius: 50%; /* Ensure image itself is circular */
+}
+.btn-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .btn {
+    width: 200px;
+   
+  }
+}
+.select2-selection--single {
+  
+  height: 40px !important; /* Adjust the height as needed */
+ 
+}
+.select2-selection__rendered {
+  line-height: 40px !important; /* Ensure the text is vertically centered */
+}
+.select2-selection__arrow {
+  height: 40px !important; /* Match the height of the select box */
+}
+.custom-container{
+  display: flex;
 }
 @media (max-width: 767px) {
   .nav-cont {

@@ -10,12 +10,27 @@ namespace PharmacyManagementApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    BrandId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BrandName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.BrandId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -81,11 +96,22 @@ namespace PharmacyManagementApi.Migrations
                     FeedbackSum = table.Column<double>(type: "float", nullable: false),
                     FeedbackCount = table.Column<double>(type: "float", nullable: false),
                     SellingPrice = table.Column<double>(type: "float", nullable: false),
-                    TotalNumberOfPurchase = table.Column<int>(type: "int", nullable: false)
+                    TotalNumberOfPurchase = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    status = table.Column<int>(type: "int", nullable: false),
+                    BrandId = table.Column<int>(type: "int", nullable: false),
+                    RecentSellingPrice = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Medicines", x => x.MedicineId);
+                    table.ForeignKey(
+                        name: "FK_Medicines_Brands_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brands",
+                        principalColumn: "BrandId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Medicines_Categories_CategoryId",
                         column: x => x.CategoryId,
@@ -124,7 +150,8 @@ namespace PharmacyManagementApi.Migrations
                     PaidAmount = table.Column<double>(type: "float", nullable: false),
                     TotalAmount = table.Column<double>(type: "float", nullable: false),
                     Discount = table.Column<float>(type: "real", nullable: false),
-                    ShipmentCost = table.Column<double>(type: "float", nullable: false)
+                    ShipmentCost = table.Column<double>(type: "float", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -434,6 +461,11 @@ namespace PharmacyManagementApi.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Medicines_BrandId",
+                table: "Medicines",
+                column: "BrandId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Medicines_CategoryId",
                 table: "Medicines",
                 column: "CategoryId");
@@ -528,6 +560,9 @@ namespace PharmacyManagementApi.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Brands");
 
             migrationBuilder.DropTable(
                 name: "Categories");

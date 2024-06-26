@@ -32,14 +32,14 @@
             </li>
             <br />
             <li>
-              <a href="../Report/Dashboard.html" class="bg-cont">
+              <a href="./PurchaseReport.html" class="bg-cont active-bg">
                 <span class="icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-journal-plus"
+                    class="bi bi-journal-plus icon-active"
                     viewBox="0 0 16 16"
                   >
                     <path
@@ -97,14 +97,14 @@
               </a>
             </li>
             <li>
-              <a href="../Stock/Stock.html" class="bg-cont ">
+              <a href="../Stock/Stock.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-prescription2 "
+                    class="bi bi-prescription2"
                     viewBox="0 0 16 16"
                   >
                     <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
@@ -117,14 +117,14 @@
               </a>
             </li>
             <li>
-              <a href="./Delivery.html" class="bg-cont active-bg">
+              <a href="../Delivery/Delivery.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-truck icon-active"
+                    class="bi bi-truck"
                     viewBox="0 0 16 16"
                   >
                     <path
@@ -272,12 +272,32 @@
         <div class="table-cont">
           <div class="table-top">
             <div class="table-left">
-              <div class="report-btn active">purchase</div>
-              <div class="report-btn">category</div>
-              <div class="report-btn">order</div>
+              <div class="btn-group">
+                <button
+                  type="button"
+                  class="btn report-drop-btn dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Purchase
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a class="dropdown-item" href="./Dashboard.html"
+                      >Purchase</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="./OrderReport.html">Order</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Category</a>
+                  </li>
+                </ul>
+              </div>
             </div>
             <div class="table-right">
-              <div class="search">
+              <div class="search forn-group">
                 <input
                   type="text"
                   class="form-control"
@@ -327,7 +347,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                          Modal title
+                          Filter
                         </h5>
                         <button
                           type="button"
@@ -336,17 +356,71 @@
                           aria-label="Close"
                         ></button>
                       </div>
-                      <div class="modal-body">...</div>
+                      <div class="modal-body">
+                        <div class="container">
+                          <form>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label"
+                                >From Date</label
+                              >
+                              <input
+                                type="date"
+                                class="form-control"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                              />
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label"
+                                >To Date</label
+                              >
+                              <input
+                                type="date"
+                                class="form-control"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                              />
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label"
+                                >Sort With</label
+                              >
+                              <select
+                                class="form-select"
+                                aria-label="Default select example"
+                              >
+                                <option selected>Sort with</option>
+                                <option value="1">Medicine Name</option>
+                                <option value="2">Price</option>
+                                <option value="3">Quantity</option>
+                              </select>
+                            </div>
+                            <div class="mb-3">
+                              <label for="exampleInputEmail1" class="form-label"
+                                >Sort by</label
+                              >
+                              <select
+                                class="form-select"
+                                aria-label="Default select example"
+                              >
+                                <option selected>Sort by</option>
+                                <option value="1">Ascending</option>
+                                <option value="2">Descending</option>
+                              </select>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                       <div class="modal-footer">
                         <button
                           type="button"
                           class="btn btn-secondary"
                           data-bs-dismiss="modal"
                         >
-                          Close
+                          Reset
                         </button>
                         <button type="button" class="btn btn-primary">
-                          Save changes
+                          Apply
                         </button>
                       </div>
                     </div>
@@ -411,14 +485,7 @@
       </div>
     </div>
 
-    <script type="text/javascript">
-      function toggleMenu() {
-        let navigation = document.querySelector(".navigation");
-        let nav = document.querySelector(".nav-cont");
-        navigation.classList.toggle("active");
-        nav.classList.toggle("active");
-      }
-    </script>
+    <script src="./Report.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

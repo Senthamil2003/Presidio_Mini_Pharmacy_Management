@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyManagementApi.Interface;
+using PharmacyManagementApi.Models;
 using PharmacyManagementApi.Models.DTO.ErrorDTO;
 using PharmacyManagementApi.Models.DTO.RequestDTO;
 using PharmacyManagementApi.Models.DTO.ResponseDTO;
@@ -11,7 +12,7 @@ using PharmacyManagementApi.Services;
 namespace PharmacyManagementApi.Controllers
 {
  
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("MyCors")]
@@ -124,7 +125,7 @@ namespace PharmacyManagementApi.Controllers
         /// </summary>
         /// <param name="orderDetailId">The ID of the order to be delivered.</param>
         /// <returns>A success response on successful delivery of the order.</returns>
-        [HttpPost("DeliverOrder")]
+        [HttpGet("DeliverOrder")]
         [ProducesResponseType(typeof(SuccessDeliveryDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<SuccessDeliveryDTO>> DeliverOrder(int orderDetailId)
@@ -149,5 +150,132 @@ namespace PharmacyManagementApi.Controllers
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }
+        [HttpGet("GetAllMedicine")]
+        [ProducesResponseType(typeof(List<MedicineDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<MedicineDTO>>> GetAllMedicine()
+        {
+            try
+            {
+
+                var result = await _adminService.GetAllMedicine();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpGet("GetCategory")]
+        [ProducesResponseType(typeof(Category), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Category>> GetCategory(int CategoryId)
+        {
+            try
+            {
+
+                var result = await _adminService.GetCategory(CategoryId);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpPut("UpdateMedicine")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<string>> UpdateMedicine([FromForm] UpdateMedicineDTO update)
+        {
+            try
+            {
+
+                var result = await _adminService.UpdateMedicine(update);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpGet("GetMedicine")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<MedicineDetailDTO>> GetMedicine(int  MedicineId)
+        {
+            try
+            {
+
+                var result = await _adminService.GetMedicine(MedicineId);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpPost("AddMedicine")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<MedicineDetailDTO>> AddMedicine([FromForm] AddMedicineDTO addMedicine)
+        {
+            try
+            {
+
+                var result = await _adminService.AddMedicine(addMedicine);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpGet("GetAllCategory")]
+        [ProducesResponseType(typeof(List<CategoryDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<CategoryDTO>>> GetAllCategory()
+        {
+            try
+            {
+
+                var result = await _adminService.GetAllCategory();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpGet("GetAllBrand")]
+        [ProducesResponseType(typeof(List<BrandDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<BrandDTO>>> GetAllBrand()
+        {
+            try
+            {
+
+                var result = await _adminService.GetAllBrand();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
     }
+
 }

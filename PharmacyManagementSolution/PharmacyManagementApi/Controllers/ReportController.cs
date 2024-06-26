@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PharmacyManagementApi.Interface;
 using PharmacyManagementApi.Models.DTO.ErrorDTO;
@@ -8,6 +9,7 @@ namespace PharmacyManagementApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyCors")]
     public class ReportController : ControllerBase
     {
         private readonly IReportService _reportService;

@@ -5,8 +5,7 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PharmacyManagementApi", "PharmacyManagementApi\PharmacyManagementApi.csproj", "{43F6F082-FBF5-48EE-8C66-A62EBC90D252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PharmacyUnitTest", "PharmacyUnitTest\PharmacyUnitTest.csproj", "{598D5940-63C7-40C5-8434-C1EDF0A60517}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

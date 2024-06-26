@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- Select2 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./Stock.css" />
+    <title>SideBAr</title>
+  </head>
+
+  <body>
+    <div class="tot-cont">
+      <!-- Add brand modal -->
+      <div
+        class="modal fade"
+        id="addcatagory"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-4">
+                <label>Select brand image</label>
+                <input
+                  class="form-control"
+                  type="file"
+                  id="categoryimage"
+                  accept="image/*"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="brand" class="form-label">Category</label>
+                <div class="custom-select input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Recipient's username"
+                    aria-label="Recipient's username"
+                    aria-describedby="button-addon2"
+                    id="category"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" id="addcategorybtn" class="btn btn-primary">Add category</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Add category modal -->
+      <div
+        class="modal fade"
+        id="addbrand"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Brand</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-4">
+                <label>Select brand image</label>
+                <input
+                  class="form-control"
+                  type="file"
+                  id="brandimage"
+                  accept="image/*"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="brand" class="form-label">Brand</label>
+                <div class="custom-select input-group">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Recipient's username"
+                    aria-label="Recipient's username"
+                    aria-describedby="button-addon2"
+                    id="brand"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" id="addbrandbtn" class="btn btn-primary">Add Brand</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-cont active">
+        <div class="navigation active">
+          <ul>
+            <li>
+              <a href="#">
+                <span class="icon"
+                  ><div class="toggle top" onclick="toggleMenu()"></div
+                ></span>
+              </a>
+            </li>
+            <br />
+            <li>
+              <a href="../Report/Dashboard.html" class="bg-cont">
+                <span class="icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    fill="currentColor"
+                    class="bi bi-journal-plus"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 5.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 .5-.5"
+                    />
+                    <path
+                      d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"
+                    />
+                    <path
+                      d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"
+                    />
+                  </svg>
+                </span>
+                <span class="title">Report</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="../Purchase/Purchase.html" class="bg-cont">
+                <span class="icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    fill="currentColor"
+                    class="bi bi-bag"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                    />
+                  </svg>
+                </span>
+                <span class="title"> Purchase</span>
+              </a>
+            </li>
+            <li>
+              <a href="../Vendor/Vendor.html" class="bg-cont">
+                <span class="icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    fill="currentColor"
+                    class="bi bi-shop"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"
+                    />
+                  </svg>
+                </span>
+                <span class="title">Add Vendor</span>
+              </a>
+            </li>
+            <li>
+              <a href="../Stock/Stock.html" class="bg-cont active-bg">
+                <span class="icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    fill="currentColor"
+                    class="bi bi-prescription2 icon-active"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
+                    <path
+                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
+                    />
+                  </svg>
+                </span>
+                <span class="title">Stock</span>
+              </a>
+            </li>
+            <li>
+              <a href="./Delivery.html" class="bg-cont">
+                <span class="icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    fill="currentColor"
+                    class="bi bi-truck"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2"
+                    />
+                  </svg>
+                </span>
+                <span class="title">Deliver</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="bg-cont">
+                <span class="icon"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="28"
+                    height="28"
+                    fill="currentColor"
+                    class="bi bi-box-arrow-right"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+                    />
+                  </svg>
+                </span>
+                <span class="title">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="main">
+        <p class="purchase-head">Product Detail</p>
+
+        <div class="table-cont">
+          <form class="container form-cont" id="form-data">
+            <div class="container mt-5">
+              <div class="image-div-cont">
+                <div class="img-cont">
+                  <img
+                    src="../Assets/Images/medicine-bottle-and-pills-black-and-white-icon-illustration-vector.jpg"
+                    id="medicineImage"
+                    alt="Image Loading"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div style="padding: 3%">
+              <div class="mb-4">
+                <input
+                  class="form-control"
+                  type="file"
+                  id="imageFile"
+                  accept="image/*"
+                  onchange="Photo(event)"
+                />
+              </div>
+              <div class="mb-4">
+                <label for="medicine-name" class="form-label"
+                  >Medicine Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="medicine-name"
+                  placeholder="Medicine Name"
+                />
+              </div>
+              <div class="align-form">
+                <div class="mb-4">
+                  <label for="search-select-brand" class="form-label"
+                    >Brand</label
+                  >
+                  <div class="custom-container">
+                    <select
+                      id="search-select1"
+                      class="form-select"
+                      style="width: 100%"
+                    >
+                      <option value="">Select Brand</option>
+                    </select>
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="button-addon1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addbrand"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+                <div class="mb-4 right-form">
+                  <label for="search-select2" class="form-label">
+                    Category</label
+                  >
+                  <div class="custom-container">
+                    <select
+                      id="search-select2"
+                      class="form-select"
+                      style="width: 100%"
+                    >
+                      <option value="">Select category</option>
+                    </select>
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="button-addon1"
+                      data-bs-toggle="modal"
+                      data-bs-target="#addcatagory"
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-4">
+                <label for="floatingTextarea">Description</label>
+                <textarea
+                  class="form-control"
+                  placeholder="Leave a comment here"
+                  id="floatingTextarea"
+                ></textarea>
+              </div>
+              <div class="mb-4">
+                <label for="status" class="form-label">Product State</label>
+                <select
+                  class="form-select"
+                  id="status"
+                  aria-label="Default select example"
+                >
+                  <option value="">select state</option>
+                  <option value="1">Active</option>
+                  <option value="2">Disable</option>
+                </select>
+              </div>
+              <div class="align-form">
+                <div class="mb-4">
+                  <label for="sellingPrice" class="form-label"
+                    >Selling Price</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="sellingPrice"
+                    placeholder="Selling Price"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="recentPurchasePrice" class="form-label"
+                    >Recent Purchase Price</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="recentPurchasePrice"
+                    placeholder="Recent Purchase Price"
+                  />
+                </div>
+              </div>
+              <div class="btn-cont">
+                <button type="submit" onclick="Submitdata(event)" id="submit-btn" class="btn btn-primary">
+                  Add Product
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="./Stock.js"></script>
+    <!-- <script type="module" src="./AddProductAPI.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
+        $("#search-select1")
+          .select2({
+            dropdownParent: $(".custom-container").eq(0),
+          })
+          .on("select2:open", function () {
+            setTimeout(function () {
+              document.querySelector(".select2-search__field").focus();
+            }, 100);
+          });
+        $("#search-select2")
+          .select2({
+            dropdownParent: $(".custom-container").eq(1),
+          })
+          .on("select2:open", function () {
+            setTimeout(function () {
+              document.querySelector(".select2-search__field").focus();
+            }, 100);
+          });
+      });
+    </script>
+  </body>
+</html>

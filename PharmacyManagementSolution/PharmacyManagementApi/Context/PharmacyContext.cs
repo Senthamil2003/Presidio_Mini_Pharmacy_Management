@@ -24,6 +24,7 @@ namespace PharmacyManagementApi.Context
         public DbSet<Feedback> Feedbacks { get; set; }  
         public DbSet<Medication> Medications { get; set; }
         public DbSet<MedicationItem> MedicationItems { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -131,9 +132,16 @@ namespace PharmacyManagementApi.Context
             .HasForeignKey(m=>m.CategoryId)
             .OnDelete(DeleteBehavior.Restrict)
             .IsRequired();
+            //Foriegn Key for Medicine
+            modelBuilder.Entity<Medicine>()
+            .HasOne(m => m.Brand)
+            .WithMany()
+            .HasForeignKey(m => m.BrandId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
 
             //Foriegn key for purchase
-              modelBuilder.Entity<PurchaseDetail>()
+            modelBuilder.Entity<PurchaseDetail>()
              .HasOne(pd=>pd.Purchase)
              .WithMany(p=>p.PurchaseDetails)
              .HasForeignKey(pd=>pd.PurchaseId)

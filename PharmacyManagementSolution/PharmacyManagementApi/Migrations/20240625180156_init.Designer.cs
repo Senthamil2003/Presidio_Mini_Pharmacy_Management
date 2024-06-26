@@ -12,7 +12,7 @@ using PharmacyManagementApi.Context;
 namespace PharmacyManagementApi.Migrations
 {
     [DbContext(typeof(PharmacyContext))]
-    [Migration("20240530091624_init")]
+    [Migration("20240625180156_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,26 @@ namespace PharmacyManagementApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("PharmacyManagementApi.Models.Brand", b =>
+                {
+                    b.Property<int>("BrandId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BrandId"), 1L, 1);
+
+                    b.Property<string>("BrandName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("BrandId");
+
+                    b.ToTable("Brands");
+                });
 
             modelBuilder.Entity("PharmacyManagementApi.Models.Cart", b =>
                 {
@@ -70,6 +90,9 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<string>("CategoryName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("CategoryId");
 
@@ -238,11 +261,17 @@ namespace PharmacyManagementApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicineId"), 1L, 1);
 
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("CurrentQuantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("FeedbackCount")
                         .HasColumnType("float");
@@ -250,9 +279,15 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<double>("FeedbackSum")
                         .HasColumnType("float");
 
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("MedicineName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("RecentSellingPrice")
+                        .HasColumnType("float");
 
                     b.Property<double>("SellingPrice")
                         .HasColumnType("float");
@@ -260,7 +295,12 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<int>("TotalNumberOfPurchase")
                         .HasColumnType("int");
 
+                    b.Property<int>("status")
+                        .HasColumnType("int");
+
                     b.HasKey("MedicineId");
+
+                    b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
 
@@ -280,6 +320,9 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<float>("Discount")
                         .HasColumnType("real");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("PaidAmount")
                         .HasColumnType("float");
@@ -581,11 +624,19 @@ namespace PharmacyManagementApi.Migrations
 
             modelBuilder.Entity("PharmacyManagementApi.Models.Medicine", b =>
                 {
+                    b.HasOne("PharmacyManagementApi.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("PharmacyManagementApi.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Brand");
 
                     b.Navigation("Category");
                 });

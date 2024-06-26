@@ -32,7 +32,7 @@
             </li>
             <br />
             <li>
-              <a href="../Report/Dashboard.html" class="bg-cont">
+              <a href="../Report/PurchaseReport.html" class="bg-cont">
                 <span class="icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -97,14 +97,14 @@
               </a>
             </li>
             <li>
-              <a href="../Stock/Stock.html" class="bg-cont ">
+              <a href="../Stock/Stock.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-prescription2 "
+                    class="bi bi-prescription2"
                     viewBox="0 0 16 16"
                   >
                     <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
@@ -210,7 +210,6 @@
                   </svg>
                 </button>
 
-                <!-- Modal -->
                 <div
                   class="modal fade"
                   id="exampleModal"
@@ -222,7 +221,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                          Modal title
+                          Filter
                         </h5>
                         <button
                           type="button"
@@ -231,7 +230,83 @@
                           aria-label="Close"
                         ></button>
                       </div>
-                      <div class="modal-body">...</div>
+                      <div class="modal-body">
+                        <!-- Modal Content -->
+                        <div class="container form-container">
+                          <form id="filterForm">
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="fromDate">From Date</label>
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="fromDate"
+                                  value="2023-01-01"
+                                />
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="toDate">To Date</label>
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="toDate"
+                                  value="2023-12-31"
+                                />
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="nameSelect">Name</label>
+                              <select class="form-control" id="nameSelect">
+                                <option value="default">Select Name</option>
+                                <option value="name1">Name 1</option>
+                                <option value="name2">Name 2</option>
+                                <option value="name3">Name 3</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="priceSelect">Price</label>
+                              <select class="form-control" id="priceSelect">
+                                <option value="default">Select Price</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="quantitySelect">Quantity</label>
+                              <select class="form-control" id="quantitySelect">
+                                <option value="default">Select Quantity</option>
+                                <option value="1">1</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                              </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="sortSelect">Sort By</label>
+                              <select class="form-control" id="sortSelect">
+                                <option value="ascending">Ascending</option>
+                                <option value="descending">Descending</option>
+                              </select>
+                            </div>
+                            <div class="btn-container">
+                              <button
+                                type="button"
+                                class="btn btn-primary"
+                                id="applyButton"
+                              >
+                                Apply
+                              </button>
+                              <button
+                                type="reset"
+                                class="btn btn-secondary"
+                                id="resetButton"
+                              >
+                                Reset
+                              </button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                       <div class="modal-footer">
                         <button
                           type="button"

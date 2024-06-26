@@ -13,18 +13,21 @@ namespace PharmacyManagementApi.Models
         private double _sellingPrice;
         public double FeedbackSum { get; set; }
         public double FeedbackCount { get; set; }
-        public double SellingPrice
-        {
-            get { return _sellingPrice; }
-            set { _sellingPrice = value + 20; }
-        }
+        public double SellingPrice { get; set; } = 0;
         public int TotalNumberOfPurchase { get; set; }
+        public string? Description { get; set; }
+        public byte[]? Image { get; set; }
+        public int status { get; set; } = 0;
+        public int BrandId { get; set; }
+        public double RecentSellingPrice { get; set; } = 0;
 
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }
+
+        [ForeignKey("BrandId")]
+        public Brand Brand { get; set; }
         public ICollection<Feedback>? Feedbacks { get; set; }
        
-
 
     }
 }

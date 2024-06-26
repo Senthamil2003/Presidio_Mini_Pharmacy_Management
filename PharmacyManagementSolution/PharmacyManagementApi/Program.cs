@@ -108,6 +108,7 @@ namespace PharmacyManagementApi
             builder.Services.AddScoped<IRepository<int, OrderDetail>, OrderDetailRepository>();
             builder.Services.AddScoped<IRepository<int, DeliveryDetail>, DeliveryDetailRepository>();
             builder.Services.AddScoped<IRepository<int, Cart>, CartRepository>();
+            builder.Services.AddScoped<IRepository<int, Brand>, BrandRepository>();
             builder.Services.AddScoped<IRepository<int, Feedback>, FeedbackRepository>();
             builder.Services.AddScoped<IRepository<int, Medication>, MedicationRepository>();
             builder.Services.AddScoped<IRepository<int, MedicationItem>, MedicationItemRepository>();

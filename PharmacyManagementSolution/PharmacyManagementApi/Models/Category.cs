@@ -7,6 +7,7 @@ namespace PharmacyManagementApi.Models
         [Key]
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
-        
+        public byte[]? Image { get; set; }
+
     }
 }
