@@ -258,6 +258,24 @@ namespace PharmacyManagementApi.Controllers
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }
+        [HttpGet("GetAllVendor")]
+        [ProducesResponseType(typeof(List<Vendor>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<Vendor>>> GetAllVendor()
+        {
+            try
+            {
+
+                var result = await _adminService.GetAllVendor();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
         [HttpGet("GetAllBrand")]
         [ProducesResponseType(typeof(List<BrandDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]

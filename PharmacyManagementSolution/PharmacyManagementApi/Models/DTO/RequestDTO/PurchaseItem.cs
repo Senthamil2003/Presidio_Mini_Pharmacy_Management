@@ -6,13 +6,11 @@ namespace PharmacyManagementApi.Models.DTO.RequestDTO
     public class PurchaseItem
     {
         [Required(ErrorMessage = "Vendor name is required.")]
-        public string VendorName { get; set; }
+        public int VendorId { get; set; }
 
         [Required(ErrorMessage = "Medicine name is required.")]
-        public string MedicineName { get; set; }
+        public int  MedicineId { get; set; }
 
-        [Required(ErrorMessage = "Medicine category is required.")]
-        public string MedicineCategory { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage = "Amount must be greater than 0.")]
         public int Amount { get; set; }
@@ -24,11 +22,6 @@ namespace PharmacyManagementApi.Models.DTO.RequestDTO
         [FutureDate(ErrorMessage = "Expiry date must be in the future.")]
         public DateTime ExpiryDate { get; set; }
 
-        [Required(ErrorMessage = "Storage requirement is required.")]
-        public string StorageRequirement { get; set; }
-
-        [Required(ErrorMessage = "Dosage form is required.")]
-        public string DosageForm { get; set; }
     }
     [ExcludeFromCodeCoverage]
     public class FutureDateAttribute : ValidationAttribute

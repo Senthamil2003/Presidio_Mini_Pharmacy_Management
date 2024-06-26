@@ -76,51 +76,24 @@ public class AdminService : IAdminService
                 foreach (PurchaseItem item in items.Items)
                 {
                     totalSum += item.Amount * item.Quantity;
-                    Medicine? medicine = (await _medicineRepo.Get()).SingleOrDefault(m => m.MedicineName == item.MedicineName);
-                    int isNewMedicine = 0;
+                    Medicine medicine = (await _medicineRepo.Get(item.MedicineId));
 
-                    if (medicine == null)
-                    {
-                        isNewMedicine = 1;
-                        Category? category = (await _categoryRepo.Get()).SingleOrDefault(c => c.CategoryName == item.MedicineCategory);
-                        if (category == null)
-                        {
-                            category = new Category() { CategoryName = item.MedicineCategory };
-                            await _categoryRepo.Add(category);
-                        }
+            
 
-                        medicine = new Medicine()
-                        {
-                            MedicineName = item.MedicineName,
-                            CategoryId = category.CategoryId,
-                            CurrentQuantity = item.Quantity,
-                            SellingPrice = item.Amount
-                        };
-                        await _medicineRepo.Add(medicine);
-                    }
-
-                    Category? checkCategory = (await _categoryRepo.Get()).SingleOrDefault(c => c.CategoryName == item.MedicineCategory)
-                        ?? throw new CategoryMedicineMisMatchException("Given Category is not matched with the Medicine");
-
-                    Vendor vendor = (await _vendorRepo.Get()).SingleOrDefault(v => v.VendorName == item.VendorName)
-                        ?? throw new NoVendorFoundException("No vendor found, add the vendor");
-
-                    if (isNewMedicine == 0)
-                    {
                         medicine.CurrentQuantity += item.Quantity;
+                    medicine.RecentPurchasePrice = item.Amount;
+                 
                         await _medicineRepo.Update(medicine);
-                    }
+
 
                     PurchaseDetail purchaseDetail = new PurchaseDetail()
                     {
                         Amount = item.Amount,
-                        DosageForm = item.DosageForm,
                         ExpiryDate = item.ExpiryDate,
-                        MedicineId = medicine.MedicineId,
-                        VendorId = vendor.VendorId,
+                        MedicineId = item.MedicineId,
+                        VendorId = item.VendorId,
                         Quantity = item.Quantity,
-                        PurchaseId = purchase.PurchaseId,
-                        StorageRequirement = item.StorageRequirement,
+                        PurchaseId = purchase.PurchaseId,        
                         TotalSum = item.Amount * item.Quantity
                     };
                     await _purchaseDetailRepo.Add(purchaseDetail);
@@ -128,8 +101,7 @@ public class AdminService : IAdminService
                     Stock stock = new Stock()
                     {
                         MedicineId = purchaseDetail.MedicineId,
-                        ExpiryDate = purchaseDetail.ExpiryDate,
-                        SellingPrice = item.Amount,
+                        ExpiryDate = purchaseDetail.ExpiryDate,    
                         PurchaseDetailId = purchaseDetail.PurchaseDetailId,
                         Quantity = purchaseDetail.Quantity
                     };
@@ -289,7 +261,8 @@ public class AdminService : IAdminService
             {
                 Phone = vendorDto.Phone,
                 Address = vendorDto.Address,
-                VendorName = vendorDto.VendorName
+                VendorName = vendorDto.VendorName,
+                Mail=vendorDto.Mail,
             };
 
             await _vendorRepo.Add(vendor);
@@ -397,7 +370,7 @@ public class AdminService : IAdminService
                 ImageBase64 = medicine.Image != null ? Convert.ToBase64String(medicine.Image) : null,
                 Brand=(await _brandRepository.Get(medicine.BrandId)).BrandName,
                 Description=medicine.Description,
-                RecentSellingPrice=medicine.RecentSellingPrice,
+                RecentSellingPrice=medicine.RecentPurchasePrice,
                 SellingPrice=medicine.SellingPrice,
                 Status=medicine.status
 
@@ -552,6 +525,19 @@ public class AdminService : IAdminService
         {
             throw;
         }
+    }
+    public async Task<List<Vendor>> GetAllVendor()
+    {
+        try
+        {
+           return (await _vendorRepo.Get()).ToList();
+            
+        }
+        catch
+        {
+            throw;
+        }
+
     }
 
 }

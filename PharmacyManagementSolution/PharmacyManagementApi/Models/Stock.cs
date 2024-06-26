@@ -11,12 +11,7 @@ namespace PharmacyManagementApi.Models
         public int MedicineId { get; set; }
         public int Quantity { get; set; }
         public DateTime ExpiryDate { get; set; }
-        private double _sellingPrice;
-        public double SellingPrice
-        {
-            get { return _sellingPrice; }
-            set { _sellingPrice = value + 20; }
-        }
+      
         [ForeignKey("MedicineId")]
         public Medicine Medicine { get; set; }
 

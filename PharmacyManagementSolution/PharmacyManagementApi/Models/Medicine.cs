@@ -19,7 +19,7 @@ namespace PharmacyManagementApi.Models
         public byte[]? Image { get; set; }
         public int status { get; set; } = 0;
         public int BrandId { get; set; }
-        public double RecentSellingPrice { get; set; } = 0;
+        public double RecentPurchasePrice { get; set; } = 0;
 
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }

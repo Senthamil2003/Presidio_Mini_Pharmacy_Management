@@ -284,7 +284,7 @@ namespace PharmacyManagementApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("RecentSellingPrice")
+                    b.Property<double>("RecentPurchasePrice")
                         .HasColumnType("float");
 
                     b.Property<double>("SellingPrice")
@@ -400,10 +400,6 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
-                    b.Property<string>("DosageForm")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("ExpiryDate")
                         .HasColumnType("datetime2");
 
@@ -415,10 +411,6 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("StorageRequirement")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TotalSum")
                         .HasColumnType("int");
@@ -456,9 +448,6 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<double>("SellingPrice")
-                        .HasColumnType("float");
 
                     b.HasKey("StockId");
 
@@ -509,6 +498,10 @@ namespace PharmacyManagementApi.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VendorId"), 1L, 1);
 
                     b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

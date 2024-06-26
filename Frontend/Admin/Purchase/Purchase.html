@@ -178,16 +178,9 @@
         <p class="purchase-head">Purchase Medicine</p>
         <div class="table-cont">
           <div class="table-top">
-            <div class="table-left">
-              <a href="../Stock/AddProduct.html"
-                ><button class="btn btn-success custom-bnt">
-                  + Add Product
-                </button></a
-              >
-              <button class="btn btn-success custom-bnt">+ Add Vendor</button>
-            </div>
+            <div class="table-left"></div>
             <div class="table-right">
-              <td><input type="date" class="form-control" /></td>
+              <td><input type="date" id="purchaseDate" class="form-control" required/></td>
             </div>
           </div>
           <table
@@ -209,15 +202,14 @@
             <tbody id="tableBody"></tbody>
           </table>
           <div class="sub-div">
-            <button id="submitData" class="btn submitbtn">Submit</button>
+            <button id="submitData" type="submit" class="btn submitbtn">Submit</button>
           </div>
         </div>
       </div>
     </div>
 
     <script src="./Purchase.js"></script>
-
-    <script src="./Stock.js"></script>
+    <script type="module" src="./PurchaseApi.js"></script>
 
     <!-- <script type="module" src="./AddProductAPI.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -229,7 +221,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="./PurchaseApi.js"></script>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

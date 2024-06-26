@@ -13,6 +13,7 @@
         [Required(ErrorMessage = "Phone number is required.")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "Phone must be 10 digit")]
         public string Phone { get; set; }
+        public string Mail { get; set; }
     }
 
 }

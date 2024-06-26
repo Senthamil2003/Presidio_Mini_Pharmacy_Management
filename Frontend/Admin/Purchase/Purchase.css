@@ -290,4 +290,23 @@ table tbody {
   box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
+.select2-selection--single {
+  width: 190px !important;
+  height: 38px !important; /* Adjust the height as needed */
+}
+
+.select2-selection__rendered {
+  text-align: start;
+  width: 190px !important;
+  line-height: 38px !important; /* Ensure the text is vertically centered */
+}
+
+.select2-selection__arrow {
+  height: 38px !important; /* Match the height of the select box */
+}
+
+.select2-results__option {
+  text-align: start;
+}
+
 /*# sourceMappingURL=Purchase.css.map */

@@ -6,8 +6,7 @@ window.onload = initializePage();
 
 async function initializePage() {
   await GetAllMedicine();
-  renderDataFromLocalStorage();
-
+  addRow(); // Add initial empty row
 }
 
 async function GetAllMedicine() {
@@ -15,12 +14,17 @@ async function GetAllMedicine() {
     "http://localhost:5033/api/Admin/GetAllMedicine",
     {}
   );
+  var Vendor = await GetData(
+    "http://localhost:5033/api/Admin/GetAllVendor",
+    {}
+  );
 
-  // Store the medicine data globally
+  // Store the medicine and vendor data globally
   window.medicineData = Medicine;
+  window.Vendor = Vendor;
 }
 
-function createRow(rowIndex, rowData = null) {
+function createRow(rowIndex) {
   return `
     <tr>
       <td>${rowIndex}</td>
@@ -31,82 +35,114 @@ function createRow(rowIndex, rowData = null) {
           </select>
         </div>
       </td>
-      <td><input type="number" class="form-control quantity-input" placeholder="Quantity" required min="1" value="${rowData ? rowData.quantity : ''}"></td>
-      <td><input type="number" class="form-control amount-input" placeholder="Amount" required min="0.01" step="0.01" value="${rowData ? rowData.amount : ''}"></td>
-      <td><input type="number" class="form-control total-input" placeholder="Total" disabled value="${rowData ? rowData.total : ''}"></td>
-      <td><input type="text" class="form-control vendor-input" placeholder="Vendor" required value="${rowData ? rowData.vendor : ''}"></td>
-      <td><input type="date" class="form-control exp-date-input" required value="${rowData ? rowData.expDate : ''}"></td>
+      <td><input type="number" class="form-control quantity-input" placeholder="Quantity" required min="1"></td>
+      <td><input type="number" class="form-control amount-input" placeholder="Amount" required min="0.01" step="0.01"></td>
+      <td><input type="number" class="form-control total-input" placeholder="Total" readonly></td>
+      <td>
+        <div class="custom-container">
+          <select id="vendor-select${rowIndex}" class="form-select vendor-input" style="width: 100%">
+            <option value="">Select Vendor</option>
+          </select>
+        </div>
+      </td>
+      <td><input type="date" class="form-control exp-date-input" required></td>
     </tr>
   `;
 }
 
-function addRow(rowData = null) {
+function addRow() {
   rowCount++;
-  const newRow = createRow(rowCount, rowData);
-  document
-    .getElementById("tableBody")
-    .insertAdjacentHTML("beforeend", newRow);
+  const newRow = createRow(rowCount);
+  document.getElementById("tableBody").insertAdjacentHTML("beforeend", newRow);
 
-  initializeSelect2ForRow(rowCount, rowData ? rowData.medicine : null);
+  initializeSelect2ForRow(rowCount);
+  initializeVendorSelect(rowCount);
+  initializeRowEventListeners(rowCount);
 }
 
-function initializeSelect2ForRow(rowIndex, selectedMedicine = null) {
+function initializeSelect2ForRow(rowIndex) {
   $(`#search-select${rowIndex}`)
     .select2({
-      dropdownParent: $(".custom-container").eq(rowIndex - 1),
-      data: window.medicineData.map(medicine => ({
+      dropdownParent: $(`#search-select${rowIndex}`).closest(
+        ".custom-container"
+      ),
+      data: window.medicineData.map((medicine) => ({
         id: medicine.categoryId,
-        text: medicine.medicineName
-      }))
+        text: medicine.medicineName,
+      })),
     })
     .on("select2:open", function () {
-      setTimeout(function () {
+      setTimeout(() => {
         document.querySelector(".select2-search__field").focus();
       }, 100);
     });
+}
 
-  if (selectedMedicine) {
-    $(`#search-select${rowIndex}`).val(selectedMedicine).trigger('change');
-  }
+function initializeVendorSelect(rowIndex) {
+  $(`#vendor-select${rowIndex}`)
+    .select2({
+      dropdownParent: $(`#vendor-select${rowIndex}`).closest(
+        ".custom-container"
+      ),
+      data: window.Vendor.map((vendor) => ({
+        id: vendor.vendorId,
+        text: vendor.vendorName,
+      })),
+    })
+    .on("select2:open", function () {
+      setTimeout(() => {
+        document.querySelector(".select2-search__field").focus();
+      }, 100);
+    });
+}
+
+function initializeRowEventListeners(rowIndex) {
+  const row = document.querySelector(`#tableBody tr:nth-child(${rowIndex})`);
+  const quantityInput = row.querySelector(".quantity-input");
+  const amountInput = row.querySelector(".amount-input");
+  const totalInput = row.querySelector(".total-input");
+  [quantityInput, amountInput].forEach((input) => {
+    input.addEventListener("input", () =>
+      calculateTotal(quantityInput, amountInput, totalInput)
+    );
+  });
+}
+
+function calculateTotal(quantityInput, amountInput, totalInput) {
+  const quantity = parseFloat(quantityInput.value) || 0;
+  const amount = parseFloat(amountInput.value) || 0;
+  const total = quantity * amount;
+  totalInput.value = total.toFixed(2);
 }
 
 function isRowEmpty(row) {
-  const inputs = row.querySelectorAll("input:not([readonly]):not([disabled])");
-  const select = row.querySelector("select");
-  return Array.from(inputs).every((input) => input.value === "") && select.value === "";
-}
-
-function isRowValid(row) {
-  const inputs = row.querySelectorAll("input:not([readonly]):not([disabled])");
-  const select = row.querySelector("select");
-  const quantity = parseFloat(row.querySelector(".quantity-input").value);
-  const amount = parseFloat(row.querySelector(".amount-input").value);
-
+  const inputs = row.querySelectorAll("input:not([readonly])");
+  const selects = row.querySelectorAll("select");
   return (
-    Array.from(inputs).every((input) => input.value !== "") &&
-    select.value !== "" &&
-    quantity > 0 &&
-    amount > 0
+    Array.from(inputs).every((input) => input.value === "") &&
+    Array.from(selects).every((select) => select.value === "")
   );
 }
 
-function saveDataToLocalStorage() {
-  const rows = document.querySelectorAll("#tableBody tr");
-  const data = [];
+function isRowValid(row) {
+  const medicineSelect = row.querySelector(".medicine-input");
+  const quantityInput = row.querySelector(".quantity-input");
+  const amountInput = row.querySelector(".amount-input");
+  const vendorSelect = row.querySelector(".vendor-input");
+  const expDateInput = row.querySelector(".exp-date-input");
 
-  rows.forEach((row, index) => {
-    const rowData = {
-      medicine: $(`#search-select${index + 1}`).select2('data')[0].text,
-      quantity: row.querySelector(".quantity-input").value,
-      amount: row.querySelector(".amount-input").value,
-      total: row.querySelector(".total-input").value,
-      vendor: row.querySelector(".vendor-input").value,
-      expDate: row.querySelector(".exp-date-input").value,
-    };
-    data.push(rowData);
-  });
+  const quantity = parseFloat(quantityInput.value);
+  const amount = parseFloat(amountInput.value);
 
-  localStorage.setItem("medicineData", JSON.stringify(data));
+  return (
+    medicineSelect.value !== "" &&
+    quantityInput.value !== "" &&
+    amountInput.value !== "" &&
+    vendorSelect.value !== "" &&
+    expDateInput.value !== "" &&
+    quantity > 0 &&
+    amount > 0
+  );
 }
 
 document
@@ -124,75 +160,86 @@ document
     if (this.children.length >= 2) {
       const secondToLastRow = this.children[this.children.length - 2];
       const lastRow = this.children[this.children.length - 1];
-      if (isRowEmpty(secondToLastRow)) {
-        lastRow.remove();
+      if (isRowEmpty(secondToLastRow) && !isRowEmpty(lastRow)) {
+        secondToLastRow.remove();
         rowCount--;
       }
     }
-
-    // Save data to local storage after each input
-    saveDataToLocalStorage();
   });
 
-document.getElementById("submitData").addEventListener("click", function () {
-  const rows = document.querySelectorAll("#tableBody tr");
-  const data = [];
-  let isValid = true;
+function convertToDateTime(dateString) {
+  const date = new Date(dateString);
 
-  rows.forEach((row, index) => {
-    if (!isRowValid(row)) {
-      isValid = false;
+  if (isNaN(date.getTime())) {
+    return null;
+  }
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
+
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+}
+document
+  .getElementById("submitData")
+  .addEventListener("click", async function () {
+    const rows = document.querySelectorAll("#tableBody tr");
+    var purchaseDate = document.getElementById("purchaseDate").value;
+    console.log(purchaseDate, convertToDateTime(purchaseDate));
+    var Totresult = { dateTime: convertToDateTime(purchaseDate), items: [] };
+    const data = Totresult.items;
+    let isValid = true;
+
+    rows.forEach((row, index) => {
+      if (rows.length - 1 != index && !isRowValid(row)) {
+        console.log(row, index);
+        isValid = false;
+        return;
+      }
+
+      const rowData = {
+        medicineId:
+          $(`#search-select${index + 1}`).select2("data")[0]?.id || "",
+        vendorId: $(`#vendor-select${index + 1}`).select2("data")[0]?.id || "",
+
+        amount: row.querySelector(".amount-input").value,
+        quantity: row.querySelector(".quantity-input").value,
+
+        expiryDate: convertToDateTime(
+          row.querySelector(".exp-date-input").value
+        ),
+      };
+      if (rows.length - 1 != index) {
+        data.push(rowData);
+      }
+    });
+    console.log(data);
+    if (!isValid) {
+      alert(
+        "Please fill all fields correctly. Quantity and Amount must be greater than zero."
+      );
       return;
     }
 
-    const rowData = {
-      medicine: $(`#search-select${index + 1}`).select2('data')[0].text,
-      quantity: row.querySelector(".quantity-input").value,
-      amount: row.querySelector(".amount-input").value,
-      total: row.querySelector(".total-input").value,
-      vendor: row.querySelector(".vendor-input").value,
-      expDate: row.querySelector(".exp-date-input").value,
-    };
-    data.push(rowData);
+    console.log(Totresult);
+    try {
+      const response = await fetch("http://localhost:5033/api/Admin/Purchase", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Totresult),
+      });
+
+      if (response.ok) {
+        const FinalResult = await response.json();
+        console.log(FinalResult);
+      }
+   
+    } catch (error) {
+      console.error("An error occurred while fetching data:", error);
+    }
   });
-
-  if (!isValid) {
-    alert(
-      "Please fill all fields correctly. Quantity and Amount must be greater than zero."
-    );
-    return;
-  }
-
-  console.log(data);
-  // Here you can send the data to your backend
-});
-
-function renderDataFromLocalStorage() {
-  const savedData = localStorage.getItem('medicineData');
-  if (savedData) {
-    const data = JSON.parse(savedData);
-    document.getElementById("tableBody").innerHTML = ''; // Clear existing rows
-    rowCount = 0; // Reset row count
-    data.forEach((rowData) => {
-      addRow(rowData);
-    });
-  } else {
-    addRow(); // Add an empty row if no data in local storage
-  }
-}
-
-function setupClearButton() {
-  const clearButton = document.createElement('button');
-  clearButton.textContent = 'Clear Data';
-  clearButton.className = 'btn btn-danger mt-3';
-  clearButton.addEventListener('click', clearLocalStorage);
-  document.body.appendChild(clearButton);
-}
-
-function clearLocalStorage() {
-  localStorage.removeItem('medicineData');
-  document.getElementById("tableBody").innerHTML = '';
-  rowCount = 0;
-  addRow(); // Add an empty row after clearing
-  alert('Data cleared from local storage');
-}
