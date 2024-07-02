@@ -45,9 +45,11 @@ namespace PharmacyManagementApi.Services
                     Feedback feedback = new Feedback()
                     {
                         CustomerId = feedbackRequest.CustomerId,
+                        FeedbackTitle=feedbackRequest.Title,
                         FeedbackMessage = feedbackRequest.Feedback,
                         MedicineId = feedbackRequest.MedicineId,
-                        Rating = feedbackRequest.Rating
+                        Rating = feedbackRequest.Rating,
+                        Date=DateTime.Now,
                     };
 
                     Medicine medicine = await _medicineRepo.Get(feedbackRequest.MedicineId);
@@ -127,7 +129,7 @@ namespace PharmacyManagementApi.Services
             try
             {
                 Medicine medicine = await _medicineRepo.Get(medicineId);
-                List<Feedback> feedbacks = medicine.Feedbacks.ToList();
+                List<Feedback> feedbacks = medicine.Feedbacks.ToList(); 
                 if (feedbacks.Count() == 0)
                 {
                     _logger.LogWarning("No feedback found for medicine {MedicineId}", medicineId); // Log warning
@@ -137,7 +139,7 @@ namespace PharmacyManagementApi.Services
                 // Calculate the average rating
                 double feedbackRating = feedbacks.Average(f => f.Rating);
 
-                // Count the number of feedbacks for each rating
+               
                 var ratingCounts = feedbacks.GroupBy(f => f.Rating)
                                             .ToDictionary(g => g.Key, g => g.Count());
 
@@ -148,12 +150,29 @@ namespace PharmacyManagementApi.Services
                 {
                     ratingPercentages[i] = ratingCounts.ContainsKey(i) ? (ratingCounts[i] / (double)totalFeedbacks) * 100 : 0;
                 }
+               List <FeedbackDTO> feedbackDTOs = new List<FeedbackDTO>();
+                foreach(var feedback in feedbacks)
+                {
+                    FeedbackDTO feedbackDTO = new FeedbackDTO()
+                    {
+                        Rating = feedback.Rating,
+                        CustomerId = feedback.CustomerId,
+                        CustomerName=feedback.Customer.Name,
+                        FeedbackId = feedback.FeedbackId,
+                        FeedbackMessage = feedback.FeedbackMessage, 
+                        FeedbackTitle = feedback.FeedbackTitle,
+                        MedicineId= feedback.MedicineId,
+                        Date=feedback.Date.Date,
+                    };
+                    feedbackDTOs.Add(feedbackDTO);
+                }
+               
 
                 // Prepare the DTO
                 MedicineFeedbackDTO medicineFeedback = new MedicineFeedbackDTO()
                 {
                     FeedbackRating = feedbackRating,
-                    Feedbacks = feedbacks,
+                    Feedbacks = feedbackDTOs,
                     RatingPercentages = ratingPercentages
                 };
 

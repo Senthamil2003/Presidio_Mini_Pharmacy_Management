@@ -6,7 +6,7 @@
         public int MedicationId { get; set; }
         public int MedicineId {  get; set; }
         public int Quantity { get; set; }
-        public string Status { get; set; } = "Increase";
+        public string Status { get; set; } = "";
 
     }
 

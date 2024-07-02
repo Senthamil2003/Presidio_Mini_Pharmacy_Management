@@ -184,7 +184,14 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FeedbackMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FeedbackTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -211,12 +218,22 @@ namespace PharmacyManagementApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MedicationId"), 1L, 1);
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MedicationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PurchaseCount")
+                        .HasColumnType("int");
 
                     b.HasKey("MedicationId");
 
@@ -280,6 +297,9 @@ namespace PharmacyManagementApi.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("varbinary(max)");
 
+                    b.Property<int>("ItemPerPack")
+                        .HasColumnType("int");
+
                     b.Property<string>("MedicineName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -292,6 +312,10 @@ namespace PharmacyManagementApi.Migrations
 
                     b.Property<int>("TotalNumberOfPurchase")
                         .HasColumnType("int");
+
+                    b.Property<string>("Weight")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("status")
                         .HasColumnType("int");

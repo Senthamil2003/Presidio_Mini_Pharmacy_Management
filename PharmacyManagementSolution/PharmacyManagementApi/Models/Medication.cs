@@ -9,6 +9,9 @@ namespace PharmacyManagementApi.Models
         public int MedicationId { get; set; }   
         public string MedicationName { get; set;}
         public int CustomerId { get; set; }
+        public string Description { get; set; }
+        public int PurchaseCount { get; set; }  
+        public DateTime CreatedDate { get; set; }
 
         [ForeignKey("CustomerId")]
         public Customer Customer { get; set; }

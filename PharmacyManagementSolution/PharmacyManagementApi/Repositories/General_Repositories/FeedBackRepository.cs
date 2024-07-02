@@ -60,7 +60,9 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
         {
             try
             {
-                return await _context.Feedbacks.SingleOrDefaultAsync(u => u.FeedbackId == key)
+                return await _context.Feedbacks
+                    .Include(f=>f.Customer)
+                    .SingleOrDefaultAsync(u => u.FeedbackId == key)
                     ?? throw new NoFeedbackFoundException($"No Feedback found with given id {key}");
             }
             catch (NoFeedbackFoundException)
@@ -78,7 +80,9 @@ namespace PharmacyManagementApi.Repositories.General_Repositories
         {
             try
             {
-                return await _context.Feedbacks.ToListAsync();
+                return await _context.Feedbacks
+                    .Include(f=>f.Customer)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {

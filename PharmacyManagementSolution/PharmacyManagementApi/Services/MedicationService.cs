@@ -58,28 +58,30 @@ namespace PharmacyManagementApi.Services
                     {
                         CustomerId = addMedication.CustomerId,
                         MedicationName = addMedication.MedicationName,
+                        Description = addMedication.MedicationDescription,
+                        CreatedDate=DateTime.Now,
                     };
 
                     await _medicationRepo.Add(medication);
-                    HashSet<int> checkDuplicate = new HashSet<int>();
-                    var result = addMedication.medicationItems.ToList();
-                    foreach (var item in result)
-                    {
-                        if (checkDuplicate.Contains(item.MedicineId))
-                        {
-                            throw new DuplicateValueException("Duplicate medicine present in the Medication");
-                        }
-                        Medicine medicine = await _medicineRepo.Get(item.MedicineId);
+                    //HashSet<int> checkDuplicate = new HashSet<int>();
+                    //var result = addMedication.medicationItems.ToList();
+                    //foreach (var item in result)
+                    //{
+                    //    if (checkDuplicate.Contains(item.MedicineId))
+                    //    {
+                    //        throw new DuplicateValueException("Duplicate medicine present in the Medication");
+                    //    }
+                    //    Medicine medicine = await _medicineRepo.Get(item.MedicineId);
 
-                        MedicationItem medicationItem = new MedicationItem()
-                        {
-                            MedicineId = item.MedicineId,
-                            MedicationId = medication.MedicationId,
-                            Quantity = item.Quantity
-                        };
-                        await _medicationItemRepo.Add(medicationItem);
-                        checkDuplicate.Add(item.MedicineId);
-                    }
+                    //    MedicationItem medicationItem = new MedicationItem()
+                    //    {
+                    //        MedicineId = item.MedicineId,
+                    //        MedicationId = medication.MedicationId,
+                    //        Quantity = item.Quantity
+                    //    };
+                    //    await _medicationItemRepo.Add(medicationItem);
+                    //    checkDuplicate.Add(item.MedicineId);
+                    //}
 
                     await _transactionService.CommitTransactionAsync();
 
@@ -101,7 +103,33 @@ namespace PharmacyManagementApi.Services
                 }
             }
         }
+        public async Task<SuccessMedicationDTO> AddMedicationItem(UpdateMedication updateMedication)
+        {
 
+            try
+            {
+                MedicationItem medicationItem = new MedicationItem()
+                {
+                    MedicationId = updateMedication.MedicationId,
+                    MedicineId = updateMedication.MedicineId,
+                    Quantity = updateMedication.Quantity,
+                };
+                await _medicationItemRepo.Add(medicationItem);
+                SuccessMedicationDTO success = new SuccessMedicationDTO()
+                {
+                    Code = 200,
+                    Message = "Medication added successfully",
+
+                };
+                return success; 
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        
         /// <summary>
         /// Updates an existing medication for a customer.
         /// </summary>
@@ -115,59 +143,43 @@ namespace PharmacyManagementApi.Services
             {
                 try
                 {
-                    Customer customer = await _customerJoinedRepo.Get(updateMedication.CustomerId);
-                    Medicine medicine = await _medicineRepo.Get(updateMedication.MedicineId);
-                    Medication? medication = customer.Medications.FirstOrDefault(m=>m.MedicationId==updateMedication.MedicationId);
-                    if(medication==null)
+                    Medication medication=await _medicationRepo.Get(updateMedication.MedicationId);
+                    int itemQuantity=medication.MedicationItems.FirstOrDefault(m=>m.MedicineId==updateMedication.MedicineId).Quantity;
+
+                    if (updateMedication.Status == "Increase")
                     {
-                        throw new NoMedicationFoundException("The customer have no such medication found for medication Id " +updateMedication.MedicationId);
+                        itemQuantity += updateMedication.Quantity;
                     }
-                    MedicationItem? ExistingMedicationItem = medication?.MedicationItems.FirstOrDefault(m => m.MedicineId == updateMedication.MedicineId);
-                    if (ExistingMedicationItem == null)
+                    else if(updateMedication.Status == "Decrease")
                     {
-                        MedicationItem item = new MedicationItem()
+                        if (itemQuantity > 0)
                         {
-                            MedicationId = updateMedication.MedicationId,
-                            MedicineId = updateMedication.MedicineId,
-                            Quantity = updateMedication.Quantity,
-                        };
-                        ExistingMedicationItem = await _medicationItemRepo.Add(item);
-                    }
-                    else
-                    {
-                        int finalQuantity = 0;
-                        if (updateMedication.Status == "Increase")
-                        {
-                            finalQuantity = updateMedication.Quantity + ExistingMedicationItem.Quantity;
+                            itemQuantity -= updateMedication.Quantity;
                         }
                         else
                         {
-                            if (ExistingMedicationItem.Quantity > updateMedication.Quantity)
-                            {
-                                finalQuantity = ExistingMedicationItem.Quantity - updateMedication.Quantity;
-                            }
-                            else
-                            {
-                                _logger.LogWarning("The expected quantity {ExpectedQuantity} is not available in the medication {MedicationId}", updateMedication.Quantity, updateMedication.MedicationId);
-                                throw new NegativeValueException("The expected quantity is not available in the medication");
-                            }
+                            throw new Exception("Not enough quantity to reduce");
                         }
-
-                        ExistingMedicationItem.Quantity = finalQuantity;
-                        await _medicationItemRepo.Update(ExistingMedicationItem);
                     }
-
+                    MedicationItem updateItem = new MedicationItem()
+                    {
+                        MedicationId = updateMedication.MedicationId,
+                        MedicineId = updateMedication.MedicineId,
+                        Quantity = itemQuantity,
+                        
+                    };
+                    await _medicationItemRepo.Update(updateItem);
+                    
                     await _transactionService.CommitTransactionAsync();
 
                     SuccessMedicationDTO success = new SuccessMedicationDTO()
                     {
                         Code = 200,
                         Message = "Medication updated successfully",
-                        MedicationId = ExistingMedicationItem.MedicationId
+                      
                     };
 
-                    _logger.LogInformation("Medication {MedicationId} updated successfully for customer {CustomerId}", ExistingMedicationItem.MedicationId, updateMedication.CustomerId);
-                    return success;
+                   return success;
                 }
                 catch (Exception ex)
                 {

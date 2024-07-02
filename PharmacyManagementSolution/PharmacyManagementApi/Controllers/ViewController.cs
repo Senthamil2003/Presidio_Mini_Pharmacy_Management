@@ -27,13 +27,13 @@ namespace PharmacyManagementApi.Controllers
         [HttpGet("ViewAllItems")]
         [ProducesResponseType(typeof(StockResponseDTO[]), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<StockResponseDTO[]>> GetAllProduct()
+        public async Task<ActionResult<StockResponseDTO[]>> GetAllProduct(string searchContent)
         {
             try
             {
                 _logger.LogInformation("Received a request to view all available products.");
 
-                var result = await _viewService.ShowAllProduct();
+                var result = await _viewService.ShowAllProduct(searchContent);
                 _logger.LogInformation("Available products retrieved successfully.");
                 return Ok(result);
             }
@@ -75,9 +75,9 @@ namespace PharmacyManagementApi.Controllers
         /// </summary>
         /// <returns>A list of medication details for the current user.</returns>
         [HttpGet("ViewMyMedications")]
-        [ProducesResponseType(typeof(List<AddMedicationDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<MyMedicationDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<AddMedicationDTO>>> ViewMyMedications()
+        public async Task<ActionResult<List<MyMedicationDTO>>> ViewMyMedications()
         {
             try
             {
@@ -118,6 +118,59 @@ namespace PharmacyManagementApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"An error occurred while retrieving user's cart: {ex.Message}");
+                return NotFound(new ErrorModel(404, ex.Message));
+            }
+        }
+        [HttpGet("GetBestCategory")]
+        [ProducesResponseType(typeof(List<BestCategoryDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<BestCategoryDTO>>> GetBestCategory()
+        {
+            try
+            {
+             
+                var result = await _viewService.GetBestCategory();
+              
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+              
+                return NotFound(new ErrorModel(404, ex.Message));
+            }
+        }
+        [HttpGet("GetBestSeller")]
+        [ProducesResponseType(typeof(List<BestSellerDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<BestSellerDTO>>> GetBestSeller()
+        {
+            try
+            {
+
+                var result = await _viewService.GetBestSeller();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(new ErrorModel(404, ex.Message));
+            }
+        }
+        [HttpGet("GetMedicine")]
+        [ProducesResponseType(typeof(ProductDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<ProductDTO>> GetMeidcine(int medicineId)
+        {
+            try
+            {
+
+                var result = await _viewService.GetMedicine(medicineId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
                 return NotFound(new ErrorModel(404, ex.Message));
             }
         }

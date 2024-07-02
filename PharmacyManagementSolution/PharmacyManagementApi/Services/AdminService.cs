@@ -370,7 +370,7 @@ public class AdminService : IAdminService
                 ImageBase64 = medicine.Image != null ? Convert.ToBase64String(medicine.Image) : null,
                 Brand=(await _brandRepository.Get(medicine.BrandId)).BrandName,
                 Description=medicine.Description,
-                RecentSellingPrice=medicine.RecentPurchasePrice,
+                RecentPurchasePrice=medicine.RecentPurchasePrice,
                 SellingPrice=medicine.SellingPrice,
                 Status=medicine.status
 
@@ -450,6 +450,8 @@ public class AdminService : IAdminService
                 medicine.Description = medicineDTO.Description;
                 medicine.SellingPrice = medicineDTO.SellingPrice;
                 medicine.status = medicineDTO.Status;
+                medicine.ItemPerPack=medicineDTO.ItemPerPack;
+                medicine.Weight= medicineDTO.Weight;
                 if (medicineDTO.MedicineImage != null)
                 {
                     using (var memoryStream = new MemoryStream())

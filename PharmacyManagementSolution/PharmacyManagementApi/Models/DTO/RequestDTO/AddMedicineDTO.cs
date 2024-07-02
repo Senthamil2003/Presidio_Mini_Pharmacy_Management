@@ -16,6 +16,8 @@
         public IFormFile? BrandImage { get; set; }
         public IFormFile? CategoryImage { get; set; }
         public int Status { get; set; }
+        public string Weight { get; set; }
+        public int ItemPerPack { get; set; }
 
     }
 }

@@ -77,7 +77,9 @@
               >
                 Close
               </button>
-              <button type="button" id="addcategorybtn" class="btn btn-primary">Add category</button>
+              <button type="button" id="addcategorybtn" class="btn btn-primary">
+                Add category
+              </button>
             </div>
           </div>
         </div>
@@ -133,7 +135,9 @@
               >
                 Close
               </button>
-              <button type="button" id="addbrandbtn" class="btn btn-primary">Add Brand</button>
+              <button type="button" id="addbrandbtn" class="btn btn-primary">
+                Add Brand
+              </button>
             </div>
           </div>
         </div>
@@ -376,18 +380,7 @@
                   id="floatingTextarea"
                 ></textarea>
               </div>
-              <div class="mb-4">
-                <label for="status" class="form-label">Product State</label>
-                <select
-                  class="form-select"
-                  id="status"
-                  aria-label="Default select example"
-                >
-                  <option value="">select state</option>
-                  <option value="1">Active</option>
-                  <option value="2">Disable</option>
-                </select>
-              </div>
+              
               <div class="align-form">
                 <div class="mb-4">
                   <label for="sellingPrice" class="form-label"
@@ -401,19 +394,49 @@
                   />
                 </div>
                 <div class="mb-4">
-                  <label for="recentPurchasePrice" class="form-label"
-                    >Recent Purchase Price</label
+                  <label for="status" class="form-label">Product State</label>
+                  <select
+                    class="form-select"
+                    id="status"
+                    aria-label="Default select example"
                   >
+                    <option value="">select state</option>
+                    <option value="1">Active</option>
+                    <option value="2">Disable</option>
+                  </select>
+                </div>
+              </div>
+              <div class="align-form">
+                <div class="mb-4">
+                  <label for="weight" class="form-label"
+                    >Weight</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="weight"
+                    placeholder="Enter weight"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="item-cont" class="form-label">Quantity Per Pack</label>
                   <input
                     type="number"
                     class="form-control"
-                    id="recentPurchasePrice"
-                    placeholder="Recent Purchase Price"
+                    id="item-count"
+                    placeholder="Enter quantity"
                   />
+                </div>
+                 
                 </div>
               </div>
               <div class="btn-cont">
-                <button type="submit" onclick="Submitdata(event)" id="submit-btn" class="btn btn-primary">
+                <button
+                  type="submit"
+                  onclick="Submitdata(event)"
+                  id="submit-btn"
+                  class="btn btn-primary"
+                >
                   Add Product
                 </button>
               </div>

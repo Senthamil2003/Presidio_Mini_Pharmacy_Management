@@ -25,7 +25,7 @@ namespace PharmacyManagementApi.Controllers
         /// </summary>
         /// <param name="add">The medication details.</param>
         /// <returns>A success response on successful addition of the medication.</returns>
-        [HttpPost("AddMedication")]
+        [HttpPost("CreateMedication")]
         [ProducesResponseType(typeof(SuccessMedicationDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<SuccessMedicationDTO>> AddMedication(AddMedicationDTO add)
@@ -99,6 +99,26 @@ namespace PharmacyManagementApi.Controllers
             catch (Exception ex)
             {
                 _logger.LogError($"An error occurred while purchasing a medication: {ex.Message}");
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpPut("AddMedicationItem")]
+        [ProducesResponseType(typeof(SuccessMedicationDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SuccessMedicationDTO>> AddMedicationItem(UpdateMedication updateMedication)
+        {
+            try
+            {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                updateMedication.CustomerId=userid;
+                var result = await _medicationService.AddMedicationItem(updateMedication);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }

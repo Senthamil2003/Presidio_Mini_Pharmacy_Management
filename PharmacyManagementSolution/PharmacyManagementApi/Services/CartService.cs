@@ -86,7 +86,7 @@ namespace PharmacyManagementApi.Services
             {
                 try
                 {
-                 
+                    
                     var result = await FindMedicineById(addToCart.MedicineId);
                     if (result.AvailableQuantity < addToCart.Quantity)
                     {
@@ -145,10 +145,11 @@ namespace PharmacyManagementApi.Services
             {
                 try
                 {
-                    Medicine medicine = await _medicineRepo.Get(addToCart.MedicineId);
-                    var result = await FindMedicineById(medicine.MedicineId);
-                    Customer customer = await _customer.Get(addToCart.UserId);
-                    Cart? ExistingCart = customer.Carts.FirstOrDefault(c => c.MedicineId == addToCart.MedicineId);
+                    
+
+
+                    Cart ExistingCart = await _cartRepo.Get(addToCart.CartId);
+                    Medicine medicine = await _medicineRepo.Get(ExistingCart.MedicineId);
                     if (ExistingCart == null)
                     {
                         _logger.LogWarning("No cart found for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log warning
@@ -173,7 +174,7 @@ namespace PharmacyManagementApi.Services
                         }
                     }
 
-                    if (result.AvailableQuantity < finalQuantity)
+                    if (medicine.CurrentQuantity < finalQuantity)
                     {
                         _logger.LogWarning("Expected quantity {ExpectedQuantity} is not available in stock for medicine {MedicineId}", finalQuantity, addToCart.MedicineId); // Log warning
                         throw new OutOfStockException("Expected Quantity is not available in the stock");
@@ -188,7 +189,7 @@ namespace PharmacyManagementApi.Services
                     {
                         Code = 200,
                         Message = "Item Updated Successfully",
-                        CartId = ExistingCart.CartId
+                        CartId = medicine.MedicineId,
                     };
 
                     _logger.LogInformation("Cart updated successfully for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log success

@@ -20,6 +20,8 @@ namespace PharmacyManagementApi.Models
         public int status { get; set; } = 0;
         public int BrandId { get; set; }
         public double RecentPurchasePrice { get; set; } = 0;
+        public int ItemPerPack { get; set; }
+        public string Weight { get; set; }
 
         [ForeignKey("CategoryId")]
         public Category? Category { get; set; }

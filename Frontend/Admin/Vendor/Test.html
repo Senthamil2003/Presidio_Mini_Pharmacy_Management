@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Toast Example with Progress Bar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for styling -->
+    <style>
+        .toast-progress {
+            height: 5px;
+            background-color: #007bff; /* Bootstrap's primary color */
+            width: 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <form id="myForm">
+            <div class="form-group">
+                <label for="inputText">Example Text Input</label>
+                <input type="text" class="form-control" id="inputText" placeholder="Enter text">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!-- Toast for success message -->
+    <div class="toast" id="toastSuccess" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+        <div class="toast-header bg-success text-white">
+            <strong class="mr-auto">Success</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Your form was successfully submitted.
+            <div class="progress mt-2">
+                <div class="toast-progress progress-bar bg-success" role="progressbar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast for error message -->
+    <div class="toast" id="toastError" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
+        <div class="toast-header bg-danger text-white">
+            <strong class="mr-auto">Error</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            There was an error submitting your form.
+            <div class="progress mt-2">
+                <div class="toast-progress progress-bar bg-danger" role="progressbar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Function to show the toast and progress bar
+        function showToast(toastId, progressClass) {
+            // Show the toast
+            $(toastId).toast('show');
+
+            // Animate the progress bar
+            const $progressBar = $(toastId).find('.toast-progress');
+            $progressBar.animate({ width: '100%' }, 3000, function() {
+                // Reset progress bar after animation completes
+                $progressBar.width(0);
+            });
+        }
+
+        $(document).ready(function() {
+            // Submit form event listener
+            $('#myForm').submit(function(event) {
+                event.preventDefault(); // Prevent form submission
+                const formData = new FormData(this);
+
+                // Simulate form submission success or error
+                const isSuccess = Math.random() < 0.5; // 50% chance of success
+
+                if (isSuccess) {
+                    // Show success toast
+                    showToast('#toastSuccess', 'bg-success');
+                } else {
+                    // Show error toast
+                    showToast('#toastError', 'bg-danger');
+                }
+            });
+
+            // Close toast event listeners (optional)
+            $('.toast').on('hidden.bs.toast', function () {
+                $(this).css('display', 'none'); // Hide toast after it's hidden
+            });
+        });
+    </script>
+</body>
+</html>

@@ -69,6 +69,9 @@ async function Submitdata(event) {
   const sellingPrice = document.getElementById("sellingPrice").value;
   const status = document.getElementById("status").value;
   const medicineImageFile = document.getElementById("imageFile").files[0];
+  const itemPerPack =document.getElementById("item-count").value;
+  const weigth=document.getElementById("weight").value;
+
 
   const brandName =
     document.getElementById("search-select1").options[
@@ -96,6 +99,7 @@ async function Submitdata(event) {
   console.log("categoryName:", categoryName);
   console.log("isnewBrand:", isnewBrand);
   console.log("isnewCategory:", isnewCategory);
+  console.log(weigth,itemPerPack)
 
   const formData = new FormData();
   formData.append("medicineName", medicineName);
@@ -108,6 +112,8 @@ async function Submitdata(event) {
   formData.append("categoryName", categoryName);
   formData.append("isnewBrand", isnewBrand);
   formData.append("isnewCategory", isnewCategory);
+  formData.append("weight",weigth);
+  formData.append("itemPerPack",itemPerPack);
   if (brandImageFile) {
     formData.append("BrandImage", brandImageFile);
   }
@@ -156,7 +162,6 @@ async function Submitdata(event) {
   }
 }
 
-// Handle adding new brand
 document
   .getElementById("addcategorybtn")
   .addEventListener("click", function () {
