@@ -24,6 +24,11 @@
   border: none;
 }
 
+.btn {
+  background-color: #438686;
+  color: white;
+}
+
 .carousel-control-prev,
 .carousel-control-next {
   padding: 0.8%;
@@ -55,13 +60,6 @@
   width: 16em;
 }
 
-.card img {
-  margin-top: 10%;
-  object-fit: contain;
-  max-height: 100%;
-  border-radius: 10px;
-}
-
 .card-cont {
   margin: 0% 3% 8% 3%;
 }
@@ -75,6 +73,7 @@
 }
 
 .card-title {
+  margin-bottom: 0;
   font-family: poppin-extra;
 }
 
@@ -83,6 +82,7 @@
   font-family: poppin-bold;
   font-size: 23px;
   padding-top: 1%;
+  margin-bottom: 1%;
 }
 
 .fa {
@@ -90,7 +90,9 @@
 }
 
 .card-text {
-  color: black;
+  color: rgb(158, 157, 157);
+  font-size: 15px;
+  margin-bottom: 1%;
 }
 
 .checked {
@@ -98,7 +100,7 @@
 }
 
 #rating {
-  margin-bottom: 10%;
+  margin-bottom: 8%;
 }
 
 /*# sourceMappingURL=Card.css.map */

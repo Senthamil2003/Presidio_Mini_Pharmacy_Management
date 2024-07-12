@@ -7,6 +7,7 @@ namespace PharmacyManagementApi.Interface
     {
         public Task<SuccessLoginDTO> Login(LoginDTO loginDTO);
         public Task<SuccessRegisterDTO> Register(RegisterDTO employeeDTO);
+        (bool isValid, string? role) ValidateUserTokenAndGetRole(string token);
 
     }
 }

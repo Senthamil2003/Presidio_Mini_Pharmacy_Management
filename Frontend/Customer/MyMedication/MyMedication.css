@@ -28,6 +28,41 @@
   font-weight: 550;
 }
 
+.btn {
+  background-color: #438686;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(3, 122, 78);
+  color: white;
+}
+
+.login-btn {
+  color: white;
+  display: none;
+  width: 130px;
+  margin-right: 3%;
+}
+
+.custom-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+.custom-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
 .active {
   color: #438686 !important;
   font-weight: 600;

@@ -43,6 +43,27 @@ namespace PharmacyManagementApi.Controllers
                 return NotFound(new ErrorModel(404, ex.Message));
             }
         }
+        [HttpGet("GetMedicineByCategory")]
+        [ProducesResponseType(typeof(StockResponseDTO[]), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<StockResponseDTO[]>> GetAllProductByCategory(string searchContent)
+        {
+            try
+            {
+                _logger.LogInformation("Received a request to view all available products.");
+
+                var result = await _viewService.GetMedicineByCategory(searchContent);
+                _logger.LogInformation("Available products retrieved successfully.");
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occurred while retrieving available products: {ex.Message}");
+                return NotFound(new ErrorModel(404, ex.Message));
+            }
+        }
+
+
 
         /// <summary>
         /// Retrieves the orders for the current user.
@@ -174,5 +195,42 @@ namespace PharmacyManagementApi.Controllers
                 return NotFound(new ErrorModel(404, ex.Message));
             }
         }
+        [HttpGet("GetMedicationItems")]
+        [ProducesResponseType(typeof(MedicationItemTotalDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<MedicationItemTotalDTO>> GetMedicationItems(int medicationId)
+        {
+            try
+            {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                var result = await _viewService.ViewMedicationItem(userid,medicationId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(new ErrorModel(404, ex.Message));
+            }
+        }
+        [HttpGet("GetOnlyCart")]
+        [ProducesResponseType(typeof(List<OnlyCartItem>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<List<OnlyCartItem>>> GetMyCartOnly()
+        {
+            try
+            {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                var result = await _viewService.ViewMyCartOnly(userid);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(new ErrorModel(404, ex.Message));
+            }
+        }
+
     }
 }

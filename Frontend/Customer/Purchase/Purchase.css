@@ -21,6 +21,28 @@
   padding-bottom: 1rem;
 }
 
+.btn {
+  background-color: #438686;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(3, 122, 78);
+  color: white;
+}
+
+.no-item {
+  text-align: center;
+  color: gray;
+  margin-top: 2%;
+}
+
+.search-cont {
+  width: 100%;
+  padding: 0 3%;
+  margin-top: 1%;
+}
+
 .navbar-brand {
   font-family: logo;
   color: #438686 !important;
@@ -33,10 +55,25 @@
   font-weight: 600;
 }
 
+.tot-product {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.tot-product::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.item-cont {
+  overflow: hidden;
+}
+
 .filter-cont {
   position: sticky;
   padding: 8%;
   width: 90%;
+  height: 100%;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -84,6 +121,32 @@ input[type=number]::-webkit-inner-spin-button {
   font-size: 19px;
   align-items: center;
   justify-content: center;
+}
+
+.login-btn {
+  color: white;
+  display: none;
+  width: 130px;
+  margin-right: 3%;
+  background-color: #438686;
+}
+
+.custom-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+.custom-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
 }
 
 .slider {
@@ -139,21 +202,22 @@ input[type=range]::-moz-range-thumb {
 }
 
 .filter-btn {
-  height: 40px;
-  width: 100px;
-  border: none;
-  color: white;
+  margin-top: 5%;
   background-color: #438686;
-  margin: 5%;
+  color: white;
+  height: 40px;
+  border: none;
+  width: 100%;
+  margin-bottom: 5%;
 }
 
 .reset-btn {
-  height: 40px;
-  width: 100px;
-  border: none;
-  color: white;
   background-color: #438686;
-  margin: 5%;
+  color: white;
+  height: 40px;
+  border: none;
+  width: 100%;
+  margin-bottom: 2%;
 }
 
 .card {
@@ -161,7 +225,7 @@ input[type=range]::-moz-range-thumb {
   margin-right: auto;
   height: auto;
   padding: 1%;
-  max-width: 48em;
+  max-width: 50em;
   flex-direction: row;
   background-color: #ffffff;
   border: 0;
@@ -197,7 +261,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .card img {
-  object-fit:cover;
+  object-fit: cover;
   height: 100%;
   width: 100%;
   margin: auto;
@@ -260,6 +324,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .price {
+  font-size: 19px;
   color: #438686;
   margin-right: 10%;
   font-family: poppin-bold;
@@ -296,11 +361,17 @@ input[type=range]::-moz-range-thumb {
 }
 
 .page-btn.active {
-  background-color: #007bff;
-  color: white;
+  background-color: #438686;
+  color: white !important;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 990px) {
+  .product-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between !important;
+    width: 100%;
+  }
   .filter-cont {
     display: none;
   }
@@ -314,19 +385,25 @@ input[type=range]::-moz-range-thumb {
     align-items: center;
     justify-content: space-between;
   }
+  .img-cont {
+    height: 100%;
+    width: 100%;
+  }
   .card-body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
   .card img {
-    max-width: 80%;
+    max-width: 100%;
     margin: auto;
     padding: 0.5em;
     border-radius: 0.7em;
   }
   .card {
     flex-direction: column;
+    padding: 2%;
+    max-width: 450px;
   }
   .text-section {
     padding: 2%;

@@ -15,17 +15,23 @@ namespace PharmacyManagementApi.Services
         private readonly ITransactionService _transactionservice;
         private readonly IRepository<int, Feedback> _feedbackRepo;
         private readonly ILogger<FeedBackService> _logger;
+        private readonly CustomerFeedbackRepository _customerFeedbackRepo;
+        private readonly MedicineFeedbackRepository _medicienFeedbackRepo;
 
         public FeedBackService(ITransactionService transactionService,
             IRepository<int, Feedback> feedbackrepo,
             IRepository<int, Medicine> medicineRepo,
             IRepository<int, Customer> customer,
+            CustomerFeedbackRepository customerFeedbackRepository,
+            MedicineFeedbackRepository medicineFeedbackRepository,
             ILogger<FeedBackService> logger) 
         {
             _transactionservice = transactionService;
             _feedbackRepo = feedbackrepo;
             _medicineRepo = medicineRepo;
             _customer = customer;
+            _customerFeedbackRepo= customerFeedbackRepository;
+            _medicienFeedbackRepo= medicineFeedbackRepository;
             _logger = logger; 
         }
 
@@ -53,12 +59,12 @@ namespace PharmacyManagementApi.Services
                     };
 
                     Medicine medicine = await _medicineRepo.Get(feedbackRequest.MedicineId);
-                    Feedback? checkMedicineFeedback = medicine.Feedbacks.FirstOrDefault(m => m.CustomerId == feedbackRequest.CustomerId);
-                    if (checkMedicineFeedback != null)
-                    {
-                        _logger.LogWarning("Customer {CustomerId} has already given feedback for medicine {MedicineId}", feedbackRequest.CustomerId, feedbackRequest.MedicineId); // Log warning
-                        throw new DuplicateValueException("The user has already given the feedback");
-                    }
+                    //Feedback? checkMedicineFeedback = medicine.Feedbacks.FirstOrDefault(m => m.CustomerId == feedbackRequest.CustomerId);
+                    //if (checkMedicineFeedback != null)
+                    //{
+                    //    _logger.LogWarning("Customer {CustomerId} has already given feedback for medicine {MedicineId}", feedbackRequest.CustomerId, feedbackRequest.MedicineId); // Log warning
+                    //    throw new DuplicateValueException("The user has already given the feedback");
+                    //}
 
                     medicine.FeedbackCount += 1;
                     medicine.FeedbackSum += feedbackRequest.Rating;
@@ -98,9 +104,9 @@ namespace PharmacyManagementApi.Services
             try
             {
                 // Check if the customer is present
-                await _customer.Get(customerId);
+               Customer customer= await _customerFeedbackRepo.Get(customerId);
 
-                List<Feedback> feedbacks = (await _feedbackRepo.Get()).Where(f => f.CustomerId == customerId).ToList();
+                List<Feedback> feedbacks =customer.Feedbacks.ToList();
                 if (feedbacks.Count() == 0)
                 {
                     _logger.LogWarning("No feedback found for customer {CustomerId}", customerId); // Log warning
@@ -128,7 +134,7 @@ namespace PharmacyManagementApi.Services
 
             try
             {
-                Medicine medicine = await _medicineRepo.Get(medicineId);
+                Medicine medicine = await _medicienFeedbackRepo.Get(medicineId);
                 List<Feedback> feedbacks = medicine.Feedbacks.ToList(); 
                 if (feedbacks.Count() == 0)
                 {

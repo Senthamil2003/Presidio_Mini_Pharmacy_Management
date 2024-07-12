@@ -20,14 +20,6 @@ namespace PharmacyManagementApi.Repositories.Joined_Repositories
                     .Include(c=>c.Orders)
                     .ThenInclude(o=>o.OrderDetails)
                     .ThenInclude(od=>od.DeliveryDetails)
-                    .ThenInclude(d=>d.Medicine)
-                    .Include(c=>c.Carts)
-                    .ThenInclude(m=>m.Medicine)
-                    .Include(m => m.Medications)
-                     .ThenInclude(mi => mi.MedicationItems)
-                    .Include(c=>c.Orders)
-                    .ThenInclude(o=>o.OrderDetails)
-                    .ThenInclude(od=>od.Medicine)
                     .ToListAsync();
             }
             catch (Exception ex)
@@ -44,14 +36,8 @@ namespace PharmacyManagementApi.Repositories.Joined_Repositories
                     .Include(c => c.Orders)
                     .ThenInclude(o => o.OrderDetails)
                     .ThenInclude(od => od.DeliveryDetails)
-                    .ThenInclude(d => d.Medicine)
-                    .Include(c => c.Carts)
-                     .ThenInclude(m => m.Medicine)
-                     .Include(m => m.Medications)
-                     .ThenInclude(mi=>mi.MedicationItems)
-                         .Include(c => c.Orders)
-                    .ThenInclude(o => o.OrderDetails)
-                    .ThenInclude(od => od.Medicine)
+
+                  
                     .SingleOrDefaultAsync(u => u.CustomerId == key)
                     ?? throw new NoCustomerFoundException($"No Customer found with given id {key}");
             }

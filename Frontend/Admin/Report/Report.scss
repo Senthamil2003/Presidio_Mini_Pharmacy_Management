@@ -25,6 +25,7 @@ body {
   width: 65px;
   background-color: aqua;
   transition: width 0.5s;
+  
 
   &.active {
     width: 250px;
@@ -138,7 +139,7 @@ body {
   border-radius: 10px;
 }
 
-.report-drop-btn{
+.report-drop-btn {
   background-color: $primcolor;
   color: white;
 }
@@ -161,7 +162,25 @@ body {
     color: $primcolor;
   }
 }
+.custom-spinner {
+  z-index: 4 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
 
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+}
 
 .stats {
   display: flex;
@@ -229,6 +248,7 @@ body {
   margin: 1%;
   padding: 2%;
   height: auto;
+
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
@@ -262,7 +282,6 @@ body {
     }
   }
 }
-
 
 table {
   text-align: center;
@@ -340,10 +359,6 @@ table {
   }
 }
 @media (max-width: 767px) {
-  .nav-cont {
-    position: absolute;
-  }
-
   .navigation {
     &.active {
       left: 0px;

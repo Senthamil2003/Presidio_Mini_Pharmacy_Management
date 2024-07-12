@@ -209,6 +209,25 @@ body {
   color: white;
 }
 
+.custom-spinner {
+  z-index: 4 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+.custom-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
 table {
   text-align: center;
   border-radius: 10px;
@@ -287,7 +306,7 @@ hr {
 
 .approved {
   height: auto;
-  width: 70%;
+  width: auto;
   background-color: #e1fcef;
   border-radius: 5px;
   padding: 5%;
@@ -298,7 +317,7 @@ hr {
 
 .pending {
   height: auto;
-  width: 70%;
+  width: auto;
   background-color: #e9edf5;
   color: #5a6376;
   border-radius: 5px;
@@ -309,13 +328,18 @@ hr {
 
 .disable {
   height: auto;
-  width: 70%;
+  width: auto;
   background-color: #faf0f3;
   border-radius: 5px;
   padding: 5%;
   color: #d12953;
   margin-left: auto;
   margin-right: auto;
+}
+
+.custom-btn {
+  background-color: #438686;
+  color: white;
 }
 
 .form-cont {

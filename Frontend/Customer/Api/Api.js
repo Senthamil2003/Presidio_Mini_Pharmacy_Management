@@ -20,8 +20,8 @@ export async function GetData(url, params, token) {
 
     return data;
   } catch (error) {
-    console.error("An error occurred while fetching data:", error.message);
-    throw error.message;
+    console.error("An error occurred while fetching data:", error);
+    throw error;
   }
 }
 

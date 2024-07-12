@@ -204,6 +204,25 @@ namespace PharmacyManagementApi.Controllers
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }
+        [HttpGet("GetDashboardData")]
+        [ProducesResponseType(typeof(DashboardDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<DashboardDTO>> GetDashBoardData()
+        {
+            try
+            {
+
+                var result = await _adminService.GetDashBoardValue();
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+
         [HttpGet("GetMedicine")]
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]

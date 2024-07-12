@@ -11,30 +11,33 @@ namespace PharmacyManagementApi.Services
 {
     public class CartService : ICartService
     {
-        private readonly StockJoinedRepository _stockRepo;
+      
         private readonly ITransactionService _transactionService;
         private readonly IRepository<int, Medicine> _medicineRepo;
         private readonly IRepository<int, Cart> _cartRepo;
-        private readonly CustomerJoinedRepository _customer;
+     
         private readonly IRepository<int, Order> _orderRepo;
         private readonly IRepository<int, OrderDetail> _orderDetailRepo;
+        private readonly CustomerCartRepository _customerCartRepo;
         private readonly ILogger<CartService> _logger; // Added for logging
 
         public CartService(StockJoinedRepository stockJoinedRepo,
-            CustomerJoinedRepository customerJoinRepo,
+        
             IRepository<int, Order> orderRepo,
             IRepository<int, OrderDetail> orderDetailRepo,
             ITransactionService transactionService,
             IRepository<int, Medicine> medicineRepo,
             IRepository<int, Cart> cartRepo,
+            CustomerCartRepository customerCartRepo,
             ILogger<CartService> logger) // Added logger parameter
         {
-            _stockRepo = stockJoinedRepo;
+           
             _transactionService = transactionService;
             _medicineRepo = medicineRepo;
             _cartRepo = cartRepo;
-            _customer = customerJoinRepo;
+        
             _orderRepo = orderRepo;
+            _customerCartRepo = customerCartRepo;
             _orderDetailRepo = orderDetailRepo;
             _logger = logger; 
         }
@@ -54,7 +57,6 @@ namespace PharmacyManagementApi.Services
                     {
                         MedicineId = result.MedicineId,
                         MedicineName = result.MedicineName,
-                        Category = result.Category.CategoryName,
                         Amount = result.SellingPrice,
                         AvailableQuantity = result.CurrentQuantity
                     };
@@ -94,12 +96,12 @@ namespace PharmacyManagementApi.Services
                         throw new OutOfStockException("Expected Quantity is not available in the stock");
                     }
 
-                    Cart? ExistingCart = (await _cartRepo.Get()).FirstOrDefault(c => (c.MedicineId == addToCart.MedicineId && c.CustomerId == addToCart.UserId));
-                    if (ExistingCart != null)
-                    {
-                        _logger.LogWarning("Cart already exists for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log warning
-                        throw new DuplicateValueException("There is already a cart with medicine Id try updateCart" + addToCart.MedicineId);
-                    }
+                    //Cart? ExistingCart = (await _cartRepo.Get()).FirstOrDefault(c => (c.MedicineId == addToCart.MedicineId && c.CustomerId == addToCart.UserId));
+                    //if (ExistingCart != null)
+                    //{
+                    //    _logger.LogWarning("Cart already exists for medicine {MedicineId} and customer {UserId}", addToCart.MedicineId, addToCart.UserId); // Log warning
+                    //    throw new DuplicateValueException("There is already a cart with medicine Id try updateCart" + addToCart.MedicineId);
+                    //}
 
                     Cart cart = new Cart()
                     {
@@ -254,21 +256,22 @@ namespace PharmacyManagementApi.Services
         /// <param name="userId">The customer ID.</param>
         /// <returns>A success DTO containing the order ID.</returns>
         public async Task<SuccessCheckoutDTO> Checkout(int userId)
-        {
+        {   
             _logger.LogInformation("Performing checkout for customer {UserId}", userId); // Log start
 
             using (var transaction = await _transactionService.BeginTransactionAsync())
             {
                 try
                 {
-                    List<Cart> cart = (await _customer.Get(userId)).Carts.ToList();
+                    Customer customer = (await _customerCartRepo.Get(userId));
+                    List<Cart> cart = customer.Carts.ToList();
                     if (cart.Count() == 0)
                     {
                         _logger.LogWarning("Cart is empty for customer {UserId}", userId); // Log warning
                         throw new CartEmptyException("Your Cart is Empty");
                     }
 
-                    bool customerSubscribe = (await _customer.Get(userId)).IsSubcribed;
+                    bool customerSubscribe =customer.IsSubcribed;
                     float discount = customerSubscribe ? 10 : 0;
 
                     Order order = new Order()
@@ -286,7 +289,7 @@ namespace PharmacyManagementApi.Services
                     foreach (Cart item in cart)
                     {
                         totalSum += item.Cost*item.Quantity;
-                        var stock = await _medicineRepo.Get(item.MedicineId);
+                        var stock = item.Medicine;
                         if (stock.CurrentQuantity < item.Quantity)
                         {
                             _logger.LogWarning("Expected quantity {ExpectedQuantity} is not available in stock for medicine {MedicineId}", item.Quantity, stock.MedicineId); // Log warning

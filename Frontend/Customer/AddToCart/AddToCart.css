@@ -25,6 +25,16 @@ body {
   background-color: #438686;
 }
 
+.btn {
+  background-color: #438686;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(3, 122, 78);
+  color: white;
+}
+
 .navbar {
   background-color: #ffffff !important;
   border-radius: 10px;
@@ -283,6 +293,16 @@ body {
   margin-top: 6%;
 }
 
+.btn {
+  background-color: #438686;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(3, 122, 78);
+  color: white;
+}
+
 .price {
   padding: 2%;
   font-size: 19px;
@@ -317,6 +337,13 @@ body {
   justify-content: space-between;
 }
 
+.login-btn {
+  color: white;
+  display: none;
+  width: 130px;
+  margin-right: 3%;
+}
+
 .svg-bg {
   height: 45px;
   width: 45px;
@@ -336,6 +363,42 @@ body {
 
 .svg-bg:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.no-item-found {
+  visibility: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-cont {
+  padding: 3%;
+  height: 400px;
+  width: 400px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.empty-cont img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.empty-cont p {
+  margin: 4%;
+}
+.empty-cont button {
+  background-color: #438686;
+  color: white;
+  width: 150px;
 }
 
 .d-flex .svg-bg .bi {
@@ -380,6 +443,10 @@ body {
     margin: auto;
     padding: 0.5em;
     border-radius: 0.7em;
+  }
+  .img-cont {
+    height: 100%;
+    width: 100%;
   }
   .card {
     flex-direction: column;

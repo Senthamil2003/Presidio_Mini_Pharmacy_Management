@@ -8,6 +8,8 @@ namespace PharmacyManagementApi.Interface
         public Task<SuccessMedicationDTO> AddMedication(AddMedicationDTO addMedication);
         public  Task<SuccessMedicationDTO> UpdateMedication(UpdateMedication addMedication);
         public  Task<SuccessCheckoutDTO> BuyMedication(int userId, int medicationId);
-        public Task<SuccessMedicationDTO> AddMedicationItem(UpdateMedication updateMedication);
+        public Task<SuccessMedicationDTO> AddMedicationItem(AddMedicationItemDTO updateMedication);
+        public Task<SuccessRemoveDTO> RemoveMedication(int customerId, int MedicationId);
+        public Task<SuccessRemoveDTO> RemoveMedicationItem(int medicationId, int customerId, int MedicationItemId);
     }   
 }

@@ -20,11 +20,22 @@
       href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <link rel="stylesheet" href="./Stock.css" />
+
     <title>SideBAr</title>
   </head>
 
   <body>
+    <div class="custom-spinner">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <div class="tot-cont">
       <!-- Add brand modal -->
       <div
@@ -155,7 +166,7 @@
             </li>
             <br />
             <li>
-              <a href="../Report/Dashboard.html" class="bg-cont">
+              <a href="../Report/PurchaseReport.html" class="bg-cont">
                 <span class="icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -182,22 +193,23 @@
             </li>
 
             <li>
-              <a href="../Purchase/Purchase.html" class="bg-cont">
+              <a href="../Stock/Stock.html" class="bg-cont active-bg">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-bag"
+                    class="bi bi-prescription2 icon-active"
                     viewBox="0 0 16 16"
                   >
+                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
                     />
                   </svg>
                 </span>
-                <span class="title"> Purchase</span>
+                <span class="title">Stock</span>
               </a>
             </li>
             <li>
@@ -220,27 +232,27 @@
               </a>
             </li>
             <li>
-              <a href="../Stock/Stock.html" class="bg-cont active-bg">
+              <a href="../Purchase/Purchase.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-prescription2 icon-active"
+                    class="bi bi-bag"
                     viewBox="0 0 16 16"
                   >
-                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
+                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
                     />
                   </svg>
                 </span>
-                <span class="title">Stock</span>
+                <span class="title"> Purchase</span>
               </a>
             </li>
+
             <li>
-              <a href="./Delivery.html" class="bg-cont">
+              <a href="../Delivery/Delivery.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -259,7 +271,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="bg-cont">
+              <a href="../../Customer/Login/Login.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -279,7 +291,7 @@
                     />
                   </svg>
                 </span>
-                <span class="title">Logout</span>
+                <span class="title" id="logout">Logout</span>
               </a>
             </li>
           </ul>
@@ -380,7 +392,7 @@
                   id="floatingTextarea"
                 ></textarea>
               </div>
-              
+
               <div class="align-form">
                 <div class="mb-4">
                   <label for="sellingPrice" class="form-label"
@@ -408,9 +420,7 @@
               </div>
               <div class="align-form">
                 <div class="mb-4">
-                  <label for="weight" class="form-label"
-                    >Weight</label
-                  >
+                  <label for="weight" class="form-label">Weight</label>
                   <input
                     type="text"
                     class="form-control"
@@ -419,7 +429,9 @@
                   />
                 </div>
                 <div class="mb-4">
-                  <label for="item-cont" class="form-label">Quantity Per Pack</label>
+                  <label for="item-cont" class="form-label"
+                    >Quantity Per Pack</label
+                  >
                   <input
                     type="number"
                     class="form-control"
@@ -427,19 +439,17 @@
                     placeholder="Enter quantity"
                   />
                 </div>
-                 
-                </div>
               </div>
-              <div class="btn-cont">
-                <button
-                  type="submit"
-                  onclick="Submitdata(event)"
-                  id="submit-btn"
-                  class="btn btn-primary"
-                >
-                  Add Product
-                </button>
-              </div>
+            </div>
+            <div class="btn-cont">
+              <button
+                type="submit"
+                onclick="Submitdata(event)"
+                id="submit-btn"
+                class="btn btn-primary"
+              >
+                Add Product
+              </button>
             </div>
           </form>
         </div>
@@ -456,6 +466,10 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
     ></script>
     <script>
       $(document).ready(function () {

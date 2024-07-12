@@ -163,6 +163,25 @@ body {
   color: #438686;
 }
 
+.custom-spinner {
+  z-index: 4 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+.custom-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
 .stats {
   display: flex;
   align-items: center;
@@ -332,9 +351,6 @@ table tbody {
 }
 
 @media (max-width: 767px) {
-  .nav-cont {
-    position: absolute;
-  }
   .navigation.active {
     left: 0px;
     width: 100%;

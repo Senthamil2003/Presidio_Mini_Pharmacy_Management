@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Logging; 
 using System;
+using System.Security.Claims;
 
 namespace PharmacyManagementApi.Services
 {
@@ -57,7 +58,7 @@ namespace PharmacyManagementApi.Services
                         SuccessLoginDTO success = new SuccessLoginDTO()
                         {
                             Code = 200,
-                            Message = "Welcome back " + customer.Name,
+                            Role = customer.Role,
                             AccessToken = await _tokenService.GenerateToken(customer)
                         };
                         return success;
@@ -149,5 +150,28 @@ namespace PharmacyManagementApi.Services
             }
 
         }
+        public (bool isValid, string? role) ValidateUserTokenAndGetRole(string token)
+        {
+            try
+            {
+                var (isValid, claimsPrincipal) = _tokenService.ValidateToken(token);
+                if (!isValid || claimsPrincipal == null)
+                {
+                    return (false, null);
+                }
+
+                var roleClaim = claimsPrincipal.FindFirst(ClaimTypes.Role);
+                string? role = roleClaim?.Value;
+
+                return (true, role);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while validating user token and extracting role.");
+                throw;
+            }
+        }
+
+
     }
 }

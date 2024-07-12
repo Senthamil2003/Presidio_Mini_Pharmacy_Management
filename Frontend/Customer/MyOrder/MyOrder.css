@@ -1,0 +1,335 @@
+@font-face {
+  font-family: poppin-regular;
+  src: url("../Assets/fonts/Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: poppin-extra;
+  src: url("../Assets/fonts/Poppins-ExtraBold.ttf");
+}
+@font-face {
+  font-family: logo;
+  src: url("../Assets/fonts/MilestoneFreeVersion-Script.otf");
+}
+@font-face {
+  font-family: poppin-bold;
+  src: url("../Assets/fonts/Poppins-Bold.ttf");
+}
+.navbar {
+  background-color: #ffffff !important;
+  border-radius: 10px;
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.navbar-brand {
+  font-family: logo;
+  color: #438686 !important;
+  font-size: 22px;
+  font-weight: 550;
+}
+
+.active {
+  color: #438686 !important;
+  font-weight: 600;
+}
+
+.btn {
+  background-color: #438686;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(3, 122, 78);
+  color: white;
+}
+
+table {
+  text-align: center;
+  width: 100% !important;
+  border-radius: 10px;
+}
+table td,
+table th {
+  vertical-align: middle;
+  height: 60px;
+  color: #666;
+}
+table th {
+  border-color: rgb(227, 224, 224) !important;
+  color: #438686;
+}
+table tbody {
+  border-color: rgb(227, 224, 224) !important;
+}
+
+.login-btn {
+  color: white;
+  display: none;
+  width: 130px;
+  margin-right: 3%;
+}
+
+.custom-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+}
+.custom-spinner .spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+.no-item-found {
+  visibility: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-cont {
+  padding: 3%;
+  height: 400px;
+  width: 400px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.empty-cont img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.empty-cont p {
+  margin: 4%;
+}
+.empty-cont button {
+  background-color: #438686;
+  color: white;
+  width: 150px;
+}
+
+.card {
+  color: #000000;
+  margin: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+}
+
+.order-head {
+  font-size: 27px;
+  font-family: poppin-extra;
+  color: #438686;
+  text-align: center;
+  padding: 1%;
+}
+
+.card.card.bg-light-subtle .card-title {
+  color: dimgrey;
+}
+
+.card img {
+  max-width: 25%;
+  margin: auto;
+  padding: 0.5em;
+  border-radius: 0.7em;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-section {
+  max-width: 60%;
+}
+
+.price {
+  padding: 2%;
+  font-size: 19px !important;
+  color: #438686;
+  margin-right: 10%;
+  font-family: poppin-bold;
+}
+
+.card-body {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cta-section {
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.cta-section .btn {
+  padding: 0.3em 0.5em;
+  /* color: #696969; */
+}
+
+.card-title {
+  color: #438686;
+  font-size: 19px;
+}
+
+.card .company {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: gray;
+}
+
+.head-txt {
+  font-size: 16px;
+  font-family: poppin-bold;
+  color: #438686;
+}
+
+.card-text {
+  margin-bottom: 5% !important;
+}
+
+.accordion-button.success {
+  background-color: #28a745; /* Bootstrap's default success green color */
+  color: white; /* Change text color to white for better contrast */
+}
+
+.accordion-button.success:not(.collapsed) {
+  background-color: #218838; /* A darker shade of green for the active state */
+  color: white;
+}
+
+.accordion-button.success::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+.card-cont {
+  margin-top: 3%;
+}
+.card-cont p {
+  margin-bottom: 1.5%;
+}
+
+.card.bg-light-subtle .cta-section .btn {
+  background-color: #898989;
+  border-color: #898989;
+}
+
+.quantity-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+.quantity-field .value-button {
+  border: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;
+  padding: 0;
+  background: #438686;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+
+.quantity-field .value-button:hover {
+  background: rgb(230, 230, 230);
+}
+
+.quantity-field .value-button:active {
+  background: rgb(210, 210, 210);
+}
+
+.quantity-field .decrease-button {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+.quantity-field .increase-button {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+
+.quantity-field .number {
+  display: inline-block;
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 100%;
+  line-height: 40px;
+  font-size: 11pt;
+  box-sizing: border-box;
+  background: white;
+  font-family: calibri;
+}
+
+.quantity-field .number::selection {
+  background: none;
+}
+
+.card {
+  padding: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  height: auto;
+  width: 100%;
+  flex-direction: row;
+  background-color: #ffffff;
+  border: 0;
+  margin: auto;
+}
+
+.custom-accordian-data {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70%;
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 15px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  margin-top: 1%;
+}
+
+.cta-section button {
+  width: auto;
+  height: 40px;
+}
+
+@media screen and (max-width: 850px) {
+  .accordion-body {
+    overflow: scroll;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+  .card img {
+    max-width: 50%;
+  }
+}
+
+/*# sourceMappingURL=MyOrder.css.map */

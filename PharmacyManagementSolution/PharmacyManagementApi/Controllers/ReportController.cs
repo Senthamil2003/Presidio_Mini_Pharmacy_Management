@@ -34,7 +34,7 @@ namespace PharmacyManagementApi.Controllers
         {
             try
             {
-                _logger.LogInformation($"Received a request to retrieve purchase report from {startDate} to {endDate}.");
+               
 
                 var result = await _reportService.GetPurchasesReport(startDate, endDate);
                 _logger.LogInformation("Purchase report retrieved successfully.");
@@ -56,13 +56,13 @@ namespace PharmacyManagementApi.Controllers
         [HttpGet("OrderReport")]
         [ProducesResponseType(typeof(List<OrderReportDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<List<OrderReportDTO>>> OrderReport(DateTime startDate, DateTime endDate)
+        public async Task<ActionResult<List<OrderReportDTO>>> OrderReport(DateTime startDate, DateTime endDate)     
         {
             try
             {
-                _logger.LogInformation($"Received a request to retrieve order report from {startDate} to {endDate}.");
+               
 
-                var result = await _reportService.GetOrderReport(startDate, endDate);
+                var result = await _reportService.GetOrderReport(startDate,endDate);
                 _logger.LogInformation("Order report retrieved successfully.");
                 return Ok(result);
             }

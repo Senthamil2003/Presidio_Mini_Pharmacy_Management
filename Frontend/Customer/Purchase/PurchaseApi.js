@@ -1,27 +1,76 @@
 import { GetData, PostData } from "../Api/Api.js";
 
 var Product = [];
+var token = localStorage.getItem("token");
+
+document.onload = Validate();
+async function Validate() {
+  try {
+    var spinner = document.querySelector(".custom-spinner");
+    spinner.style.visibility = "visible";
+    var validate = await GetData(
+      "http://localhost:5033/api/Auth/validate",
+      {},
+      token
+    );
+    console.log(validate);
+    await InitializeData();
+  } catch (error) {
+    var spinner = document.querySelector(".custom-spinner");
+
+    document.getElementById("profile").style.display = "none";
+    document.getElementById("cart-icon").style.display = "none";
+    document.querySelector(".login-btn").style.display = "block";
+
+    console.log(error);
+  } finally {
+    await InitializeData();
+  }
+}
+document.getElementById("logout").addEventListener("click", () => {
+  localStorage.removeItem("token");
+  location.reload();
+});
 
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get(param);
 }
 
-document.onload = await InitializeData();
-
 async function InitializeData() {
-  const searchElement = getQueryParam("search");
-  if (searchElement) {
-    Product = await GetData("http://localhost:5033/api/View/ViewAllItems", {
-      searchContent: searchElement,
-    });
-    FilterData();
+  try {
+    const searchElement = getQueryParam("search");
+    document.getElementById("search-val").value=searchElement;
+    if (searchElement) {
+      Product = await GetData("http://localhost:5033/api/View/ViewAllItems", {
+        searchContent: searchElement,
+      });
+      FilterData();
+    } else {
+      const category = getQueryParam("category");
+      Product = await GetData(
+        "http://localhost:5033/api/View/GetMedicineByCategory",
+        {
+          searchContent: category,
+        }
+      );
+      FilterData();
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    var spinner = document.querySelector(".custom-spinner");
+    spinner.style.visibility = "hidden";
   }
 }
-
 function CreateElement(FilterResult, currentPage = 1, itemsPerPage = 10) {
   var container = document.getElementById("item-cont");
+  
   var content = "";
+  if (Product.length == 0) {
+    container.innerHTML = "<p class='no-item'>No Element Found<p>";
+    return;
+  }
 
   // Calculate start and end index for current page
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -45,24 +94,32 @@ function CreateElement(FilterResult, currentPage = 1, itemsPerPage = 10) {
             </h5>
             <p class="card-text company">${data.brandName}</p>
             <div id="rating">
-              <span class="rating-count">${i}</span>
+              <span class="rating-count">${
+                data.feedbackCount != 0
+                  ? (
+                      Number(data.feedbackSum) / Number(data.feedbackCount)
+                    ).toFixed(1)
+                  : 0
+              }</span>
               <span class="fa fa-star" id="1"></span>
               <span class="fa fa-star" id="2"></span>
               <span class="fa fa-star" id="3"></span>
               <span class="fa fa-star" id="4"></span>
               <span class="fa fa-star" id="5"></span>
-              <span>(10)</span>
+              <span>(${data.feedbackCount})</span>
             </div>
             <div class="card-cont">
               <p class="card-text">Weight:${data.weight}</p>
-              <p class="card-text">Pack of ${data.itemPerPack} Item${data.ItemPerPack>1? "S":""}</p>
+              <p class="card-text">Pack of ${data.itemPerPack} Item${
+      data.ItemPerPack > 1 ? "S" : ""
+    }</p>
             </div>
           </div>
           <div class="cta-section">
             <div class="price">$${data.amount}</div>
             <div class="quantity-field">
               <a href="../Product/Product.html?productId=${data.medicineId}">
-                <button class="product-btn">View Product</button>
+                <button class="btn product-btn">View Product</button>
               </a>
             </div>
           </div>
@@ -101,6 +158,7 @@ function createPaginationButtons(totalItems, itemsPerPage, currentPage) {
   paginationHtml += "</div>";
   return paginationHtml;
 }
+document.getElementById("search-item").addEventListener("click", Search);
 
 document.getElementById("filter-btn").addEventListener("click", FilterData);
 
@@ -141,4 +199,12 @@ function SetRating() {
       }
     }
   });
+}
+document.querySelector(".reset-btn").addEventListener("click", Reset);
+async function Reset() {
+  await CreateElement(Product, 1, 5);
+}
+function Search() {
+  var search = document.getElementById("search-val").value;
+  window.location.href = `./Purchase.html?search=${search}`;
 }

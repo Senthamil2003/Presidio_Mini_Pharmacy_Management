@@ -17,6 +17,7 @@ namespace PharmacyManagementApi.Interface
         public Task<List<CategoryDTO>> GetAllCategory();
         public Task<List<BrandDTO>> GetAllBrand();
         public  Task<SuccessAddMedicine> AddMedicine(AddMedicineDTO medicineDTO);
+        public Task<DashboardDTO> GetDashBoardValue();
         public Task<List<Vendor>> GetAllVendor();
 
     }

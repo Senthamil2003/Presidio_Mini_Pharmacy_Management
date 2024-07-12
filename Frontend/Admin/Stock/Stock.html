@@ -14,6 +14,11 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
     <link rel="stylesheet" href="./Stock.css" />
     <title>SideBAr</title>
   </head>
@@ -32,7 +37,7 @@
             </li>
             <br />
             <li>
-              <a href="../Report/Dashboard.html" class="bg-cont">
+              <a href="../Report/PurchaseReport.html" class="bg-cont">
                 <span class="icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,22 +64,23 @@
             </li>
 
             <li>
-              <a href="../Purchase/Purchase.html" class="bg-cont">
+              <a href="../Stock/Stock.html" class="bg-cont active-bg">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-bag"
+                    class="bi bi-prescription2 icon-active"
                     viewBox="0 0 16 16"
                   >
+                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
                     />
                   </svg>
                 </span>
-                <span class="title"> Purchase</span>
+                <span class="title">Stock</span>
               </a>
             </li>
             <li>
@@ -97,27 +103,27 @@
               </a>
             </li>
             <li>
-              <a href="../Stock/Stock.html" class="bg-cont active-bg">
+              <a href="../Purchase/Purchase.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-prescription2 icon-active"
+                    class="bi bi-bag"
                     viewBox="0 0 16 16"
                   >
-                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
+                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
                     />
                   </svg>
                 </span>
-                <span class="title">Stock</span>
+                <span class="title"> Purchase</span>
               </a>
             </li>
+
             <li>
-              <a href="./Delivery.html" class="bg-cont">
+              <a href="../Delivery/Delivery.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +142,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="bg-cont">
+              <a href="../../Customer/Login/Login.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +162,7 @@
                     />
                   </svg>
                 </span>
-                <span class="title">Logout</span>
+                <span class="title" id="logout">Logout</span>
               </a>
             </li>
           </ul>
@@ -167,13 +173,17 @@
         <p class="purchase-head">Current Stock</p>
         <div class="table-cont">
           <div class="table-top">
-            <div class="table-left"></div>
+            <div class="table-left">
+              <a href="./AddProduct.html"
+                ><button class="btn custom-btn">Create Medicine</button></a
+              >
+            </div>
             <div class="table-right">
               <div class="search input-group">
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="Search"
+                  placeholder=""
                   aria-label="Example text with button addon"
                   aria-describedby="button-addon1"
                 />
@@ -181,6 +191,7 @@
                   class="btn btn-outline-success"
                   type="button"
                   id="button-addon1"
+                  disabled
                 >
                   Search
                 </button>
@@ -191,7 +202,7 @@
                   type="button"
                   class="filter"
                   data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
+                  data-bs-target="#filtermodal"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +221,7 @@
                 <!-- Modal -->
                 <div
                   class="modal fade"
-                  id="exampleModal"
+                  id="filtermodal"
                   tabindex="-1"
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
@@ -219,7 +230,7 @@
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">
-                          Modal title
+                          Filter
                         </h5>
                         <button
                           type="button"
@@ -228,17 +239,45 @@
                           aria-label="Close"
                         ></button>
                       </div>
-                      <div class="modal-body">...</div>
+                      <div class="modal-body">
+                        <div class="container">
+                          <form action="">
+                            <div class="mb-3">
+                              <label for="sortWith" class="form-label"
+                                >Sort With</label
+                              >
+                              <select class="form-select" id="sortWith">
+                                <option selected>Sort with</option>
+                                <option value="Medicine Name">
+                                  Medicine Name
+                                </option>
+                                <option value="Price">Price</option>
+                                <option value="Quantity">Quantity</option>
+                              </select>
+                            </div>
+                            <div class="mb-3">
+                              <label for="sortBy" class="form-label"
+                                >Sort by</label
+                              >
+                              <select class="form-select" id="sortBy">
+                                <option selected>Sort by</option>
+                                <option value="Ascending">Ascending</option>
+                                <option value="Descending">Descending</option>
+                              </select>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
                       <div class="modal-footer">
                         <button
                           type="button"
                           class="btn btn-secondary"
                           data-bs-dismiss="modal"
                         >
-                          Close
+                          Reset
                         </button>
                         <button type="button" class="btn btn-primary">
-                          Save changes
+                          Apply
                         </button>
                       </div>
                     </div>
@@ -260,18 +299,8 @@
                 <th scope="col">Action</th>
               </tr>
             </thead>
-            <tbody class="product-table">
-              <tr>
-                <td>1</td>
-                <td>Paracetamol</td>
-                <td>Feaver</td>
-                <td>Tylenol</td>
-                <td>20</td>
-                <td><div class="approved">Active</div></td>
-                <td><button class="btn btn-outline-success">View</button></td>
-              </tr>
-              <tr></tr>
-            </tbody>
+            <tbody class="product-table" id="productTableBody"></tbody>
+
             <tfoot>
               <tr>
                 <td colspan="7">
@@ -293,7 +322,12 @@
       </div>
     </div>
 
-    <script src="./Stock.js"></script>
+    <script src="./StockApi.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

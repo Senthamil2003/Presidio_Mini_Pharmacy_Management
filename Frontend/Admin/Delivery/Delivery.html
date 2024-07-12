@@ -59,22 +59,23 @@
             </li>
 
             <li>
-              <a href="../Purchase/Purchase.html" class="bg-cont">
+              <a href="../Stock/Stock.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-bag"
+                    class="bi bi-prescription2"
                     viewBox="0 0 16 16"
                   >
+                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
                     />
                   </svg>
                 </span>
-                <span class="title"> Purchase</span>
+                <span class="title">Stock</span>
               </a>
             </li>
             <li>
@@ -97,27 +98,27 @@
               </a>
             </li>
             <li>
-              <a href="../Stock/Stock.html" class="bg-cont">
+              <a href="../Purchase/Purchase.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-prescription2"
+                    class="bi bi-bag"
                     viewBox="0 0 16 16"
                   >
-                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
+                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
                     />
                   </svg>
                 </span>
-                <span class="title">Stock</span>
+                <span class="title"> Purchase</span>
               </a>
             </li>
+
             <li>
-              <a href="./Delivery.html" class="bg-cont active-bg">
+              <a href="../Delivery/Delivery.html" class="bg-cont active-bg">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +137,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="bg-cont">
+              <a href="../../Customer/Login/Login.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +157,7 @@
                     />
                   </svg>
                 </span>
-                <span class="title">Logout</span>
+                <span class="title" id="logout">Logout</span>
               </a>
             </li>
           </ul>
@@ -168,160 +169,32 @@
         <div class="table-cont">
           <div class="table-top">
             <div class="table-left">
-              <div class="report-btn active">All</div>
-              <div class="report-btn">Deliver</div>
+              <div
+                class="report-btn active"
+                value="all"
+                onclick=" handleFilter(event)"
+              >
+                All
+              </div>
+              <div
+                class="report-btn"
+                value="deliver"
+                onclick=" handleFilter(event)"
+              >
+                Dispatch
+              </div>
+           
             </div>
             <div class="table-right">
               <div class="search input-group">
                 <input
                   type="text"
+                  id="search-val"
                   class="form-control"
                   placeholder="Search"
                   aria-label="Example text with button addon"
                   aria-describedby="button-addon1"
                 />
-                <button
-                  class="btn btn-outline-success"
-                  type="button"
-                  id="button-addon1"
-                >
-                  Search
-                </button>
-              </div>
-              <div>
-                <!-- Button trigger modal -->
-                <button
-                  type="button"
-                  class="filter"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="23"
-                    height="23"
-                    fill="currentColor"
-                    class="bi bi-funnel"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"
-                    />
-                  </svg>
-                </button>
-
-                <div
-                  class="modal fade"
-                  id="exampleModal"
-                  tabindex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">
-                          Filter
-                        </h5>
-                        <button
-                          type="button"
-                          class="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div class="modal-body">
-                        <!-- Modal Content -->
-                        <div class="container form-container">
-                          <form id="filterForm">
-                            <div class="form-row">
-                              <div class="form-group col-md-6">
-                                <label for="fromDate">From Date</label>
-                                <input
-                                  type="date"
-                                  class="form-control"
-                                  id="fromDate"
-                                  value="2023-01-01"
-                                />
-                              </div>
-                              <div class="form-group col-md-6">
-                                <label for="toDate">To Date</label>
-                                <input
-                                  type="date"
-                                  class="form-control"
-                                  id="toDate"
-                                  value="2023-12-31"
-                                />
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="nameSelect">Name</label>
-                              <select class="form-control" id="nameSelect">
-                                <option value="default">Select Name</option>
-                                <option value="name1">Name 1</option>
-                                <option value="name2">Name 2</option>
-                                <option value="name3">Name 3</option>
-                              </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="priceSelect">Price</label>
-                              <select class="form-control" id="priceSelect">
-                                <option value="default">Select Price</option>
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                              </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="quantitySelect">Quantity</label>
-                              <select class="form-control" id="quantitySelect">
-                                <option value="default">Select Quantity</option>
-                                <option value="1">1</option>
-                                <option value="5">5</option>
-                                <option value="10">10</option>
-                              </select>
-                            </div>
-                            <div class="form-group">
-                              <label for="sortSelect">Sort By</label>
-                              <select class="form-control" id="sortSelect">
-                                <option value="ascending">Ascending</option>
-                                <option value="descending">Descending</option>
-                              </select>
-                            </div>
-                            <div class="btn-container">
-                              <button
-                                type="button"
-                                class="btn btn-primary"
-                                id="applyButton"
-                              >
-                                Apply
-                              </button>
-                              <button
-                                type="reset"
-                                class="btn btn-secondary"
-                                id="resetButton"
-                              >
-                                Reset
-                              </button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                      <div class="modal-footer">
-                        <button
-                          type="button"
-                          class="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          Close
-                        </button>
-                        <button type="button" class="btn btn-primary">
-                          Save changes
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -338,59 +211,22 @@
                 <th scope="col">Status</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>2213321</td>
-                <td>6757576</td>
-                <td>Paracetamol</td>
-                <td>10</td>
-                <td>03/04/2025</td>
-                <td><button class="btn btn-warning">Not Delivered</button></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>2213321</td>
-                <td>6757576</td>
-                <td>Paracetamol</td>
-                <td>10</td>
-                <td>03/04/2025</td>
-                <td><button class="btn btn-success">Delivered</button></td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>2213321</td>
-                <td>6757576</td>
-                <td>Paracetamol</td>
-                <td>10</td>
-                <td>03/04/2025</td>
-                <td><button class="btn btn-warning">Not Delivered</button></td>
-              </tr>
-
+            <tbody id="orderTableBody">
               <tr></tr>
             </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="7">
-                  <div class="table-footer">
-                    <div class="pagination-info">1-10 of 97</div>
-                    <div class="pagination">
-                      <button class="page-btn">&laquo;</button>
-                      <button class="page-btn">1</button>
-                      <button class="page-btn">2</button>
-                      <button class="page-btn">3</button>
-                      <button class="page-btn">&raquo;</button>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tfoot>
           </table>
+          <tfoot>
+            <div class="table-footer">
+              <div class="pagination-info"></div>
+              <div class="pagination"></div>
+            </div>
+          </tfoot>
         </div>
       </div>
     </div>
 
     <script src="./Delivery.js"></script>
+    <script src="./DeliverApi.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

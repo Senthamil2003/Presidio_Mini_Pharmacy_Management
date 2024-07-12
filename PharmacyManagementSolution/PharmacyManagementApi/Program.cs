@@ -114,6 +114,12 @@ namespace PharmacyManagementApi
             builder.Services.AddScoped<IRepository<int, MedicationItem>, MedicationItemRepository>();
             builder.Services.AddScoped<ITransactionService, TransactionRepository>();
             builder.Services.AddScoped<StockJoinedRepository, StockJoinedRepository>();
+            builder.Services.AddScoped<CustomerCartRepository, CustomerCartRepository>();
+            builder.Services.AddScoped<CustomerMedicationRepository, CustomerMedicationRepository>();
+            builder.Services.AddScoped<CustomerFeedbackRepository, CustomerFeedbackRepository>();
+            builder.Services.AddScoped<MedicationJoinedRepository, MedicationJoinedRepository>();
+            builder.Services.AddScoped<CustomerOnlyCartRepo, CustomerOnlyCartRepo>();
+            builder.Services.AddScoped<MedicineFeedbackRepository, MedicineFeedbackRepository>();
             builder.Services.AddScoped<OrderDetailsJoinedRepository, OrderDetailsJoinedRepository>();
             builder.Services.AddScoped<CustomerJoinedRepository, CustomerJoinedRepository>();
             #endregion

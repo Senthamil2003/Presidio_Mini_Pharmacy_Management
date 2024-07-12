@@ -105,13 +105,11 @@ namespace PharmacyManagementApi.Controllers
         [HttpPut("AddMedicationItem")]
         [ProducesResponseType(typeof(SuccessMedicationDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<SuccessMedicationDTO>> AddMedicationItem(UpdateMedication updateMedication)
+        public async Task<ActionResult<SuccessMedicationDTO>> AddMedicationItem(AddMedicationItemDTO updateMedication)
         {
             try
             {
-                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
-                var userid = Convert.ToInt32(userstring);
-                updateMedication.CustomerId=userid;
+
                 var result = await _medicationService.AddMedicationItem(updateMedication);
 
                 return Ok(result);
@@ -122,5 +120,42 @@ namespace PharmacyManagementApi.Controllers
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }
+        [HttpDelete("RemoveMedication")]
+        [ProducesResponseType(typeof(SuccessRemoveDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SuccessRemoveDTO>> DeleteMedication(int medicationId)
+        {
+            try
+            {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                var result = await _medicationService.RemoveMedication(userid,medicationId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
+        [HttpDelete("RemoveMedicationItem")]
+        [ProducesResponseType(typeof(SuccessRemoveDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<SuccessRemoveDTO>> DeleteMedicationItem(int medicationId,int medicationItemId)
+        {
+            try
+            {
+                var userstring = User.Claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+                var userid = Convert.ToInt32(userstring);
+                var result = await _medicationService.RemoveMedicationItem( medicationId,userid, medicationItemId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(new ErrorModel(501, ex.Message));
+            }
+        }
     }
+
 }

@@ -35,13 +35,12 @@ namespace PharmacyManagementApi.Services
                     .Where(pd => pd.Purchase.PurchaseDate >= startDate && pd.Purchase.PurchaseDate <= endDate)
                     .GroupBy(pd => new
                     {
-                        pd.Purchase.PurchaseDate,
                         pd.MedicineId,
                         pd.Medicine.MedicineName
                     })
                     .Select(g => new PurchaseReportDTO
                     {
-                        PurchaseDate = g.Key.PurchaseDate,
+                        
                         MedicineId = g.Key.MedicineId,
                         MedicineName = g.Key.MedicineName,
                         TotalAmount = g.Sum(pd => pd.TotalSum),
@@ -66,6 +65,7 @@ namespace PharmacyManagementApi.Services
             }
         }
 
+
         /// <summary>
         /// Retrieves the order report for a given date range.
         /// </summary>
@@ -82,13 +82,13 @@ namespace PharmacyManagementApi.Services
                     .Where(od => od.Order.OrderDate >= startDate && od.Order.OrderDate <= endDate)
                     .GroupBy(od => new
                     {
-                        od.Order.OrderDate,
+                      
                         od.MedicineId,
                         od.Medicine.MedicineName,
                     })
                     .Select(g => new OrderReportDTO
                     {
-                        OrdereDate = g.Key.OrderDate,
+                       
                         MedicineId = g.Key.MedicineId,
                         MedicineName = g.Key.MedicineName,
                         TotalAmount = g.Sum(od => od.Cost),
@@ -112,5 +112,6 @@ namespace PharmacyManagementApi.Services
                 throw;
             }
         }
+
     }
 }

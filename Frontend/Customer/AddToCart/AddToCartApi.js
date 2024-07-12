@@ -1,10 +1,33 @@
-var token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzIwNzc3MDY2fQ.7BxTYPoTyvdfGfS7hu0DYuBu1uBl-CasYQL8h8fr73Y";
+var token = localStorage.getItem("token");
+document.onload = Validate();
 
-document.onload = Initialize();
+async function Validate() {
+  var spinner = document.querySelector(".custom-spinner");
+  spinner.style.backgroundColor = "rgba(255, 255, 255, 1)";
+  spinner.style.visibility = "visible";
+  try {
+    const response = await fetch("http://localhost:5033/api/Auth/validate", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error);
+    }
+    const data = await response.json();
+    console.log(data);
+    await Initialize();
+  } catch (error) {
+    window.location.href = "../Login/Login.html";
+  }
+}
 async function Initialize() {
   var spinner = document.querySelector(".custom-spinner");
-  spinner.style.visibility = "visible";
+
   try {
     const response = await fetch("http://localhost:5033/api/View/ViewMyCart", {
       method: "GET",
@@ -20,13 +43,13 @@ async function Initialize() {
     }
     const data = await response.json();
     console.log(data);
-  
+
     CreateElement(data);
     CreateCheckout(data);
   } catch (error) {
     spinner.style.visibility = "hidden";
-    var Container = document.getElementById("cart-cont");
-    Container.innerHTML = `<p class="empty-cart">No Item available</p>`;
+    document.querySelector(".no-item-found").style.visibility = "visible";
+    document.querySelector(".cart").style.display = "none";
     // console.error("An error occurred while fetching data:", error.message);
     // console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkooooooooooooooooooooooooooooo");
   }
@@ -35,28 +58,34 @@ function CreateCheckout(data) {
   var totalItem = data.length;
   var deliverycharge = 100;
   var totalamount = 0;
+
   data.forEach((element) => {
     totalamount += element.quantity * element.cost;
   });
+
   if (totalamount >= 500) {
     deliverycharge = 0;
   }
+
   var totalItemCont = document.getElementById("total-item");
   var deliveryCont = document.getElementById("delivery-charge");
   var totalAmountCont = document.getElementById("total-amount");
   var estimateAmontCont = document.getElementById("final-total");
-  totalAmountCont.innerHTML = totalamount;
+
   totalItemCont.innerHTML = totalItem;
+  totalAmountCont.innerHTML = totalamount;
   deliveryCont.innerHTML = deliverycharge;
   estimateAmontCont.innerHTML = totalamount + deliverycharge;
+
   var freetext = document.getElementById("free-txt");
   var freebar = document.getElementById("free-bar");
+
   if (totalamount < 500) {
     freetext.innerHTML = `Add ${500 - totalamount} to get free delivery`;
     var percent = (totalamount / 500) * 100;
 
-    freebar.innerHTML = percent;
-    freebar.style.width = `${percent}`;
+    freebar.innerHTML = `${percent.toFixed(2)}%`; // Show percentage
+    freebar.style.width = `${percent.toFixed(2)}%`; // Set width with percentage
   } else {
     freetext.innerHTML = "You are eligible for Free delivery";
     freebar.innerHTML = "100%";
@@ -121,6 +150,7 @@ async function increaseValue(button, limit) {
   var value = parseInt(numberInput.innerHTML, 10);
   if (isNaN(value)) value = 0;
   if (limit && value >= limit) return;
+  spinner.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
   spinner.style.visibility = "visible";
   try {
     params = {
@@ -168,11 +198,13 @@ async function increaseValue(button, limit) {
 
 async function decreaseValue(button) {
   var spinner = document.querySelector(".custom-spinner");
-  spinner.style.visibility = "visible";
+
   const numberInput = button.parentElement.querySelector(".number");
   var value = parseInt(numberInput.innerHTML, 10);
   if (isNaN(value)) value = 0;
   if (value < 1) return;
+  spinner.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+  spinner.style.visibility = "visible";
   try {
     params = {
       medicineId: button.value,
@@ -211,7 +243,7 @@ async function decreaseValue(button) {
       gravity: "top",
       position: "right",
       style: {
-        background: "rgba(241, 73, 47, 0.989);",
+        background: "rgba(241, 73, 47, 0.989)",
       },
     }).showToast();
 
@@ -252,7 +284,7 @@ async function Delete(event) {
       gravity: "top",
       position: "right",
       style: {
-        background: "rgba(241, 73, 47, 0.989);",
+        background: "rgba(19, 236, 19, 0.989)",
       },
     }).showToast();
     await Initialize();
@@ -263,6 +295,8 @@ async function Delete(event) {
 
 async function Checkout() {
   try {
+    var spinner = document.querySelector(".custom-spinner");
+    spinner.style.visibility = "visible";
     const response = await fetch("http://localhost:5033/api/Cart/Checkout", {
       method: "POST",
       headers: {
@@ -270,7 +304,7 @@ async function Checkout() {
         Authorization: "Bearer " + token,
       },
     });
-
+    spinner.style.visibility = "hidden";
     if (!response.ok) {
       const errorResponse = await response.json();
       throw new Error(
@@ -281,9 +315,33 @@ async function Checkout() {
     }
 
     const data = await response.json();
+    Toastify({
+      text: "Checkout Successfull",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      style: {
+        background: "rgba(19, 236, 19, 0.989)",
+      },
+    }).showToast();
     await Initialize();
     console.log("Data posted successfully:", data);
   } catch (error) {
+    spinner.style.visibility = "hidden";
+    Toastify({
+      text: error.message,
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      style: {
+        background: "rgba(241, 73, 47, 0.989)",
+      },
+    }).showToast();
+
     console.error("An error occurred while posting data:", error.message);
   }
 }
+document.getElementById("logout").addEventListener("click", () => {
+  localStorage.removeItem("token");
+  location.reload();
+});

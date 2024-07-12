@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="./Purchase.css" />
   </head>
   <body>
+    <div class="custom-spinner">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">Medi+Plus</a>
@@ -36,50 +41,84 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="Home.html"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="../Home/Home.html"
                 >Home</a
               >
             </li>
+
             <li class="nav-item">
-              <a class="nav-link" href="#best-seller">Best seller</a>
+              <a class="nav-link" href="../MyOrder/MyOrder.html">Order</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Category</a>
+              <a class="nav-link" href="../MyMedication/MyMedication.html"
+                >Medication</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Purchase</a>
+              <a class="nav-link" href="#">About</a>
             </li>
           </ul>
           <div class="d-flex align-items-center">
-            <a href="AddToCart.html">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="#438686"
-                class="bi bi-cart4 me-4"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"
-                />
-              </svg>
-            </a>
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="36"
-              height="36"
-              fill="#438686"
-              class="bi bi-person-circle person me-1"
-              viewBox="0 0 16 16"
+            <a href="../Login/Login.html">
+              <button class="btn login-btn">Login</button></a
             >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
-              />
-            </svg>
+            <a href="../AddToCart/AddToCart.html" id="cart-icon">
+              <div class="svg-bg me-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="#438686"
+                  class="bi bi-cart4"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l.5 2H5V5zM6 5v2h2V5zm3 0v2h2V5zm3 0v2h1.36l.5-2zm1.11 3H12v2h.61zM11 8H9v2h2zM8 8H6v2h2zM5 8H3.89l.5 2H5zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"
+                  />
+                </svg>
+              </div>
+            </a>
+            <div id="profile">
+              <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                  <li class="nav-item dropdown">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDarkDropdownMenuLink"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="33"
+                        height="33"
+                        fill="#438686"
+                        class="bi bi-person-circle person me-1"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                        <path
+                          fill-rule="evenodd"
+                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"
+                        />
+                      </svg>
+                    </a>
+                    <ul
+                      class="dropdown-menu dropdown-menu-light dropdown-menu-end custom-dropdown"
+                      aria-labelledby="navbarDarkDropdownMenuLink"
+                    >
+                      <li><a class="dropdown-item" href="#">Profile</a></li>
+                      <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -91,11 +130,15 @@
             <div class="filter-cont">
               <div>
                 <p>Filter by</p>
-                <select class="form-select" aria-label="Default" id="filter-select">
+                <select
+                  class="form-select"
+                  aria-label="Default"
+                  id="filter-select"
+                >
                   <option value="0" selected>Select the filter</option>
                   <option value="1">Popularity</option>
-                  <option value="2">Price:Low to high</option>
-                  <option value="3">Price:High to low</option>
+                  <option value="2">Price:High to Low</option>
+                  <option value="3">Price:Low to High</option>
                 </select>
               </div>
               <br />
@@ -112,7 +155,12 @@
                   <div class="separator">-</div>
                   <div class="field">
                     <span>Max</span>
-                    <input type="number" id="max" class="input-max" value="10000" />
+                    <input
+                      type="number"
+                      id="max"
+                      class="input-max"
+                      value="10000"
+                    />
                   </div>
                 </div>
                 <div class="slider">
@@ -140,43 +188,42 @@
               <br />
               <hr />
 
-              <hr />
-              <div>
-                
-                <button class="filter-btn" id="filter-btn">Filter</button>
-                <button class="reset-btn">Reset</button>
+              <div class="action-btn">
+                <button class="filter-btn btn" id="filter-btn">Filter</button>
+                <button class="reset-btn btn">Reset</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-8 d-flex justify-content-center">
+        <div class="col-lg-8 d-flex tot-product">
           <div class="filter-product">
-            <div class="product-top row d-flex">
-              <div class="input-group mb-3 col col-md-9 col-sm-9">
+            <div class="product-top">
+              <div class="input-group search-cont mb-3">
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Search Prodct"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  id="search-val"
                 />
-                <div class="input-group-append">
-                  <span class="input-group-text" id="basic-addon2">Search</span>
-                </div>
-              </div>
-
-              <div
-                class="d-flex justify-content-end mb-3 modal-btn col col-md-3 col-sm-3"
-              >
                 <button
+                  class="btn btn-outline-success"
                   type="button"
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#filterModal"
+                  id="search-item"
                 >
-                  Filter
+                  Search
                 </button>
               </div>
+
+              <button
+                type="button"
+                class="btn btn-outline-success modal-btn mb-3"
+                data-bs-toggle="modal"
+                data-bs-target="#filterModal"
+              >
+                Filter
+              </button>
             </div>
 
             <!-- Filter Modal -->
@@ -256,9 +303,8 @@
                     <br />
                     <hr />
 
-
                     <br />
-                   
+
                     ...
                   </div>
                   <div class="modal-footer">
@@ -315,13 +361,12 @@
               <div class="card dark">
                 <div class="img-cont">
                   <img
-                  src="../Assets/Images/Haircare.png"
-                  class="card-img-top"
-                  alt="..."
-                />
-
+                    src="../Assets/Images/Haircare.png"
+                    class="card-img-top"
+                    alt="..."
+                  />
                 </div>
-                
+
                 <div class="card-body">
                   <div class="text-section">
                     <h5 class="card-title fw-bold">
@@ -413,7 +458,6 @@
                   <div class="cta-section">
                     <div class="price">$129.00</div>
                     <div class="quantity-field">
-                     
                       <button class="product-btn">View Product</button>
                     </div>
                   </div>

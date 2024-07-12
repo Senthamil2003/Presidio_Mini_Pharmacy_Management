@@ -9,6 +9,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     />
     <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
@@ -19,6 +24,11 @@
   </head>
 
   <body>
+    <div class="custom-spinner">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
     <div class="tot-cont">
       <div class="nav-cont active">
         <div class="navigation active">
@@ -31,8 +41,9 @@
               </a>
             </li>
             <br />
+            <link rel="stylesheet" href="">
             <li>
-              <a href="./PurchaseReport.html" class="bg-cont active-bg">
+              <a href="../Report/PurchaseReport.html" class="bg-cont active-bg">
                 <span class="icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,22 +70,23 @@
             </li>
 
             <li>
-              <a href="../Purchase/Purchase.html" class="bg-cont">
+              <a href="../Stock/Stock.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-bag"
+                    class="bi bi-prescription2"
                     viewBox="0 0 16 16"
                   >
+                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
                     />
                   </svg>
                 </span>
-                <span class="title"> Purchase</span>
+                <span class="title">Stock</span>
               </a>
             </li>
             <li>
@@ -97,25 +109,25 @@
               </a>
             </li>
             <li>
-              <a href="../Stock/Stock.html" class="bg-cont">
+              <a href="../Purchase/Purchase.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="28"
                     height="28"
                     fill="currentColor"
-                    class="bi bi-prescription2"
+                    class="bi bi-bag"
                     viewBox="0 0 16 16"
                   >
-                    <path d="M7 6h2v2h2v2H9v2H7v-2H5V8h2z" />
                     <path
-                      d="M2 1a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v10.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 14.5V4a1 1 0 0 1-1-1zm2 3v10.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V4zM3 3h10V1H3z"
+                      d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
                     />
                   </svg>
                 </span>
-                <span class="title">Stock</span>
+                <span class="title"> Purchase</span>
               </a>
             </li>
+
             <li>
               <a href="../Delivery/Delivery.html" class="bg-cont">
                 <span class="icon"
@@ -136,7 +148,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="bg-cont">
+              <a href="../../Customer/Login/Login.html" class="bg-cont">
                 <span class="icon"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +168,7 @@
                     />
                   </svg>
                 </span>
-                <span class="title">Logout</span>
+                <span class="title" id="logout">Logout</span>
               </a>
             </li>
           </ul>
@@ -185,7 +197,7 @@
                     </svg>
                   </div>
                   <div class="txt-cont">
-                    <p class="stats-count">300</p>
+                    <p class="stats-count" id="customerCount">300</p>
                     <p class="stats-text">Total Cutomer</p>
                   </div>
                 </div>
@@ -209,7 +221,7 @@
                     </svg>
                   </div>
                   <div class="txt-cont">
-                    <p class="stats-count">$1200</p>
+                    <p class="stats-count" id="purchaseAmount">$1200</p>
                     <p class="stats-text">Purchase</p>
                   </div>
                 </div>
@@ -234,8 +246,8 @@
                     </svg>
                   </div>
                   <div class="txt-cont">
-                    <p class="stats-count">300</p>
-                    <p class="stats-text">New Order</p>
+                    <p class="stats-count" id="ordersAmount">$300</p>
+                    <p class="stats-text">Total Order</p>
                   </div>
                 </div>
               </div>
@@ -258,8 +270,8 @@
                     </svg>
                   </div>
                   <div class="txt-cont">
-                    <p class="stats-count">$1234</p>
-                    <p class="stats-text">Profit</p>
+                    <p class="stats-count" id="medicineCount">1234</p>
+                    <p class="stats-text">Total Medicine</p>
                   </div>
                 </div>
               </div>
@@ -290,9 +302,6 @@
                   <li>
                     <a class="dropdown-item" href="./OrderReport.html">Order</a>
                   </li>
-                  <li>
-                    <a class="dropdown-item" href="#">Category</a>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -309,6 +318,7 @@
                   class="btn btn-outline-success"
                   type="button"
                   id="button-addon1"
+                  disabled
                 >
                   Search
                 </button>
@@ -366,7 +376,7 @@
                               <input
                                 type="date"
                                 class="form-control"
-                                id="exampleInputEmail1"
+                                id="fromDate"
                                 aria-describedby="emailHelp"
                               />
                             </div>
@@ -377,36 +387,9 @@
                               <input
                                 type="date"
                                 class="form-control"
-                                id="exampleInputEmail1"
+                                id="toDate"
                                 aria-describedby="emailHelp"
                               />
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label"
-                                >Sort With</label
-                              >
-                              <select
-                                class="form-select"
-                                aria-label="Default select example"
-                              >
-                                <option selected>Sort with</option>
-                                <option value="1">Medicine Name</option>
-                                <option value="2">Price</option>
-                                <option value="3">Quantity</option>
-                              </select>
-                            </div>
-                            <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label"
-                                >Sort by</label
-                              >
-                              <select
-                                class="form-select"
-                                aria-label="Default select example"
-                              >
-                                <option selected>Sort by</option>
-                                <option value="1">Ascending</option>
-                                <option value="2">Descending</option>
-                              </select>
                             </div>
                           </form>
                         </div>
@@ -436,19 +419,11 @@
                 <th scope="col">#</th>
                 <th scope="col">Medicine Id</th>
                 <th scope="col">Medicine Name</th>
-                <th scope="col">Order Quantity</th>
-                <th scope="col">Order Amount</th>
+                <th scope="col">Purchase Quantity</th>
+                <th scope="col">Purchase Amount</th>
               </tr>
             </thead>
             <tbody id="purchase-report">
-              <tr>
-                <td>1</td>
-                <td>12345632</td>
-                <td>Paracetamol</td>
-                <td>120</td>
-                <td>1200</td>
-              </tr>
-
               <tr></tr>
             </tbody>
             <tfoot>
@@ -473,7 +448,13 @@
     </div>
 
     <script src="./Report.js"></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
     <script type="module" src="./PurchaseReportApi.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

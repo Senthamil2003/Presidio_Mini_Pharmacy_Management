@@ -83,5 +83,18 @@ namespace PharmacyManagementApi.Controllers
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }
+        [HttpGet("validate")]
+        public IActionResult ValidateToken()
+        {
+            var token = HttpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+            if (string.IsNullOrEmpty(token))
+                return Unauthorized("Token is missing.");
+
+            var (isValid, role) = _authService.ValidateUserTokenAndGetRole(token);
+            if (isValid)
+                return Ok(new { Message = "Token is valid.", Role = role });
+            else
+                return Unauthorized("Token is invalid.");
+        }
     }
 }

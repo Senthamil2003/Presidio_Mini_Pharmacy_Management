@@ -22,6 +22,7 @@ public class AdminService : IAdminService
     private readonly IRepository<int, DeliveryDetail> _deliveryDetailRepo;
     private readonly IRepository<int, Order> _orderRepository;
     private readonly IRepository<int, Brand> _brandRepository;
+    private readonly IRepository<int, Customer> _customer;
     private readonly ILogger<AdminService> _logger;
 
     public AdminService(
@@ -35,7 +36,8 @@ public class AdminService : IAdminService
         StockJoinedRepository stockJoinedRepo,
         IRepository<int, DeliveryDetail> deliveryDetailRepo,
         IRepository<int, Order> orderRepository,
-        IRepository<int ,Brand> brandRepo,
+        IRepository<int, Brand> brandRepo,
+        IRepository<int, Customer> customer,
         ITransactionService transactionService,
         ILogger<AdminService> logger
         )
@@ -53,6 +55,7 @@ public class AdminService : IAdminService
         _orderRepository = orderRepository;
         _brandRepository = brandRepo;
         _logger = logger;
+        _customer = customer;
     }
 
     /// <summary>
@@ -141,23 +144,27 @@ public class AdminService : IAdminService
         try
         {
             _logger.LogInformation("Fetching all pending orders.");
-            List<OrderDetail> orderDetails = (await _orderDetailRepo.Get()).Where(od => !od.DeliveryStatus).ToList();
 
-            if (orderDetails.Count == 0)
+            var orderDetailsDto =( await _orderDetailRepo.Get())
+               
+                .Select(od => new OrderDetailDTO
+                {
+                    Date=od.Order.OrderDate.Date,
+                    MedicineName = od.Medicine.MedicineName,
+                    OrderDetailId = od.OrderDetailId,
+                    Quantity = od.Quantity,
+                    status=od.DeliveryStatus,
+                    Customerid = od.Order.CustomerId
+
+                })
+                .ToArray();
+
+            if (!orderDetailsDto.Any())
             {
                 throw new NoOrderFoundException("No order found for Admin");
             }
 
-            OrderDetailDTO[] orderDetailsDto = orderDetails.Select(orderDetail => new OrderDetailDTO()
-            {
-                MedicineName = orderDetail.Medicine.MedicineName,
-                OrderDetailId = orderDetail.OrderDetailId,
-                Quantity = orderDetail.Quantity,
-                Customerid = orderDetail.Order.CustomerId
-            }).ToArray();
-
-            _logger.LogInformation("Fetched {Count} pending orders.", orderDetails.Count);
-
+            _logger.LogInformation("Fetched {Count} pending orders.", orderDetailsDto.Length);
             return orderDetailsDto;
         }
         catch (Exception ex)
@@ -166,7 +173,6 @@ public class AdminService : IAdminService
             throw;
         }
     }
-
     /// <summary>
     /// Processes the delivery of an order.
     /// </summary>
@@ -284,6 +290,31 @@ public class AdminService : IAdminService
         }
 
     }
+    public async Task<DashboardDTO> GetDashBoardValue()
+    {
+        try
+        {
+           int totalCustomer=(await _customer.Get()).Count();
+            double totalPurchase =(await _purchaseRepo.Get()).Sum(e => e.TotalAmount.GetValueOrDefault());
+            double totalOrder = (await _orderRepository.Get()).Sum(e => e.TotalAmount);
+            int medicineCount = (await _medicineRepo.Get()).Count();
+            DashboardDTO dashboardDTO = new DashboardDTO()
+            {
+                OrdersAmount = totalOrder,
+                CustomerCount = totalCustomer,
+                MedicineCount = medicineCount,
+                PurchaseAmount = totalPurchase,
+            };
+            return dashboardDTO;
+
+
+        }
+        catch
+        {
+            throw;
+        }
+
+    }
     public async Task<List<MedicineDTO>> GetAllMedicine()
     {
         try
@@ -300,6 +331,7 @@ public class AdminService : IAdminService
                     CategoryName=(await _categoryRepo.Get(item.CategoryId)).CategoryName,
                     Status=item.status,
                     CurrentQuantity=item.CurrentQuantity,
+                    Brandname=(await _brandRepository.Get(item.BrandId)).BrandName,
                 };
                 medicineDTOs.Add(medicineDTO);
             }

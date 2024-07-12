@@ -2,7 +2,40 @@ import { GetData, PostData } from "../FetchApi/Api.js";
 
 let rowCount = 0;
 
-window.onload = initializePage();
+window.onload = Validate();
+
+async function Validate() {
+  try {
+    var token =await localStorage.getItem("token");
+    const validate = await fetch("http://localhost:5033/api/Auth/validate", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
+
+    if (!validate.ok) {
+      const error = await response.json();
+      throw new Error(error);
+    }
+    console.log(validate);
+
+    var response = await validate.json();
+
+    if (response.role != "Admin") {
+      window.location.href = "../../Customer/Login/Login.html";
+    }
+  } catch (error) {
+    window.location.href = "../../Customer/Login/Login.html";
+  } finally {
+    initializePage();
+  }
+}
+document.getElementById("logout").addEventListener("click", () => {
+  localStorage.removeItem("token");
+  location.reload();
+});
 
 async function initializePage() {
   await GetAllMedicine();
@@ -67,7 +100,7 @@ function initializeSelect2ForRow(rowIndex) {
         ".custom-container"
       ),
       data: window.medicineData.map((medicine) => ({
-        id: medicine.categoryId,
+        id: medicine.medicineId,
         text: medicine.medicineName,
       })),
     })
@@ -183,49 +216,86 @@ function convertToDateTime(dateString) {
 
   return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
 }
+
+function resetForm() {
+  document.getElementById("tableBody").innerHTML = "";
+  document.getElementById("purchaseDate").value = "";
+  rowCount = 0;
+  addRow(); // Add initial empty row
+}
+
+function showToast(message, isError = false) {
+  Toastify({
+    text: message,
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    style: {
+      background: isError
+        ? "rgba(241, 73, 47, 0.989)"
+        : "rgba(54, 223, 16, 0.989)",
+    },
+  }).showToast();
+}
+
 document
   .getElementById("submitData")
   .addEventListener("click", async function () {
     const rows = document.querySelectorAll("#tableBody tr");
     var purchaseDate = document.getElementById("purchaseDate").value;
-    console.log(purchaseDate, convertToDateTime(purchaseDate));
+
+    if (!purchaseDate) {
+      showToast("Please select a purchase date.", true);
+      return;
+    }
+
     var Totresult = { dateTime: convertToDateTime(purchaseDate), items: [] };
     const data = Totresult.items;
     let isValid = true;
 
     rows.forEach((row, index) => {
-      if (rows.length - 1 != index && !isRowValid(row)) {
-        console.log(row, index);
-        isValid = false;
-        return;
-      }
-
-      const rowData = {
-        medicineId:
-          $(`#search-select${index + 1}`).select2("data")[0]?.id || "",
-        vendorId: $(`#vendor-select${index + 1}`).select2("data")[0]?.id || "",
-
-        amount: row.querySelector(".amount-input").value,
-        quantity: row.querySelector(".quantity-input").value,
-
-        expiryDate: convertToDateTime(
-          row.querySelector(".exp-date-input").value
-        ),
-      };
       if (rows.length - 1 != index) {
+        if (!isRowValid(row)) {
+          isValid = false;
+          return;
+        }
+
+        const rowData = {
+          medicineId:
+            $(`#search-select${index + 1}`).select2("data")[0]?.id || "",
+          vendorId:
+            $(`#vendor-select${index + 1}`).select2("data")[0]?.id || "",
+          amount: row.querySelector(".amount-input").value,
+          quantity: row.querySelector(".quantity-input").value,
+          expiryDate: convertToDateTime(
+            row.querySelector(".exp-date-input").value
+          ),
+        };
+
+        if (!rowData.medicineId || !rowData.vendorId || !rowData.expiryDate) {
+          isValid = false;
+          return;
+        }
+
         data.push(rowData);
       }
     });
-    console.log(data);
+
     if (!isValid) {
-      alert(
-        "Please fill all fields correctly. Quantity and Amount must be greater than zero."
+      showToast(
+        "Please fill all fields correctly. Quantity and Amount must be greater than zero.",
+        true
       );
       return;
     }
 
-    console.log(Totresult);
+    if (data.length === 0) {
+      showToast("Please add at least one valid row of data.", true);
+      return;
+    }
+
     try {
+      console.log(Totresult);
       const response = await fetch("http://localhost:5033/api/Admin/Purchase", {
         method: "POST",
         headers: {
@@ -237,9 +307,17 @@ document
       if (response.ok) {
         const FinalResult = await response.json();
         console.log(FinalResult);
+        showToast("Purchase submitted successfully!");
+        resetForm();
+      } else {
+        const errorData = await response.json();
+        showToast(
+          `Error: ${errorData.message || "Unknown error occurred"}`,
+          true
+        );
       }
-   
     } catch (error) {
       console.error("An error occurred while fetching data:", error);
+      showToast(`Error: ${error.message || "Unknown error occurred"}`, true);
     }
   });

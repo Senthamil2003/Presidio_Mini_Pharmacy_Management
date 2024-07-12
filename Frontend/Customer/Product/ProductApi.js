@@ -1,7 +1,6 @@
 import { GetData, PostData } from "../Api/Api.js";
 
-var token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6IjMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwiZXhwIjoxNzIwNzc3MDY2fQ.7BxTYPoTyvdfGfS7hu0DYuBu1uBl-CasYQL8h8fr73Y";
+var token = localStorage.getItem("token");
 var MedicineId;
 function getQueryParam(param) {
   const urlParams = new URLSearchParams(window.location.search);
@@ -10,8 +9,35 @@ function getQueryParam(param) {
 var isfeedback = false;
 var isCart = false;
 
-document.onload = await InitializeData();
+document.onload =  Validate();
 
+async function Validate() {
+  try {
+    var spinner = document.querySelector(".custom-spinner");
+    spinner.style.visibility = "visible";
+    var validate = await GetData(
+      "http://localhost:5033/api/Auth/validate",
+      {},
+      token
+    );
+    console.log(validate);
+    await InitializeData();
+  } catch (error) {
+    var spinner = document.querySelector(".custom-spinner");
+
+    document.getElementById("profile").style.display = "none";
+    document.getElementById("cart-icon").style.display = "none";
+    document.getElementById("dropdownMenuButton1").disabled = true;
+    document.getElementById("give-feedback-btn").disabled = true;
+    document.getElementById("add-cart").disabled = true;
+    
+    document.querySelector(".login-btn").style.display = "block";
+
+    console.log(error);
+  } finally {
+    await InitializeData();
+  }
+}
 async function InitializeData() {
   var spinner = document.querySelector(".custom-spinner");
   spinner.style.visibility = "visible";
@@ -36,7 +62,7 @@ async function InitializeData() {
     }
     try {
       var MyCart = await GetData(
-        "http://localhost:5033/api/View/ViewMyCart",
+        "http://localhost:5033/api/View/GetOnlyCart",
         {},
         token
       );
@@ -118,17 +144,28 @@ async function CreateProduct(data) {
     Addtocart.style.display = "none";
   }
 
+  document.getElementById("logout").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    location.reload();
+  });
   medicineImage.src = `data:image/jpeg;base64,${data.imageBase64}`;
   medicineName.innerText = data.medicineName;
   company.innerText = data.brand;
   price.innerText = `$${data.sellingPrice}`;
   star.innerText =
     data.feedbackCount != 0
-      ? Number(data.feedbackSum) / Number(data.feedbackCount)
+      ? (Number(data.feedbackSum) / Number(data.feedbackCount)).toFixed(1)
       : 0;
   starCount.innerText = `(${data.feedbackCount})`;
   description.innerText = data.description;
   itemCount.innerText = `Pack of ${data.itemPerPack} item of ${data.weight}`;
+}
+function formatDate(dateString) {
+  var date = new Date(dateString);
+  var day = date.getDate().toString().padStart(2, "0");
+  var month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are zero-based
+  var year = date.getFullYear();
+  return `${month}/${day}/${year}`;
 }
 
 function CreateFeedback(data) {
@@ -144,18 +181,18 @@ function CreateFeedback(data) {
     giveFeedbackButton.innerHTML = "feedback already given";
     giveFeedbackButton.disabled = true;
   }
-  star.innerHTML = data.feedbackRating;
+  star.innerHTML = Number(data.feedbackRating).toFixed(1);
   starCount.innerHTML = data.feedbacks.length;
-  oneStar.innerHTML = `${data.ratingPercentages[1]}%`;
-  twoStar.innerHTML = `${data.ratingPercentages[2]}%`;
-  threeStar.innerHTML = `${data.ratingPercentages[3]}%`;
-  fourStar.innerHTML = `${data.ratingPercentages[4]}%`;
-  fiveStar.innerHTML = `${data.ratingPercentages[5]}%`;
-  oneStar.style = `width:${data.ratingPercentages[1]}%`;
-  twoStar.style = `width:${data.ratingPercentages[2]}%`;
-  threeStar.style = `width:${data.ratingPercentages[3]}%`;
-  fourStar.style = `width:${data.ratingPercentages[4]}%`;
-  fiveStar.style = `width:${data.ratingPercentages[5]}%`;
+  oneStar.innerHTML = `${Number(data.ratingPercentages[1]).toFixed(1)}%`;
+  twoStar.innerHTML = `${Number(data.ratingPercentages[2]).toFixed(1)}%`;
+  threeStar.innerHTML = `${Number(data.ratingPercentages[3]).toFixed(1)}%`;
+  fourStar.innerHTML = `${Number(data.ratingPercentages[4]).toFixed(1)}%`;
+  fiveStar.innerHTML = `${Number(data.ratingPercentages[5]).toFixed(1)}%`;
+  oneStar.style = `width:${Number(data.ratingPercentages[1]).toFixed(1)}%`;
+  twoStar.style = `width:${Number(data.ratingPercentages[2]).toFixed(1)}%`;
+  threeStar.style = `width:${Number(data.ratingPercentages[3]).toFixed(1)}%`;
+  fourStar.style = `width:${Number(data.ratingPercentages[4]).toFixed(1)}%`;
+  fiveStar.style = `width:${Number(data.ratingPercentages[5]).toFixed(1)}%`;
   var feedbackcont = document.getElementById("feedback-total");
   var content = "";
 
@@ -190,7 +227,7 @@ function CreateFeedback(data) {
                   </div>
                 </div>
                 <div>
-                  <p>12/02/2022</p>
+                  <p>${formatDate(element.date)}</p>
                 </div>
               </div>
               <hr />
@@ -297,7 +334,7 @@ document
               background: "#14da59",
             },
           }).showToast();
-        }, 1000);
+        }, 1);
         console.log(result);
       } catch (error) {}
     }
@@ -333,7 +370,7 @@ document
           background: "#14da59",
         },
       }).showToast();
-    }, 1000);
+    }, 1);
   });
 
 document.getElementById("add-cart").addEventListener("click", async () => {
@@ -360,9 +397,9 @@ document.getElementById("add-cart").addEventListener("click", async () => {
           background: "#14da59",
         },
       }).showToast();
-    }, 1000);
+    }, 1);
   } catch (error) {
-    console.log("????????????????????????????????", error, error.message);
+    
     Toastify({
       text: error.message,
       duration: 3000,
@@ -400,7 +437,7 @@ document.getElementById("give-feedback").addEventListener("click", async () => {
       token
     );
 
-    // Rerender the app
+    $("#feedback-modal").modal("hide");
     await InitializeData();
 
     // Clear the form fields
@@ -408,7 +445,6 @@ document.getElementById("give-feedback").addEventListener("click", async () => {
     document.getElementById("review-body").value = "";
     document.querySelector('.rate input[type="radio"]:checked').checked = false;
 
-    $("#feedback-modal").modal("hide");
     setTimeout(() => {
       Toastify({
         text: "Thanks for sharing your feedback",
@@ -419,7 +455,7 @@ document.getElementById("give-feedback").addEventListener("click", async () => {
           background: "#14da59",
         },
       }).showToast();
-    }, 1000);
+    }, 1);
   } catch (error) {
     console.log(error);
     Toastify({

@@ -208,6 +208,25 @@ body {
     }
   }
 }
+.custom-spinner {
+  z-index: 4 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+}
 
 table {
   text-align: center;
@@ -289,7 +308,7 @@ hr {
 }
 .approved {
   height: auto;
-  width: 70%;
+  width: auto;
   background-color: #e1fcef;
 
   border-radius: 5px;
@@ -301,7 +320,7 @@ hr {
 }
 .pending {
   height: auto;
-  width: 70%;
+  width: auto;
   background-color: #e9edf5;
   color: #5a6376;
   border-radius: 5px;
@@ -311,13 +330,17 @@ hr {
 }
 .disable {
   height: auto;
-  width: 70%;
+  width: auto;
   background-color: #faf0f3;
   border-radius: 5px;
   padding: 5%;
   color: #d12953;
   margin-left: auto;
   margin-right: auto;
+}
+.custom-btn {
+  background-color: $primcolor;
+  color: white;
 }
 .form-cont {
   padding: 5%;
@@ -328,7 +351,6 @@ hr {
   //   border: none;
   // }
   .btn {
-    
     background-color: $primcolor;
     color: white;
   }
@@ -372,7 +394,6 @@ select:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 .img-cont {
   background-color: white;
@@ -395,13 +416,10 @@ select:disabled {
   justify-content: center;
   .btn {
     width: 200px;
-   
   }
 }
 .select2-selection--single {
-  
   height: 40px !important; /* Adjust the height as needed */
- 
 }
 .select2-selection__rendered {
   line-height: 40px !important; /* Ensure the text is vertically centered */
@@ -409,7 +427,7 @@ select:disabled {
 .select2-selection__arrow {
   height: 40px !important; /* Match the height of the select box */
 }
-.custom-container{
+.custom-container {
   display: flex;
 }
 @media (max-width: 767px) {

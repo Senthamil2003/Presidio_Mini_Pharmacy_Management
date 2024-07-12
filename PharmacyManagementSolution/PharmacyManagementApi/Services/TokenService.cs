@@ -44,5 +44,29 @@ namespace PharmacyManagementApi.Services
             _logger.LogInformation("Token generated successfully for customer {CustomerId}", customer.CustomerId);
             return token;
         }
+        public (bool isValid, ClaimsPrincipal? claimsPrincipal) ValidateToken(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_secretKey);
+
+            try
+            {
+                var claimsPrincipal = tokenHandler.ValidateToken(token, new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                }, out SecurityToken validatedToken);
+
+                return (true, claimsPrincipal);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Token validation failed.");
+                return (false, null);
+            }
+        }
     }
 }

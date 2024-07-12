@@ -2,6 +2,7 @@
 {
     public class MedicineDTO
     {
+        public string Brandname { get; set; }
         public int MedicineId { get; set; }
         public int CategoryId { get; set; }
         public string MedicineName { get; set; }
