@@ -89,7 +89,7 @@ function CreateElement(data) {
                 <p class="card-text company">${element.brandName}</p>
                 <div class="card-cont">
                   <h5 class="card-title fw-bold">Quantity</h5>
-                  <p class="card-text company">Pack of ${element.quantity}</p>
+                  <p class="card-text company">Pack of ${element.itemPerPack}</p>
                 </div>
               </div>
               <div class="text-section">

@@ -384,7 +384,7 @@ namespace PharmacyManagementApi.Services
                     Where(e => e.status == 1).
                     OrderByDescending(e => e.TotalNumberOfPurchase).
                     ThenByDescending(e =>e.FeedbackSum /e.FeedbackCount)
-                    .Take(10)
+                    .Take(8)
                     .ToList();
                 List<BestSellerDTO> bestSellers = new List<BestSellerDTO>();
                 foreach (var item in medicines)

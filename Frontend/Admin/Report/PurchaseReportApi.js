@@ -35,6 +35,19 @@ function updateDashboard(data) {
   updateElement("medicineCount", data.medicineCount);
 }
 
+function formatDateToISO(date) {
+  date = new Date(date);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const seconds = String(date.getSeconds()).padStart(2, "0");
+  const milliseconds = String(date.getMilliseconds()).padStart(3, "0");
+
+  return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
+}
+
 function getPast30Days() {
   const toDate = new Date();
   const fromDate = new Date();
@@ -81,15 +94,20 @@ async function fetchFilteredReportData(fromDate, toDate) {
     spinner.style.visibility = "visible";
 
     const params = {
-      startDate: fromDate,
-      endDate: toDate,
+      startDate: formatDateToISO(fromDate),
+      endDate: formatDateToISO(toDate),
     };
 
     const url = "http://localhost:5033/api/Report/PurchaseReport";
     allReportData = await GetData(url, params);
+    console.log(allReportData);
     displayReport();
     setupPagination();
   } catch (error) {
+    allReportData = [];
+    displayReport();
+    setupPagination();
+
     console.log(error);
   } finally {
     var spinner = document.querySelector(".custom-spinner");
@@ -200,10 +218,9 @@ document
     setupPagination();
   });
 
-
 async function Validate() {
   try {
-    var token =await localStorage.getItem("token");
+    var token = await localStorage.getItem("token");
     const validate = await fetch("http://localhost:5033/api/Auth/validate", {
       method: "GET",
       headers: {
@@ -218,9 +235,8 @@ async function Validate() {
     }
     console.log(validate);
 
-   
     var response = await validate.json();
-    
+
     if (response.role != "Admin") {
       window.location.href = "../../Customer/Login/Login.html";
     }

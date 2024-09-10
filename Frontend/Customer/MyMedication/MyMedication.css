@@ -21,6 +21,11 @@
   padding-bottom: 1rem;
 }
 
+.empty-medication {
+  text-align: center;
+  margin-top: 2%;
+  color: gray;
+}
 .navbar-brand {
   font-family: logo;
   color: #438686 !important;
@@ -82,7 +87,8 @@
   flex-direction: row;
   background-color: #ffffff;
   border: 0;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .card.dark {

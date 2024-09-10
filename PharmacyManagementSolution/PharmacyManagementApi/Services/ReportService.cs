@@ -40,7 +40,7 @@ namespace PharmacyManagementApi.Services
                     })
                     .Select(g => new PurchaseReportDTO
                     {
-                        
+
                         MedicineId = g.Key.MedicineId,
                         MedicineName = g.Key.MedicineName,
                         TotalAmount = g.Sum(pd => pd.TotalSum),

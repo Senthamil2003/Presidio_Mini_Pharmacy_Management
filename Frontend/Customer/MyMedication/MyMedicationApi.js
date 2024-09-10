@@ -41,9 +41,10 @@ async function MyMedication() {
     console.log(Medication);
     CreateMedication();
   } catch (error) {
+    var medicaioncont = document.getElementById("medication-cont");
+    medicaioncont.innerHTML = `<p class="empty-medication">No Medication Found</p>`;
     console.log(error);
-  }
-  finally{
+  } finally {
     var spinner = document.querySelector(".custom-spinner");
     spinner.style.visibility = "hidden";
   }
@@ -164,10 +165,10 @@ document
 //     // );
 
 //   }.addEventListener('DOMContentLoaded', function() {
-  document.getElementById("logout").addEventListener("click", () => {
-    localStorage.removeItem("token");
-    location.reload();
-  });
+document.getElementById("logout").addEventListener("click", () => {
+  localStorage.removeItem("token");
+  location.reload();
+});
 document
   .getElementById("medication-cont")
   .addEventListener("click", async function (event) {

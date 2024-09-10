@@ -86,7 +86,7 @@ form.addEventListener("submit", async function (e) {
       const data = await response.json();
       console.log("Data posted successfully:", data);
       Toastify({
-        text: "User Login Successfull",
+        text: "Login Successfull...",
         duration: 3000,
         gravity: "top",
         position: "right",

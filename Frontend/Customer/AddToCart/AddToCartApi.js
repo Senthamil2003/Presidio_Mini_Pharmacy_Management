@@ -73,9 +73,9 @@ function CreateCheckout(data) {
   var estimateAmontCont = document.getElementById("final-total");
 
   totalItemCont.innerHTML = totalItem;
-  totalAmountCont.innerHTML = totalamount;
-  deliveryCont.innerHTML = deliverycharge;
-  estimateAmontCont.innerHTML = totalamount + deliverycharge;
+  totalAmountCont.innerHTML = "$" + totalamount;
+  deliveryCont.innerHTML = "$" + deliverycharge;
+  estimateAmontCont.innerHTML = "$" + (totalamount + deliverycharge);
 
   var freetext = document.getElementById("free-txt");
   var freebar = document.getElementById("free-bar");

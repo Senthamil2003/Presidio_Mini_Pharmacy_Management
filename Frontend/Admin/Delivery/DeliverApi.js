@@ -2,15 +2,15 @@ let allOrders = [];
 let currentPage = 1;
 const ordersPerPage = 10;
 
-document.addEventListener("DOMContentLoaded", () => {
-  Validate();
-  fetchOrders();
-  setupEventListeners();
+document.addEventListener("DOMContentLoaded", async () => {
+  await Validate();
+  await fetchOrders();
+  await setupEventListeners();
 });
 
 async function Validate() {
   try {
-    var token =await localStorage.getItem("token");
+    var token = await localStorage.getItem("token");
     const validate = await fetch("http://localhost:5033/api/Auth/validate", {
       method: "GET",
       headers: {
@@ -36,7 +36,7 @@ async function Validate() {
 }
 document.getElementById("logout").addEventListener("click", () => {
   localStorage.removeItem("token");
-  location.reload();
+  window.location.reload();
 });
 
 function setupEventListeners() {
